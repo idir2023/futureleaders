@@ -6,6 +6,7 @@ use App\Models\Consultation;
 use App\Models\Coach;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 
 class ConsultationController extends Controller
 {
@@ -46,7 +47,7 @@ class ConsultationController extends Controller
         return redirect()->route('consultations.index')->with('success', 'Consultation ajoutée avec succès.');
     }
 
-    
+
     public function update(Request $request, $id)
     {
         $consultation = Consultation::findOrFail($id);
@@ -90,6 +91,20 @@ class ConsultationController extends Controller
         }
 
         $consultation->delete();
+
+        return response()->json(['success' => true]);
+    }
+
+    public function sendDrive(Request $request)
+    {
+        $consultationId = $request->input('consultation_id');
+        $driveLink = $request->input('drive_link');
+
+        // You can store the link in the database or send it as part of an email
+        // For example, storing it in the consultation model
+        $consultation = Consultation::find($consultationId);
+        $consultation->drive_link = $driveLink;
+        $consultation->save();
 
         return response()->json(['success' => true]);
     }

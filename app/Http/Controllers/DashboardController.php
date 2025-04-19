@@ -11,12 +11,13 @@ class DashboardController extends Controller
         $Coaches = \App\Models\Coach::all();
         $Consultations = \App\Models\Consultation::latest()->get();
         $Users = \App\Models\User::all();
-    
+
         $CoachesCount = $Coaches->count();
         $ConsultationsCount = $Consultations->count();
         $UsersCount = $Users->count();
-    
-        return view('admin.index', compact('Coaches', 'Consultations', 'Users', 'CoachesCount', 'ConsultationsCount', 'UsersCount'));
+        $consultationsClient = \App\Models\Consultation::where('user_id', auth()->user()->id)->get();
+        // return view('admin.consultationClient', compact('consultations'));
+        return view('admin.index', compact('Coaches', 'Consultations','consultationsClient', 'Users', 'CoachesCount', 'ConsultationsCount', 'UsersCount'));
     }
-    
+   
 }

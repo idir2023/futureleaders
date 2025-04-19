@@ -51,16 +51,16 @@
                     <li><a href="#pricing1">{{ __('Consultation') }}</a></li>
                     <li>
                         @auth
-                            @if (Auth::user()->is_admin)
+                            {{-- @if (Auth::user()->is_admin) --}}
                                 <a href="{{ route('dashboard') }}">{{ __('menu.dashboard') }}</a>
-                            @else
+                            {{-- @else
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('menu.logout') }}</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                     style="display: none;">
                                     @csrf
                                 </form>
-                            @endif
+                            @endif --}}
                         @else
                             <a href="{{ route('login') }}">{{ __('menu.login') }}</a>
                         @endauth
@@ -87,15 +87,15 @@
             <a href="#pricing1">{{ __('menu.Consultation') }}</a>
             <a href="#contact">{{ __('menu.contact') }}</a>
             @auth
-                @if (Auth::user()->is_admin)
+                {{-- @if (Auth::user()->is_admin) --}}
                     <a href="{{ route('dashboard') }}">{{ __('menu.dashboard') }}</a>
-                @else
+                {{-- @else
                     <a href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('menu.logout') }}</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
-                @endif
+                @endif --}}
             @else
                 <a href="{{ route('login') }}">{{ __('menu.login') }}</a>
             @endauth

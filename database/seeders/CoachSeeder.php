@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Coach;
 use App\Models\BankAccount;
 use Carbon\Carbon;
+use Illuminate\Database\Seeder;
 
 class CoachSeeder extends Seeder
 {
@@ -50,8 +51,8 @@ class CoachSeeder extends Seeder
                 'date_naissance' => $data['date_naissance'],
             ]);
 
-            $coach->bankAccount()->create([
-                'account_name' => $data['account_name'],
+            $coach->bankAccounts()->create([
+                'bank_name' => $data['account_name'],
                 'rib' => $data['rib'],
             ]);
         }

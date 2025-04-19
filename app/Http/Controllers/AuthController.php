@@ -35,7 +35,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('home');
     }
 
     public function showLoginForm()
@@ -43,20 +43,39 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
+    // public function login(Request $request)
+    // {
+    //     $credentials = $request->only('email', 'password');
+
+    //     if (Auth::attempt($credentials)) {
+    //         $request->session()->regenerate();
+    //         return redirect()->route('dashboard');
+    //     }
+
+    //     return back()->withErrors([
+    //         'email' => 'Invalid credentials.',
+    //     ]);
+    // }
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
-
+    
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('dashboard');
+    
+            $user = Auth::user();
+            if ($user->is_admin) {
+                return redirect()->route('dashboard');
+            } else {
+                return redirect()->route('home');
+            }
         }
-
+    
         return back()->withErrors([
             'email' => 'Invalid credentials.',
         ]);
     }
-
+    
     public function logout(Request $request)
     {
         Auth::logout();

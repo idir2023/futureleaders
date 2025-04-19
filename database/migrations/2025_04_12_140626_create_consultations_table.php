@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::create('consultations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-             $table->string('email');
+            $table->string('email');
             $table->string('telephone')->nullable();
             $table->string('adresse')->nullable();
             $table->text('probleme')->nullable();
             $table->string('recu')->nullable();  
             $table->string('prix');
             $table->enum('paiement_status', ['en attente', 'payé'])->default('en attente');
+            $table->string('drive_link')->nullable();
             $table->foreignId('coach_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
