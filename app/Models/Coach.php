@@ -20,8 +20,20 @@ class Coach extends Model
         'email',
         'numero',
         'code_promo',
-        'rib',
         'ville',
         'adresse',
+        'date_naissance'
     ];
+    public function bankAccounts()
+{
+    return $this->hasMany(BankAccount::class);
+}
+// app/Models/Coach.php
+
+public function consultations()
+{
+    return $this->hasMany(Consultation::class);
+}
+
+
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('numero')->nullable();
             $table->string('code_promo')->nullable();
-            $table->string('rib');
+            $table->date('date_naissance')->nullable();
             $table->string('ville')->nullable();
             $table->text('adresse')->nullable();
             $table->timestamps();

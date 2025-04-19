@@ -23,6 +23,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 // Liste des coachs
 Route::resource('coaches', CoachController::class);
+Route::get('ranks', [CoachController::class, 'getRank'])->name('ranks.index');
 
 // Liste des consultations
 Route::resource('consultations', ConsultationController::class);

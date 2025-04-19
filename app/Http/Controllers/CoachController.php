@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Coach;
 use Illuminate\Http\Request;
+use App\Models\BankAccount;
+use Illuminate\Validation\Rule;
 
 class CoachController extends Controller
 {
@@ -15,45 +17,74 @@ class CoachController extends Controller
      */
     public function index()
     {
-        $coaches = Coach::paginate(10);
+        $coaches = Coach::paginate(5);
         return view('admin.coaches.index', compact('coaches'));
     }
+    public function getRank()
+{
+    // withCount va ajouter la colonne consultations_count
+    $coachs = Coach::withCount('consultations')
+                   ->orderByDesc('consultations_count')
+                   ->paginate(5);
+
+    return view('admin.ranks.index', compact('coachs'));
+}
 
     public function create()
     {
         return view('admin.coaches.create');
     }   
-    /**
-     * Enregistre un nouveau coach dans la base de données
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'nom' => 'required|string|max:255',
-            'prenom' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:coaches',
-            'numero' => 'nullable|string|max:20',
-            'code_promo' => 'nullable|string|max:50',
-            'rib' => 'required|string|max:255',
-            'ville' => 'nullable|string|max:255',
-            'adresse' => 'nullable|string',
-        ]);
+   
+        // Store a new coach in the database
+        public function store(Request $request)
+        {
+            // Validate the form data
+            $validated = $request->validate([
+                'nom' => 'required|string|max:255',
+                'prenom' => 'required|string|max:255',
+                'email' => 'required|email|unique:coaches,email',
+                'numero' => 'nullable|string|max:15',
+                'code_promo' => 'nullable|string|max:50',
+                'date_naissance' => 'nullable|date',
+                'ville' => 'nullable|string|max:255',
+                'adresse' => 'nullable|string|max:500',
+                'bank_accounts' => 'nullable|array',
+                'bank_accounts.*.bank_name' => 'nullable|string|max:255',
+                'bank_accounts.*.rib' => 'nullable|string|max:50',
+            ]);
+    
+            // Create the coach
+            $coach = Coach::create([
+                'nom' => $validated['nom'],
+                'prenom' => $validated['prenom'],
+                'email' => $validated['email'],
+                'numero' => $validated['numero'] ?? null,
+                'code_promo' => $validated['code_promo'] ?? null,
+                'date_naissance' => $validated['date_naissance'] ?? null,
+                'ville' => $validated['ville'] ?? null,
+                'adresse' => $validated['adresse'] ?? null,
+            ]);
+    
+            // Save the bank accounts if provided
+            if ($request->has('bank_accounts')) {
+                foreach ($validated['bank_accounts'] as $bankAccount) {
+                    if (!empty($bankAccount['bank_name']) && !empty($bankAccount['rib'])) {
+                        BankAccount::create([
+                            'coach_id' => $coach->id,
+                            'bank_name' => $bankAccount['bank_name'],
+                            'rib' => $bankAccount['rib'],
+                        ]);
+                    }
+                }
+            }
+    
+            // Redirect to a success page or back to the form with a success message
+            return redirect()->route('coaches.index')->with('success', 'Coach ajouté avec succès');
+        }
+    
+    
 
-        Coach::create($validated);
-
-        return redirect()->route('coaches.index')
-            ->with('success', 'Coach ajouté avec succès');
-    }
-
-    /**
-     * Récupère les informations d'un coach pour l'édition
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
-     */
+    
     public function edit($id)
     {
         $coach = Coach::findOrFail($id);
@@ -71,22 +102,49 @@ class CoachController extends Controller
     public function update(Request $request, $id)
     {
         $coach = Coach::findOrFail($id);
-
+    
         $validated = $request->validate([
-            'nom' => 'required|string|max:255',
-            'prenom' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:coaches,email,'.$id,
-            'numero' => 'nullable|string|max:20',
-            'code_promo' => 'nullable|string|max:50',
-            'rib' => 'required|string|max:255',
-            'ville' => 'nullable|string|max:255',
-            'adresse' => 'nullable|string',
+            'nom' => ['required', 'string', 'max:255'],
+            'prenom' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('coaches')->ignore($coach->id)],
+            'numero' => ['nullable', 'string', 'max:20'],
+            'code_promo' => ['nullable', 'string', 'max:50'],
+            'date_naissance' => ['nullable', 'date'],
+            'ville' => ['nullable', 'string', 'max:255'],
+            'adresse' => ['nullable', 'string'],
+            'bank_accounts' => ['nullable', 'array'],
+            'bank_accounts.*.bank_name' => ['nullable', 'string', 'max:255'],
+            'bank_accounts.*.rib' => ['nullable', 'string', 'max:50'],
         ]);
-
-        $coach->update($validated);
-
+    
+        // Mise à jour des champs du coach
+        $coach->update([
+            'nom' => $validated['nom'],
+            'prenom' => $validated['prenom'],
+            'email' => $validated['email'],
+            'numero' => $validated['numero'] ?? null,
+            'code_promo' => $validated['code_promo'] ?? null,
+            'date_naissance' => $validated['date_naissance'] ?? null,
+            'ville' => $validated['ville'] ?? null,
+            'adresse' => $validated['adresse'] ?? null,
+        ]);
+    
+        // Mise à jour des comptes bancaires si présents
+        if (isset($validated['bank_accounts'])) {
+            // Supposons que Coach a une relation hasMany `bankAccounts`
+            $coach->bankAccounts()->delete(); // Supprimer les anciens comptes
+            foreach ($validated['bank_accounts'] as $account) {
+                if (!empty($account['bank_name']) || !empty($account['rib'])) {
+                    $coach->bankAccounts()->create([
+                        'bank_name' => $account['bank_name'],
+                        'rib' => $account['rib'],
+                    ]);
+                }
+            }
+        }
+    
         return redirect()->route('coaches.index')
-            ->with('success', 'Coach mis à jour avec succès');
+            ->with('success', 'Coach mis à jour avec succès.');
     }
 
     /**

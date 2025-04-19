@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Upload Reçu de Paiement</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -36,8 +37,15 @@
       z-index: 0;
     }
 
-    .decoration-1 { top: -75px; right: -75px; }
-    .decoration-2 { bottom: -75px; left: -75px; }
+    .decoration-1 {
+      top: -75px;
+      right: -75px;
+    }
+
+    .decoration-2 {
+      bottom: -75px;
+      left: -75px;
+    }
 
     .content-wrapper {
       position: relative;
@@ -78,9 +86,32 @@
       width: 20px;
     }
 
-    .info-label {
-      font-weight: bold;
-      margin-right: 5px;
+    .bank-accounts {
+      margin-top: 10px;
+    }
+
+    .bank-account {
+      background-color: #fff1e0;
+      padding: 10px 15px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      border: 1px solid #ffd6b0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .bank-account span {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      color: #444;
+    }
+
+    .bank-account span i {
+      margin-right: 8px;
+      color: #ff6f00;
+      width: 18px;
     }
 
     .upload-form {
@@ -221,21 +252,27 @@
         padding: 20px;
         margin: 30px auto;
       }
+
       .menu--nav-logo img {
         width: 140px;
       }
+
       .section-title {
         font-size: 20px;
       }
+
       .info-item {
         font-size: 14px;
       }
+
       .file-input-label {
         padding: 15px;
       }
+
       .file-icon {
         font-size: 30px;
       }
+
       .submit-btn {
         font-size: 14px;
         padding: 12px 20px;
@@ -243,6 +280,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="upload-container">
     <div class="decoration decoration-1"></div>
@@ -262,10 +300,18 @@
             <span class="info-label">Nom complet du coach:</span>
             <span>{{ $coach->prenom }} {{ $coach->nom }}</span>
           </div>
+
           <div class="info-item">
-            <i class="fas fa-university"></i>
-            <span class="info-label">RIB:</span>
-            <span>{{ $coach->rib }}</span>
+            <i class="fas fa-credit-card"></i>
+            <span class="info-label">Comptes bancaires:</span>
+          </div>
+          <div class="bank-accounts">
+            @foreach ($coach->bankAccounts as $account)
+              <div class="bank-account">
+                <span><i class="fas fa-university"></i> Banque : {{ $account->bank_name }}</span>
+                <span><i class="fas fa-barcode"></i> RIB : {{ $account->rib }}</span>
+              </div>
+            @endforeach
           </div>
         </div>
 
@@ -307,18 +353,17 @@
       const fileNameDisplay = document.getElementById('fileName');
       const selectedFileDiv = document.getElementById('selectedFile');
 
-      if (fileInput) {
-        fileInput.addEventListener('change', function () {
-          if (this.files && this.files[0]) {
-            fileNameDisplay.textContent = this.files[0].name;
-            selectedFileDiv.style.display = 'flex';
-          } else {
-            fileNameDisplay.textContent = 'Aucun fichier sélectionné';
-            selectedFileDiv.style.display = 'none';
-          }
-        });
-      }
+      fileInput.addEventListener('change', function () {
+        if (this.files && this.files[0]) {
+          fileNameDisplay.textContent = this.files[0].name;
+          selectedFileDiv.style.display = 'flex';
+        } else {
+          fileNameDisplay.textContent = 'Aucun fichier sélectionné';
+          selectedFileDiv.style.display = 'none';
+        }
+      });
     });
   </script>
 </body>
+
 </html>

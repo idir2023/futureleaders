@@ -24,5 +24,12 @@
                 <span class="menu-title">Consultations</span>
             </a>
         </li>
+        <!-- Ranks -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('ranks.index') }}">
+                <i class="typcn typcn-chart-bar menu-icon"></i>
+                <span class="menu-title">Classement</span>
+            </a>
+        </li>
     </ul>
 </nav>
