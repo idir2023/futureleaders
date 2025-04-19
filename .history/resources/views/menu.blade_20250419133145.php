@@ -46,7 +46,7 @@
                     <li><a href="#pricing">{{ __('menu.pricing') }}</a></li>
                     <li><a href="#about">{{ __('menu.about') }}</a></li>
                     <li><a href="#services">{{ __('menu.our_services') }}</a></li>
-                    {{-- <li><a href="#team">{{ __('menu.our_team') }}</a></li> --}}
+                    <li><a href="#team">{{ __('menu.our_team') }}</a></li>
                     <li><a href="#faq">{{ __('menu.faq') }}</a></li>
                     <li><a href="#pricing1">{{ __('Consultation') }}</a></li>
                     <li>
@@ -82,7 +82,7 @@
             <a href="#pricing">{{ __('menu.pricing') }}</a>
             <a href="#about">{{ __('menu.about') }}</a>
             <a href="#services">{{ __('menu.our_services') }}</a>
-            {{-- <a href="#team">{{ __('menu.our_team') }}</a> --}}
+            <a href="#team">{{ __('menu.our_team') }}</a>
             <a href="#faq">{{ __('menu.faq') }}</a>
             <a href="#pricing1">{{ __('menu.Consultation') }}</a>
             <a href="#contact">{{ __('menu.contact') }}</a>

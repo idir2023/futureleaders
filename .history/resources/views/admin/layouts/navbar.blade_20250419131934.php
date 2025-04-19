@@ -1,7 +1,7 @@
 <style>
     /* Navbar */
 .navbar {
-    background: linear-gradient(90deg, #EFEBE9FF, #F7F5F3FF);
+    background: linear-gradient(90deg, #EFEBE9FF, #FFA41B);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-bottom: 4px solid #ffffff1a;
 }

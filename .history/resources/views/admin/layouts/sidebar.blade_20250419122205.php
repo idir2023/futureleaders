@@ -5,7 +5,7 @@
             <a class="nav-link" href="{{ route('dashboard') }}">
                 <i class="typcn typcn-home menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
-                
+                <div class="badge badge-danger">new</div>
             </a>
         </li>
 

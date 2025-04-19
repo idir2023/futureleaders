@@ -11,7 +11,7 @@
                 <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center text-muted">
                     Created by 
                     <a href="http://instagram.com/falcondeev" class="text-muted">FalconDev</a>
-                   
+                    <i class="typcn typcn-heart-full-outline text-danger"></i>
                 </span>
                 
             </div>

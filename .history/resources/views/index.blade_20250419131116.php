@@ -10,7 +10,7 @@
     .btn-consultation {
         display: inline-block;
         padding: 8px 12px;
-        background-color: #F3EFE9FF; /* Orange standard */
+        background-color: #FFA500; /* Orange standard */
         color: white;
         text-decoration: none;
         border-radius: 6px;
@@ -20,7 +20,7 @@
     }
 
     .btn-consultation:hover {
-        background-color: #E7E2DBFF; /* Orange foncé */
+        background-color: #FF8C00; /* Orange foncé */
         transform: translateY(-1px);
     }
 
@@ -736,7 +736,7 @@
 
         </div>
         <div class="pricing--table">
-            <header class="pricing--table-header" id="pricing1">
+            <header class="pricing--table-header">
                 <img src="{{ asset('assets/images/promotion.png') }}" alt="">
                 <div>
                     <img src="{{ asset('assets/images/ranks/silver-rank.png') }}" alt="">
@@ -1331,7 +1331,8 @@
             </div>
         </div>
     
-       
+        <div class="footer--copyright">
+            <p>{{ __('footer.copyright') }}</p>
             <div class="footer--copyright">
                 <div class="container d-flex flex-column flex-sm-row justify-content-between align-items-center text-muted text-center text-sm-start py-2">
                     <span>
@@ -1345,6 +1346,18 @@
                 </div>
             </div>
             
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                <span class="text-muted text-center text-sm-left d-block d-sm-inline-block"> 
+                    Copyright © 2025
+                    <a href="https://instagram.com/falcondeev" class="text-muted" target="_blank">FalconDev</a>. All rights reserved.
+                </span>
+    
+                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center text-muted">
+                    Created by 
+                    <a href="https://instagram.com/falcondeev" class="text-muted" target="_blank">FalconDev</a>
+                    <i class="typcn typcn-heart-full-outline text-danger"></i>
+                </span>
+            </div>
         </div>
     </footer>
     

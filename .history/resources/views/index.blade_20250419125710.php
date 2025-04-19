@@ -10,7 +10,7 @@
     .btn-consultation {
         display: inline-block;
         padding: 8px 12px;
-        background-color: #F3EFE9FF; /* Orange standard */
+        background-color: #FFA500; /* Orange standard */
         color: white;
         text-decoration: none;
         border-radius: 6px;
@@ -20,7 +20,7 @@
     }
 
     .btn-consultation:hover {
-        background-color: #E7E2DBFF; /* Orange foncé */
+        background-color: #FF8C00; /* Orange foncé */
         transform: translateY(-1px);
     }
 
@@ -736,7 +736,7 @@
 
         </div>
         <div class="pricing--table">
-            <header class="pricing--table-header" id="pricing1">
+            <header class="pricing--table-header">
                 <img src="{{ asset('assets/images/promotion.png') }}" alt="">
                 <div>
                     <img src="{{ asset('assets/images/ranks/silver-rank.png') }}" alt="">
@@ -1286,27 +1286,21 @@
     </section>
 
 
-    <footer class="footer"> 
+    <footer class="footer">
         <div class="footer--top container-lg">
             <div class="footer--about">
                 <img src="{{ asset('assets/images/logo.png') }}" alt="Future leaders logo">
                 <div>
                     <p>{{ __('footer.about') }}</p>
                     <ul>
-                        <li>
-                            <a href="https://www.instagram.com/future__leaders_/" target="_blank" rel="noopener noreferrer">
-                                <img src="{{ asset('assets/icons/social/instagram.svg') }}" alt="Instagram icon">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://t.me/futureleadre" target="_blank" rel="noopener noreferrer">
-                                <img src="{{ asset('assets/icons/social/telegram.svg') }}" alt="Telegram icon">
-                            </a>
-                        </li>
+                        <li><a href="https://www.instagram.com/future__leaders_/" target="_blank"
+                                rel="noopener noreferrer"><img src="{{ asset('assets/icons/social/instagram.svg') }}"
+                                    alt="Instagram icon"></a></li>
+                        <li><a href="https://t.me/futureleadre" target="_blank" rel="noopener noreferrer"><img
+                                    src="{{ asset('assets/icons/social/telegram.svg') }}" alt="Telegram icon"></a></li>
                     </ul>
                 </div>
             </div>
-    
             <div class="footer--links">
                 <h4>{{ __('footer.links') }}</h4>
                 <div>
@@ -1322,32 +1316,23 @@
                     </ul>
                 </div>
             </div>
-    
             <div class="footer--powered">
                 <a href="http://kazalmedia.com" target="_blank" rel="noopener noreferrer">
                     <p lang="en">Powered By</p>
                     <img src="{{ asset('assets/images/kazalmedia.png') }}" alt="Kazalmedia Logo white">
                 </a>
             </div>
+            http://instagram.com/falcondeev
         </div>
-    
-       
-            <div class="footer--copyright">
-                <div class="container d-flex flex-column flex-sm-row justify-content-between align-items-center text-muted text-center text-sm-start py-2">
-                    <span>
-                        © 2025, Tous les droits sont réservés
-                    </span>
-                    <span>
-                        Developed by 
-                        <a href="https://instagram.com/falcondeev" class="text-white fw-bold" target="_blank" rel="noopener noreferrer">FalconDev</a>
-                        <i class="typcn typcn-heart-full-outline text-danger"></i>
-                    </span>
-                </div>
-            </div>
-            
+
+        <div class="footer--copyright">
+            <p>{{ __('footer.copyright') }}</p>
+            {{-- <ul>
+                <li><a href="#">{{__('menu.privacy')}}</a></li>
+                <li><a href="#">{{__('menu.terms')}}</a></li>
+            </ul> --}}
         </div>
     </footer>
-    
 
     <div id="myModal" class="modal">
         <div class="modal-content">

@@ -736,7 +736,7 @@
 
         </div>
         <div class="pricing--table">
-            <header class="pricing--table-header" id="pricing1">
+            <header class="pricing--table-header">
                 <img src="{{ asset('assets/images/promotion.png') }}" alt="">
                 <div>
                     <img src="{{ asset('assets/images/ranks/silver-rank.png') }}" alt="">

@@ -1,43 +1,3 @@
-<style>
-    /* Navbar */
-.navbar {
-    background: linear-gradient(90deg, #EFEBE9FF, #F7F5F3FF);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-bottom: 4px solid #ffffff1a;
-}
-
-.navbar-brand-wrapper {
-    background-color: transparent;
-}
-
-.navbar .navbar-brand img {
-    height: 40px;
-}
-
-/* Icônes */
-.navbar .typcn {
-    font-size: 20px;
-    color: white;
-}
-
-/* Dropdown menu */
-.dropdown-menu {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-.dropdown-item:hover {
-    background-color: #f5f5f5;
-}
-
-/* Profile name */
-.nav-profile-name {
-    font-weight: 600;
-    color: #333;
-}
-
-</style>
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <div class="navbar-brand-wrapper d-flex justify-content-center">
         <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
@@ -59,11 +19,11 @@
                     id="messageDropdown" href="#" data-bs-toggle="dropdown">
                     {{-- <i class="typcn typcn-settings mx-0"></i>   --}}
                     <i class="typcn typcn-cog-outline mx-0"></i>
-                 
+                    <!-- Fixed icon class from 'typcn-setting' to 'typcn-settings' -->
                 </a>
                 <div class="dropdown-menu dropdown-menu-end navbar-dropdown preview-list"
                     aria-labelledby="messageDropdown">
-                    {{-- <p class="mb-0 fw-normal text-start dropdown-header">Settings</p> --}}
+                    <p class="mb-0 fw-normal text-start dropdown-header">Settings</p>
                     <!-- Changed 'float-start' to 'text-start' -->
 
                     <!-- Profile Info -->
