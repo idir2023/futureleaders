@@ -26,6 +26,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('consultations', ConsultationController::class);
     // routes/web.php
     Route::post('/send-drive', [ConsultationController::class, 'sendDrive'])->name('sendDrive');
+    Route::post('/send-email/{id}', [ConsultationController::class, 'sendEmail'])->name('consultations.sendEmail');
+    Route::post('/send-email-anyerror/{id}', [ConsultationController::class, 'sendEmailError'])->name('consultations.sendEmailError');
+
+
 });
 
 Route::group(
@@ -41,7 +45,7 @@ Route::group(
         Route::get('/', [ClientController::class, 'index'])->name('home');
         Route::get('/create-consultation/{price}', [ClientController::class, 'CreateConsultation'])->name('create-consultation');
         Route::post('/create-consultation', [ClientController::class, 'StoreConsultation'])->name('store-consultation');
-        Route::get('/complete-payment', [ClientController::class, 'CompletePayment'])->name('complete_paiment');
+        Route::get('/complete-payment/{id}', [ClientController::class, 'CompletePayment'])->name('complete_paiment');
         Route::put('/upload/recu/{coach}', [ClientController::class, 'uploadRecu'])->name('upload.recu');
     }
 );

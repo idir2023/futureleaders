@@ -21,7 +21,7 @@ class CoachSeeder extends Seeder
                 'ville' => 'Essaouira',
                 'adresse' => 'Quartier industriel, Essaouira',
                 'date_naissance' => Carbon::parse('2000-05-15'),
-                'account_name' => 'Lahcen Idir',
+                'bank_name' => 'CIH Bank',
                 'rib' => 'MA64000111110000000000000001',
             ],
             [
@@ -33,7 +33,7 @@ class CoachSeeder extends Seeder
                 'ville' => 'Casablanca',
                 'adresse' => 'Hay Hassani, Casablanca',
                 'date_naissance' => Carbon::parse('1995-07-20'),
-                'account_name' => 'Sara Benali',
+                'bank_name' => 'Attijariwafa Bank',
                 'rib' => 'MA64000111110000000000000002',
             ],
             // Ajoute d'autres coachs ici...
@@ -52,7 +52,7 @@ class CoachSeeder extends Seeder
             ]);
 
             $coach->bankAccounts()->create([
-                'bank_name' => $data['account_name'],
+                'bank_name' => $data['bank_name'],
                 'rib' => $data['rib'],
             ]);
         }

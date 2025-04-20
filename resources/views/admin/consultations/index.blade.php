@@ -13,7 +13,7 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped align-middle">
-                            <thead class="table-light">
+                            <thead class="">
                                 <tr>
                                     <th>Nom</th>
                                     <th>Email</th>
@@ -34,20 +34,18 @@
                                         <td>{{ $consultation->adresse }}</td>
                                         <td>
                                             {{ optional($consultation->coach)->nom ?? 'Aucun' }}
-                                            {{ optional($consultation->coach)->prenom ?? '' }}
+                                            {{ optional($consultation->coach)->prenom }}
                                         </td>
                                         <td>
-                                            @if ($consultation->paiement_status == 'payé')
-                                                <span class="badge bg-success">Payé</span>
-                                            @else
-                                                <span class="badge bg-warning text-dark">En attente</span>
-                                            @endif
+                                            <span
+                                                class="badge {{ $consultation->paiement_status === 'payé' ? 'bg-success' : 'bg-warning text-dark' }}">
+                                                {{ $consultation->paiement_status === 'payé' ? 'Payé' : 'En attente' }}
+                                            </span>
                                         </td>
                                         <td>
                                             @if ($consultation->recu)
-                                                <a href="{{ asset('storage/' . $consultation->recu) }}" target="_blank">
-                                                    Voir le reçu
-                                                </a>
+                                                <a href="{{ asset('storage/' . $consultation->recu) }}" target="_blank">Voir
+                                                    le reçu</a>
                                             @else
                                                 <span class="text-muted">Aucun</span>
                                             @endif
@@ -58,20 +56,28 @@
                                                 <i class="typcn typcn-trash"></i>
                                             </button>
 
-                                            <!-- Actions liées à l'envoi de lien/email -->
                                             <div class="d-flex flex-column gap-1">
-                                                <!-- Email si tout payé -->
-                                                <a href="mailto:{{ $consultation->email }}?subject=Consultation Confirmation&body=Bonjour {{ $consultation->name }},%0D%0A%0D%0AVotre consultation a bien été enregistrée. Merci de votre confiance.%0D%0ACordialement,%0D%0A"
-                                                    class="btn btn-sm btn-primary">
-                                                    Envoyer Email
+                                                <a href="#" class="btn btn-sm btn-primary send-email-server"
+                                                    data-id="{{ $consultation->id }}"
+                                                    data-name="{{ $consultation->name }}">
+                                                    <i class="typcn typcn-mail"></i>
+                                                    Confirmation
+                                                </a>
+                                                <a href="#" class="btn btn-sm btn-warning send-email-server-1"
+                                                    data-id="{{ $consultation->id }}"
+                                                    data-name="{{ $consultation->name }}">
+                                                    <i class="typcn typcn-mail"></i>
+                                                    Pas complet
                                                 </a>
 
-                                                <!-- Email si non payé -->
-                                                <a href="javascript:void(0);"
-                                                    class="btn btn-sm btn-secondary send-drive-link"
-                                                    data-id="{{ $consultation->id }}">
-                                                    Send Drive link
-                                                </a>
+                                                @if (!$consultation->drive_link)
+                                                    <a href="javascript:void(0);"
+                                                        class="btn btn-sm btn-secondary send-drive-link"
+                                                        data-id="{{ $consultation->id }}">
+                                                        <i class="typcn typcn-link-outline"></i> <!-- Updated icon -->
+                                                        Lien Drive
+                                                    </a>
+                                                @endif
 
                                             </div>
                                         </td>
@@ -93,70 +99,37 @@
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal Drive -->
     <div class="modal fade" id="driveModal" tabindex="-1" aria-labelledby="driveModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <form id="driveForm" action="{{ route('sendDrive') }}" method="POST" class="modal-content">
+                @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="driveModalLabel">Ajouter un lien Google Drive</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="driveForm" action="{{ route('sendDrive') }}" method="POST">
-                        @csrf
-                        <input type="hidden" id="consultation_id" name="consultation_id">
-                        <div class="mb-3">
-                            <label for="drive_link" class="form-label">Lien Google Drive</label>
-                            <input type="url" class="form-control" id="drive_link" name="drive_link" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Envoyer le lien</button>
-                    </form>
+                    <input type="hidden" id="consultation_id" name="consultation_id">
+                    <div class="mb-3">
+                        <label for="drive_link" class="form-label">Lien Google Drive</label>
+                        <input type="url" class="form-control" id="drive_link" name="drive_link" required>
+                    </div>
                 </div>
-            </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Envoyer le lien</button>
+                </div>
+            </form>
         </div>
     </div>
-
 @endsection
 
 @section('scripts')
     <script>
         $(document).ready(function() {
-            // Trigger the modal when the "Send Drive link" button is clicked
-            $('.send-drive-link').click(function() {
-                const consultationId = $(this).data('id');
 
-                // Set the consultation ID in the hidden input field
-                $('#consultation_id').val(consultationId);
-
-                // Show the modal
-                $('#driveModal').modal('show');
-            });
-
-            // Optionally, handle the form submission via AJAX if you prefer not to reload the page
-            $('#driveForm').on('submit', function(e) {
-                e.preventDefault();
-
-                $.ajax({
-                    url: $(this).attr('action'),
-                    method: $(this).attr('method'),
-                    data: $(this).serialize(),
-                    success: function(response) {
-                        Swal.fire('Success', 'Link has been sent successfully!', 'success');
-                        $('#driveModal').modal('hide');
-                    },
-                    error: function() {
-                        Swal.fire('Error', 'Something went wrong!', 'error');
-                    }
-                });
-            });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $('.delete-consultation').click(function() {
-                const consultationId = $(this).data('id');
-
+            // Suppression
+            $('.delete-consultation').on('click', function() {
+                const id = $(this).data('id');
                 Swal.fire({
                     title: 'Êtes-vous sûr ?',
                     text: "Cette action est irréversible.",
@@ -164,29 +137,112 @@
                     showCancelButton: true,
                     confirmButtonText: 'Oui, supprimer !',
                     cancelButtonText: 'Annuler'
-                }).then((result) => {
+                }).then(result => {
                     if (result.isConfirmed) {
                         $.ajax({
-                            url: '/consultations/' + consultationId,
+                            url: `/consultations/${id}`,
                             type: 'DELETE',
                             data: {
-                                _token: '{{ csrf_token() }}',
+                                _token: '{{ csrf_token() }}'
                             },
-                            success: function() {
-                                $('button[data-id="' + consultationId + '"]').closest(
-                                    'tr').remove();
+                            success: () => {
+                                $(`button[data-id="${id}"]`).closest('tr').remove();
                                 Swal.fire('Supprimé !',
                                     'La consultation a été supprimée.', 'success');
                             },
-                            error: function() {
-                                Swal.fire('Erreur',
-                                    'Une erreur est survenue lors de la suppression.',
+                            error: () => {
+                                Swal.fire('Erreur', 'Une erreur est survenue.',
                                     'error');
                             }
                         });
                     }
                 });
             });
+
+            // Envoi Email
+            $('.send-email-server').on('click', function(e) {
+                e.preventDefault();
+                const id = $(this).data('id');
+                const name = $(this).data('name');
+
+                Swal.fire({
+                    title: 'Envoyer l\'email pour confirmer votre paiement complet et obtenir votre lien Drive dans votre tableau de bord sur notre plateforme ?',
+                    text: `Voulez-vous vraiment envoyer un email à ${name} ?`,
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Oui, envoyer',
+                    cancelButtonText: 'Annuler'
+                }).then(result => {
+                    if (result.isConfirmed) {
+                        $.post(`/send-email/${id}`, {
+                                _token: '{{ csrf_token() }}'
+                            })
+                            .done(() => Swal.fire('Envoyé', 'Email envoyé avec succès.', 'success'))
+                            .fail(() => Swal.fire('Erreur', 'Erreur lors de l\'envoi de l\'email.',
+                                'error'));
+                    }
+                });
+            });
+
+
+            // Envoi Email pas complete paiement
+            $('.send-email-server-1').on('click', function(e) {
+                e.preventDefault();
+                const id = $(this).data('id');
+                const name = $(this).data('name');
+
+                Swal.fire({
+                    title: 'Envoyer l\'email, paiement non complet ou un problème existe ?',
+                    text: `Voulez-vous vraiment envoyer un email à ${name} ?`,
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Oui, envoyer',
+                    cancelButtonText: 'Annuler'
+                }).then(result => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: `/send-email-anyerror/${id}`,
+                            type: 'POST',
+                            data: {
+                                _token: '{{ csrf_token() }}'
+                            },
+                            success: function() {
+                                Swal.fire('Envoyé', 'Email envoyé avec succès.',
+                                    'success');
+                            },
+                            error: function() {
+                                Swal.fire('Erreur',
+                                    'Erreur lors de l\'envoi de l\'email.', 'error');
+                            }
+                        });
+                    }
+                });
+            });
+
+            // Ouvrir Modal Drive
+            $('.send-drive-link').on('click', function() {
+                const id = $(this).data('id');
+                $('#consultation_id').val(id);
+                $('#driveModal').modal('show');
+            });
+
+            // Envoi Drive AJAX
+            $('#driveForm').on('submit', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    url: $(this).attr('action'),
+                    method: $(this).attr('method'),
+                    data: $(this).serialize(),
+                    success: () => {
+                        Swal.fire('Succès', 'Lien envoyé avec succès !', 'success');
+                        $('#driveModal').modal('hide');
+                    },
+                    error: () => {
+                        Swal.fire('Erreur', 'Une erreur est survenue !', 'error');
+                    }
+                });
+            });
+
         });
     </script>
 @endsection

@@ -7,6 +7,8 @@ use App\Models\Coach;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\ConsultationConfirmation;
+use App\Mail\ConsultationPaymentIncomplete;
 
 class ConsultationController extends Controller
 {
@@ -104,8 +106,28 @@ class ConsultationController extends Controller
         // For example, storing it in the consultation model
         $consultation = Consultation::find($consultationId);
         $consultation->drive_link = $driveLink;
+        $consultation->paiement_status = 'payé'; // Update payment status if needed
         $consultation->save();
 
         return response()->json(['success' => true]);
+    }
+
+    public function sendEmail($id)
+    {
+        $consultation = Consultation::findOrFail($id);
+
+        // Envoi de l'e-mail
+        Mail::to($consultation->email)->send(new ConsultationConfirmation($consultation));
+
+        return response()->json(['success' => 'Email envoyé avec succès.'], 200);
+    }
+    public function sendEmailError($id)
+    {
+        $consultation = Consultation::findOrFail($id);
+
+        // Envoi de l'e-mail
+        Mail::to($consultation->email)->send(new ConsultationPaymentIncomplete($consultation));
+
+        return response()->json(['success' => 'Email envoyé avec succès.'], 200);
     }
 }

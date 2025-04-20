@@ -69,7 +69,9 @@
                                     <tr>
                                         <td>{{ $consultation->name }}</td>
                                         <td>{{ $consultation->created_at->format('d/m/Y') }}</td>
-                                        <td>{{ optional($consultation->coach)->nom ?? 'N/A' }}</td>
+                                        <td>{{ optional($consultation->coach)->nom ?? 'N/A' }}
+                                            {{ optional($consultation->coach)->prenom ?? '' }}</td>
+                                        </td>
                                         <td>{{ $consultation->probleme ?: 'Aucun problème' }}</td>
                                         <td>{{ $consultation->prix }} MAD</td>
                                         <td>
@@ -108,7 +110,6 @@
                                     <th>Date</th>
                                     <th>Prix</th>
                                     <th>Coach</th>
-                                    <th>Paiement</th>
                                     <th>Voir Drive</th>
                                 </tr>
                             </thead>
@@ -119,13 +120,7 @@
                                         </td>
                                         <td>{{ number_format($consultation->prix, 2) }} MAD</td>
                                         <td>{{ optional($consultation->coach)->nom ?? 'N/A' }}
-                                            {{ optional($consultation->coach)->prenom ?? '' }}</td>
-                                        <td>
-                                            @if ($consultation->paiement_status == 'payé')
-                                                <span class="badge bg-success">Payé</span>
-                                            @else
-                                                <span class="badge bg-warning text-dark">En attente</span>
-                                            @endif
+                                            {{ optional($consultation->coach)->prenom ?? '' }}
                                         </td>
                                         <td>
                                             @if ($consultation->drive_link)
@@ -137,6 +132,7 @@
                                                 <span class="text-muted">Aucun lien</span>
                                             @endif
                                         </td>
+
                                     </tr>
                                 @empty
                                     <tr>
@@ -149,8 +145,8 @@
                 </div>
             </div>
             <!-- Back to Home Button -->
-            <div class="col-12 mt-3 d-flex justify-content-start">
-                <a class="btn btn-primary btn-sm d-flex align-items-center" href="{{ route('home') }}">
+            <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
+                <a class="btn btn-danger btn-sm d-flex align-items-center" href="{{ route('home') }}">
                     <i class="typcn typcn-arrow-back mr-1"></i> Retour à l'accueil
                 </a>
             </div>
