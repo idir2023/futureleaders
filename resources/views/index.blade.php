@@ -5,44 +5,48 @@
         $current_lang = LaravelLocalization::getCurrentLocale();
     @endphp
 
-<style>
-    /* Bouton de consultation */
-    .btn-consultation {
-        display: inline-block;
-        padding: 8px 12px;
-        background-color: #F3EFE9FF; /* Orange standard */
-        color: white;
-        text-decoration: none;
-        border-radius: 6px;
-        font-size: 14px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-    }
+    <style>
+        /* Bouton de consultation */
+        .btn-consultation {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: rgb(255, 132, 1);
+            /* Orange standard */
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
 
-    .btn-consultation:hover {
-        background-color: #E7E2DBFF; /* Orange foncé */
-        transform: translateY(-1px);
-    }
+        .btn-consultation:hover {
+            background-color: #E7E2DBFF;
+            /* Orange foncé */
+            transform: translateY(-1px);
+        }
 
-    /* Bouton de connexion */
-    .btn-login {
-        background-color: #FFB347; /* Orange clair */
-        color: white;
-        font-size: 14px;
-        font-weight: 600;
-        padding: 6px 14px;
-        border-radius: 6px;
-        text-decoration: none;
-        display: inline-block;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-    }
+        /* Bouton de connexion */
+        .btn-login {
+            background-color: #FFB347;
+            /* Orange clair */
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
 
-    .btn-login:hover {
-        background-color: #FFA07A; /* Orange saumoné */
-        transform: translateY(-1px);
-    }
-</style>
+        .btn-login:hover {
+            background-color: #FFA07A;
+            /* Orange saumoné */
+            transform: translateY(-1px);
+        }
+    </style>
 
 
     <section class="hero--section">
@@ -306,7 +310,7 @@
 
             </ul>
         </div>
-        
+
         <script>
             let schedule = {
                 1: [{
@@ -496,208 +500,208 @@
         </div>
     </section>
     <!--
-                                    <section class="team--section section--container" id="team">
-                                        <div class="team--header">
-                                            <div class="container-lg">
-                                                <div class="title--container">
-                                                    <h3 class="subtitle"> {{ __('team.subtitle') }} </h3>
-                                                    <h2 class="main--title"> {!! __('team.title') !!} </h2>
-                                                </div>
-                                                <div class="team--content">
-                                                    <p class="main--content text--sm"> {{ __('team.content-1') }} </p>
-                                                    {{-- <p class="main--content text--sm"> {{ __('team.content-2')}} </p> --}}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="team--members container-lg">
-                                            <div class="team--members-main" id="contact">
-                                                <div class="team--members-main_card">
-                                                    <div class="team--members-main_img">
-                                                        <img src="{{ asset('assets/images/team/karim.webp') }}" alt="mohamed karim merroun">
-                                                    </div>
-                                                    <div class="team--members-main_content">
-                                                        <div>
-                                                            <h4><a href="https://karti.io/v/MOHAMEDKARIM" target="_blank"
-                                                                    rel="noopener noreferrer">{{ __('team.mohamed') }}
-                                                                    {{ $current_lang === 'ar' ? '←' : '→' }}</a></h4>
-                                                            <p> {{ __('team.mohamed_role') }} </p>
-                                                            <ul>
-                                                                <li><a href="https://instagram.com/m.karimmerroun" target="_blank"
-                                                                        rel="noopener noreferrer"><img
-                                                                            src="{{ asset('assets/icons/social/fill/instagram.svg') }}"
-                                                                            alt="instagram"></a></li>
-                                                                <li><a href="https://wa.me/212664004450" target="_blank" rel="noopener noreferrer"><img
-                                                                            src="{{ asset('assets/icons/social/fill/whatsapp.svg') }}"
-                                                                            alt="whatsapp icon"></a></li>
-                                                                <li><a href="https://www.youtube.com/@mohamedkarim_dreamer2299" target="_blank"
-                                                                        rel="noopener noreferrer"><img
-                                                                            src="{{ asset('assets/icons/social/fill/youtube.svg') }}" alt="facebook"></a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="team--members-main_card">
-                                                    <div class="team--members-main_img">
-                                                        <img src="{{ asset('assets/images/team/zouhair-merroun.webp') }}" alt="Zouhair Merroun">
-                                                    </div>
-                                                    <div class="team--members-main_content">
-                                                        <div>
-                                                            <h4> {{ __('team.zouhair') }} </h4>
-                                                            <p> {{ __('team.zouhair_role') }} </p>
-                                                            <ul>
-                                                                <li><a href="https://instagram.com/zezo_merroun" target="_blank"
-                                                                        rel="noopener noreferrer"><img
-                                                                            src="{{ asset('assets/icons/social/fill/instagram.svg') }}"
-                                                                            alt="instagram"></a></li>
-                                                                <li><a href="https://wa.me/212646053652" target="_blank" rel="noopener noreferrer"><img
-                                                                            src="{{ asset('assets/icons/social/fill/whatsapp.svg') }}"
-                                                                            alt="Whatsapp icon"></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="team--members-leaders">
-                                                <div class="team--members-leaders_card">
-                                                    <div class="team--members-leaders_img">
-                                                        <div class="team--members-leaders_img-start">
-                                                            <img src="{{ asset('assets/images/team/najlae.webp') }}" alt="mohamed karim merroun">
-                                                            <button data-member="najlae" class="modal--btn"><img
-                                                                    src="{{ asset('assets/icons/video_start.svg') }}"
-                                                                    alt="Start video icon orange"></button>
-                                                        </div>
-                                                        <div class="team--members-leaders_content">
-                                                            <div>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="https://www.instagram.com/najlaa.meroun" target="_blank"
-                                                                            rel="noopener noreferrer">
-                                                                            <img src="{{ asset('assets/icons/social/fill/instagram.svg') }}"
-                                                                                alt="instagram">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li><a href="https://wa.me/212681472358" target="_blank"
-                                                                            rel="noopener noreferrer"><img
-                                                                                src="{{ asset('assets/icons/social/fill/whatsapp.svg') }}"
-                                                                                alt="Whatsapp icon"></a></li>
-                                                                </ul>
-                                                                <h4> {!! __('team.najlae') !!} </h4>
-                                                                <p> {{ __('team.najlae_role') }} </p>
+                                                <section class="team--section section--container" id="team">
+                                                    <div class="team--header">
+                                                        <div class="container-lg">
+                                                            <div class="title--container">
+                                                                <h3 class="subtitle"> {{ __('team.subtitle') }} </h3>
+                                                                <h2 class="main--title"> {!! __('team.title') !!} </h2>
+                                                            </div>
+                                                            <div class="team--content">
+                                                                <p class="main--content text--sm"> {{ __('team.content-1') }} </p>
+                                                                {{-- <p class="main--content text--sm"> {{ __('team.content-2')}} </p> --}}
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-
-                                                <div class="team--members-leaders_card">
-                                                    <div class="team--members-leaders_img">
-                                                        <div class="team--members-leaders_img-start">
-                                                            <img src="{{ asset('assets/images/team/imrane.webp') }}" alt="mohamed karim merroun">
-                                                            <button data-member="imrane" class="modal--btn"><img
-                                                                    src="{{ asset('assets/icons/video_start.svg') }}"
-                                                                    alt="Start video icon orange"></button>
-                                                        </div>
-                                                        <div class="team--members-leaders_content">
-                                                            <div>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="https://instagram.com/im_rane8" target="_blank"
-                                                                            rel="noopener noreferrer">
-                                                                            <img src="{{ asset('assets/icons/social/fill/instagram.svg') }}"
-                                                                                alt="instagram">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li><a href="https://wa.me/212684312907" target="_blank"
-                                                                            rel="noopener noreferrer"><img
-                                                                                src="{{ asset('assets/icons/social/fill/whatsapp.svg') }}"
-                                                                                alt="Whatsapp icon"></a></li>
-                                                                </ul>
-
-                                                                <h4> {!! __('team.imrane') !!} </h4>
-                                                                <p> {{ __('team.imrane_role') }} </p>
+                                                    <div class="team--members container-lg">
+                                                        <div class="team--members-main" id="contact">
+                                                            <div class="team--members-main_card">
+                                                                <div class="team--members-main_img">
+                                                                    <img src="{{ asset('assets/images/team/karim.webp') }}" alt="mohamed karim merroun">
+                                                                </div>
+                                                                <div class="team--members-main_content">
+                                                                    <div>
+                                                                        <h4><a href="https://karti.io/v/MOHAMEDKARIM" target="_blank"
+                                                                                rel="noopener noreferrer">{{ __('team.mohamed') }}
+                                                                                {{ $current_lang === 'ar' ? '←' : '→' }}</a></h4>
+                                                                        <p> {{ __('team.mohamed_role') }} </p>
+                                                                        <ul>
+                                                                            <li><a href="https://instagram.com/m.karimmerroun" target="_blank"
+                                                                                    rel="noopener noreferrer"><img
+                                                                                        src="{{ asset('assets/icons/social/fill/instagram.svg') }}"
+                                                                                        alt="instagram"></a></li>
+                                                                            <li><a href="https://wa.me/212664004450" target="_blank" rel="noopener noreferrer"><img
+                                                                                        src="{{ asset('assets/icons/social/fill/whatsapp.svg') }}"
+                                                                                        alt="whatsapp icon"></a></li>
+                                                                            <li><a href="https://www.youtube.com/@mohamedkarim_dreamer2299" target="_blank"
+                                                                                    rel="noopener noreferrer"><img
+                                                                                        src="{{ asset('assets/icons/social/fill/youtube.svg') }}" alt="facebook"></a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="team--members-main_card">
+                                                                <div class="team--members-main_img">
+                                                                    <img src="{{ asset('assets/images/team/zouhair-merroun.webp') }}" alt="Zouhair Merroun">
+                                                                </div>
+                                                                <div class="team--members-main_content">
+                                                                    <div>
+                                                                        <h4> {{ __('team.zouhair') }} </h4>
+                                                                        <p> {{ __('team.zouhair_role') }} </p>
+                                                                        <ul>
+                                                                            <li><a href="https://instagram.com/zezo_merroun" target="_blank"
+                                                                                    rel="noopener noreferrer"><img
+                                                                                        src="{{ asset('assets/icons/social/fill/instagram.svg') }}"
+                                                                                        alt="instagram"></a></li>
+                                                                            <li><a href="https://wa.me/212646053652" target="_blank" rel="noopener noreferrer"><img
+                                                                                        src="{{ asset('assets/icons/social/fill/whatsapp.svg') }}"
+                                                                                        alt="Whatsapp icon"></a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
 
-                                                    </div>
-                                                </div>
 
-                                                <div class="team--members-leaders_card">
-                                                    <div class="team--members-leaders_img">
-                                                        <div class="team--members-leaders_img-start">
-                                                            <img src="{{ asset('assets/images/team/fatima.webp') }}" alt="mohamed karim merroun">
-                                                            <button data-member="fatima" class="modal--btn"><img
-                                                                    src="{{ asset('assets/icons/video_start.svg') }}"
-                                                                    alt="Start video icon orange"></button>
-                                                        </div>
-                                                        <div class="team--members-leaders_content">
-                                                            <div>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="https://instagram.com/fatimaa_nb" target="_blank"
-                                                                            rel="noopener noreferrer">
-                                                                            <img src="{{ asset('assets/icons/social/fill/instagram.svg') }}"
-                                                                                alt="instagram">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li><a href="https://wa.me/212632288347" target="_blank"
-                                                                            rel="noopener noreferrer"><img
-                                                                                src="{{ asset('assets/icons/social/fill/whatsapp.svg') }}"
-                                                                                alt="Whatsapp icon"></a></li>
-                                                                </ul>
+                                                        <div class="team--members-leaders">
+                                                            <div class="team--members-leaders_card">
+                                                                <div class="team--members-leaders_img">
+                                                                    <div class="team--members-leaders_img-start">
+                                                                        <img src="{{ asset('assets/images/team/najlae.webp') }}" alt="mohamed karim merroun">
+                                                                        <button data-member="najlae" class="modal--btn"><img
+                                                                                src="{{ asset('assets/icons/video_start.svg') }}"
+                                                                                alt="Start video icon orange"></button>
+                                                                    </div>
+                                                                    <div class="team--members-leaders_content">
+                                                                        <div>
+                                                                            <ul>
+                                                                                <li>
+                                                                                    <a href="https://www.instagram.com/najlaa.meroun" target="_blank"
+                                                                                        rel="noopener noreferrer">
+                                                                                        <img src="{{ asset('assets/icons/social/fill/instagram.svg') }}"
+                                                                                            alt="instagram">
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li><a href="https://wa.me/212681472358" target="_blank"
+                                                                                        rel="noopener noreferrer"><img
+                                                                                            src="{{ asset('assets/icons/social/fill/whatsapp.svg') }}"
+                                                                                            alt="Whatsapp icon"></a></li>
+                                                                            </ul>
+                                                                            <h4> {!! __('team.najlae') !!} </h4>
+                                                                            <p> {{ __('team.najlae_role') }} </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
-                                                                <h4> {!! __('team.fatima') !!} </h4>
-                                                                <p> {{ __('team.fatima_role') }} </p>
+                                                            <div class="team--members-leaders_card">
+                                                                <div class="team--members-leaders_img">
+                                                                    <div class="team--members-leaders_img-start">
+                                                                        <img src="{{ asset('assets/images/team/imrane.webp') }}" alt="mohamed karim merroun">
+                                                                        <button data-member="imrane" class="modal--btn"><img
+                                                                                src="{{ asset('assets/icons/video_start.svg') }}"
+                                                                                alt="Start video icon orange"></button>
+                                                                    </div>
+                                                                    <div class="team--members-leaders_content">
+                                                                        <div>
+                                                                            <ul>
+                                                                                <li>
+                                                                                    <a href="https://instagram.com/im_rane8" target="_blank"
+                                                                                        rel="noopener noreferrer">
+                                                                                        <img src="{{ asset('assets/icons/social/fill/instagram.svg') }}"
+                                                                                            alt="instagram">
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li><a href="https://wa.me/212684312907" target="_blank"
+                                                                                        rel="noopener noreferrer"><img
+                                                                                            src="{{ asset('assets/icons/social/fill/whatsapp.svg') }}"
+                                                                                            alt="Whatsapp icon"></a></li>
+                                                                            </ul>
+
+                                                                            <h4> {!! __('team.imrane') !!} </h4>
+                                                                            <p> {{ __('team.imrane_role') }} </p>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="team--members-leaders_card">
+                                                                <div class="team--members-leaders_img">
+                                                                    <div class="team--members-leaders_img-start">
+                                                                        <img src="{{ asset('assets/images/team/fatima.webp') }}" alt="mohamed karim merroun">
+                                                                        <button data-member="fatima" class="modal--btn"><img
+                                                                                src="{{ asset('assets/icons/video_start.svg') }}"
+                                                                                alt="Start video icon orange"></button>
+                                                                    </div>
+                                                                    <div class="team--members-leaders_content">
+                                                                        <div>
+                                                                            <ul>
+                                                                                <li>
+                                                                                    <a href="https://instagram.com/fatimaa_nb" target="_blank"
+                                                                                        rel="noopener noreferrer">
+                                                                                        <img src="{{ asset('assets/icons/social/fill/instagram.svg') }}"
+                                                                                            alt="instagram">
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li><a href="https://wa.me/212632288347" target="_blank"
+                                                                                        rel="noopener noreferrer"><img
+                                                                                            src="{{ asset('assets/icons/social/fill/whatsapp.svg') }}"
+                                                                                            alt="Whatsapp icon"></a></li>
+                                                                            </ul>
+
+                                                                            <h4> {!! __('team.fatima') !!} </h4>
+                                                                            <p> {{ __('team.fatima_role') }} </p>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="team--members-leaders_card">
+                                                                <div class="team--members-leaders_img">
+                                                                    <div class="team--members-leaders_img-start">
+                                                                        <img src="{{ asset('assets/images/team/nouhayla.webp') }}" alt="mohamed karim merroun">
+                                                                        <button data-member="nouhayla" class="modal--btn"><img
+                                                                                src="{{ asset('assets/icons/video_start.svg') }}"
+                                                                                alt="Start video icon orange"></button>
+                                                                    </div>
+
+                                                                    <div class="team--members-leaders_content">
+                                                                        <div>
+                                                                            <ul>
+                                                                                <li>
+                                                                                    <a href="https://instagram.com/emeulye6" target="_blank"
+                                                                                        rel="noopener noreferrer">
+                                                                                        <img src="{{ asset('assets/icons/social/fill/instagram.svg') }}"
+                                                                                            alt="instagram">
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li><a href="https://wa.me/212687651732" target="_blank"
+                                                                                        rel="noopener noreferrer"><img
+                                                                                            src="{{ asset('assets/icons/social/fill/whatsapp.svg') }}"
+                                                                                            alt="Whatsapp icon"></a></li>
+                                                                            </ul>
+
+                                                                            <h4> {!! __('team.nouhayla') !!} </h4>
+                                                                            <p> {{ __('team.nouhayla_role') }} </p>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
                                                             </div>
                                                         </div>
-
                                                     </div>
-                                                </div>
-
-                                                <div class="team--members-leaders_card">
-                                                    <div class="team--members-leaders_img">
-                                                        <div class="team--members-leaders_img-start">
-                                                            <img src="{{ asset('assets/images/team/nouhayla.webp') }}" alt="mohamed karim merroun">
-                                                            <button data-member="nouhayla" class="modal--btn"><img
-                                                                    src="{{ asset('assets/icons/video_start.svg') }}"
-                                                                    alt="Start video icon orange"></button>
+                                                    <div class="members--temp">
+                                                        <div class="title--container container-lg">
+                                                            <h2 class="main--title"> {!! __('team.contact_title') !!} </h2>
+                                                            <p class="main--content text--sm"> {{ __('team.contact') }} </p>
                                                         </div>
-
-                                                        <div class="team--members-leaders_content">
-                                                            <div>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="https://instagram.com/emeulye6" target="_blank"
-                                                                            rel="noopener noreferrer">
-                                                                            <img src="{{ asset('assets/icons/social/fill/instagram.svg') }}"
-                                                                                alt="instagram">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li><a href="https://wa.me/212687651732" target="_blank"
-                                                                            rel="noopener noreferrer"><img
-                                                                                src="{{ asset('assets/icons/social/fill/whatsapp.svg') }}"
-                                                                                alt="Whatsapp icon"></a></li>
-                                                                </ul>
-
-                                                                <h4> {!! __('team.nouhayla') !!} </h4>
-                                                                <p> {{ __('team.nouhayla_role') }} </p>
-                                                            </div>
-                                                        </div>
-
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="members--temp">
-                                            <div class="title--container container-lg">
-                                                <h2 class="main--title"> {!! __('team.contact_title') !!} </h2>
-                                                <p class="main--content text--sm"> {{ __('team.contact') }} </p>
-                                            </div>
-                                        </div>
 
-                                    </section>
-                                    -->
+                                                </section>
+                                                -->
     <section class="pricing--container">
         <div class="pricing--section">
             <header class="pricing--header container-lg" id="pricing">
@@ -947,6 +951,15 @@
                         <span>{{ __('pricing.three_zero') }} {{ __('pricing.dh') }}</span>
                         <span>{{ __('pricing.three_nine') }} {{ __('pricing.dh') }}</span>
                         <div>*{{ __('pricing.no_inscription_fees') }}</div>
+                        @auth
+                            <a class="btn-consultation " href="{{ route('create-consultation', ['price' => 1000]) }}">
+                                {{ __('pricing.consultation') }}
+                            </a>
+                        @else
+                            <a class="btn-login" href="{{ route('login') }}">
+                                {{ __('pricing.login_first') }}
+                            </a>
+                        @endauth
                     </span>
                     <ul>
                         <li>
@@ -992,6 +1005,15 @@
                         <span>{{ __('pricing.five') }} {{ __('pricing.dh') }}</span>
                         <span>{{ __('pricing.seven') }} {{ __('pricing.dh') }}</span>
                         <div>*{{ __('pricing.no_inscription_fees') }}</div>
+                        @auth
+                            <a class="btn-consultation " href="{{ route('create-consultation', ['price' => 1000]) }}">
+                                {{ __('pricing.consultation') }}
+                            </a>
+                        @else
+                            <a class="btn-login" href="{{ route('login') }}">
+                                {{ __('pricing.login_first') }}
+                            </a>
+                        @endauth
                     </span>
                     <ul>
                         <li>
@@ -1049,6 +1071,15 @@
                         <span>{{ __('pricing.ten_thousand') }} {{ __('pricing.dh') }}</span>
                         <span>{{ __('pricing.forteen') }} {{ __('pricing.dh') }}</span>
                         <div>*{{ __('pricing.no_inscription_fees') }}</div>
+                        @auth
+                            <a class="btn-consultation " href="{{ route('create-consultation', ['price' => 1000]) }}">
+                                {{ __('pricing.consultation') }}
+                            </a>
+                        @else
+                            <a class="btn-login" href="{{ route('login') }}">
+                                {{ __('pricing.login_first') }}
+                            </a>
+                        @endauth
                     </span>
                     <ul>
                         <li>
@@ -1286,7 +1317,7 @@
     </section>
 
 
-    <footer class="footer"> 
+    <footer class="footer">
         <div class="footer--top container-lg">
             <div class="footer--about">
                 <img src="{{ asset('assets/images/logo.png') }}" alt="Future leaders logo">
@@ -1294,7 +1325,8 @@
                     <p>{{ __('footer.about') }}</p>
                     <ul>
                         <li>
-                            <a href="https://www.instagram.com/future__leaders_/" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.instagram.com/future__leaders_/" target="_blank"
+                                rel="noopener noreferrer">
                                 <img src="{{ asset('assets/icons/social/instagram.svg') }}" alt="Instagram icon">
                             </a>
                         </li>
@@ -1306,7 +1338,7 @@
                     </ul>
                 </div>
             </div>
-    
+
             <div class="footer--links">
                 <h4>{{ __('footer.links') }}</h4>
                 <div>
@@ -1322,7 +1354,7 @@
                     </ul>
                 </div>
             </div>
-    
+
             <div class="footer--powered">
                 <a href="http://kazalmedia.com" target="_blank" rel="noopener noreferrer">
                     <p lang="en">Powered By</p>
@@ -1330,24 +1362,26 @@
                 </a>
             </div>
         </div>
-    
-       
-            <div class="footer--copyright">
-                <div class="container d-flex flex-column flex-sm-row justify-content-between align-items-center text-muted text-center text-sm-start py-2">
-                    <span>
-                        © 2025, Tous les droits sont réservés
-                    </span>
-                    <span>
-                        Developed by 
-                        <a href="https://instagram.com/falcondeev" class="text-white fw-bold" target="_blank" rel="noopener noreferrer">FalconDev</a>
-                        <i class="typcn typcn-heart-full-outline text-danger"></i>
-                    </span>
-                </div>
+
+
+        <div class="footer--copyright">
+            <div
+                class="container d-flex flex-column flex-sm-row justify-content-between align-items-center text-muted text-center text-sm-start py-2">
+                <span>
+                    © 2025, Tous les droits sont réservés
+                </span>
+                <span>
+                    Developed by
+                    <a href="https://instagram.com/falcondeev" class="text-white fw-bold" target="_blank"
+                        rel="noopener noreferrer">FalconDev</a>
+                    <i class="typcn typcn-heart-full-outline text-danger"></i>
+                </span>
             </div>
-            
+        </div>
+
         </div>
     </footer>
-    
+
 
     <div id="myModal" class="modal">
         <div class="modal-content">
