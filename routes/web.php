@@ -28,6 +28,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/send-drive', [ConsultationController::class, 'sendDrive'])->name('sendDrive');
     Route::post('/send-email/{id}', [ConsultationController::class, 'sendEmail'])->name('consultations.sendEmail');
     Route::post('/send-email-anyerror/{id}', [ConsultationController::class, 'sendEmailError'])->name('consultations.sendEmailError');
+    Route::put('/{id}/update-drive-link', [ConsultationController::class, 'updateDriveLink'])->name('update.drive_link');
 
 
 });
