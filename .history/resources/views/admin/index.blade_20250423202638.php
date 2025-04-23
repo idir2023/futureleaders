@@ -106,13 +106,13 @@
                     </div>
                     <div class="card-body table-responsive">
                         <table class="table table-hover">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>Nom Complet</th>
+                            <thead class="table-light" >
+                                <tr style="color: red">
+                                    <th style="color: red" >Nom Complet</th>
                                     <th>Date</th>
                                     <th>Prix</th>
                                     <th>Coach</th>
-                                    <th>Numero de Coach</th>
+                                    <th>Numero de Telephone</th>
                                     <th>Voir Drive</th>
                                 </tr>
                             </thead>

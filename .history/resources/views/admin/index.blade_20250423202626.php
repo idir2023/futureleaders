@@ -106,15 +106,15 @@
                     </div>
                     <div class="card-body table-responsive">
                         <table class="table table-hover">
-                            <thead class="table-light">
-                                <tr>
+                            <thead class="table-light" >
+                                <trstyle="color: red">
                                     <th>Nom Complet</th>
                                     <th>Date</th>
                                     <th>Prix</th>
                                     <th>Coach</th>
-                                    <th>Numero de Coach</th>
+                                    <th>Numero de Telephone</th>
                                     <th>Voir Drive</th>
-                                </tr>
+                                </trstyle=>
                             </thead>
                             <tbody>
                                 @forelse($consultationsClient as $consultation)

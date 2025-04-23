@@ -21937,7 +21937,7 @@ code {
 }
 .btn-reddit.btn-social-icon-text {
   padding: 0 1.5rem 0 0;
-  background: #ffd9ab;
+  background: #ff6a33;
 }
 .btn-reddit.btn-social-icon-text i {
   background: #ff4500;
@@ -24177,7 +24177,7 @@ dl li {
   }
 }
 .navbar .navbar-menu-wrapper {
-  background:  #ffd9ab;
+  background:  #f2e8e1;
   transition: width 0.25s ease;
   -webkit-transition: width 0.25s ease;
   -moz-transition: width 0.25s ease;
@@ -24357,8 +24357,8 @@ dl li {
 }
 .navbar .navbar-menu-wrapper .navbar-nav.navbar-nav-right .nav-item .nav-link {
   -webkit-box-shadow: 0 5px 10px 0 rgba(230, 230, 243, 0.88);
-  box-shadow: 0 5px 10px 0 #cba075;
-  border: 1px solid #cba075;
+  box-shadow: 0 5px 10px 0 rgba(230, 230, 243, 0.88);
+  border: 1px solid #e4e4f4;
   padding-left: 0.875rem;
   padding-right: 0.875rem;
   border-radius: 0.25rem;

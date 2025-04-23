@@ -85,7 +85,7 @@
             {{-- <a href="#team">{{ __('menu.our_team') }}</a> --}}
             <a href="#faq">{{ __('menu.faq') }}</a>
             <a href="#pricing1">{{ __('Consultation') }}</a>
-        
+            c:\Users\Aicha njimate\AppData\Local\Packages\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\TempState\ED2B710B879500E77141424B62D3E91C\WhatsApp Image 2025-04-21 at 21.13.15_d693a05f.jpg
             <a href="#contact">{{ __('menu.contact') }}</a>
             @auth
                 {{-- @if (Auth::user()->is_admin) --}}

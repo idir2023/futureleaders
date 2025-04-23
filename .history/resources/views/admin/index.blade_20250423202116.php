@@ -7,7 +7,7 @@
         <div class="row">
             <!-- Coaches -->
             <div class="col-md-4 stretch-card grid-margin">
-                <div class="aaa card text-dark ">
+                <div class="card text-dark bg-nude">
                     <div class="card-body d-flex align-items-center justify-content-between">
                         <div>
                             <h4 class="mb-2">Coaches</h4>
@@ -20,7 +20,7 @@
 
             <!-- Consultations -->
             <div class="col-md-4 stretch-card grid-margin">
-                <div class="card text-dark bg-pastel-green">
+                <div class="card text-white bg-success">
                     <div class="card-body d-flex align-items-center justify-content-between">
                         <div>
                             <h4 class="mb-2">Consultations</h4>
@@ -33,8 +33,7 @@
 
             <!-- Users -->
             <div class="col-md-4 stretch-card grid-margin">
-                <div class="card text-dark bg-pastel-rose">
-
+                <div class="card text-white bg-danger">
                     <div class="card-body d-flex align-items-center justify-content-between">
                         <div>
                             <h4 class="mb-2">Utilisateurs</h4>
@@ -112,7 +111,7 @@
                                     <th>Date</th>
                                     <th>Prix</th>
                                     <th>Coach</th>
-                                    <th>Numero de Coach</th>
+                                    <th>Numero de Telephone</th>
                                     <th>Voir Drive</th>
                                 </tr>
                             </thead>
@@ -175,26 +174,3 @@
     @endif
 
 @endsection
-<style>
-
-    .aaa{
-        background-color: #DE6C25FF; /* Soft beige/nude */
-    }
-
-    .bg-pastel-green {
-        background-color: #b0e0a8; /* Pastel green */
-    }
-
-    .bg-pastel-rose {
-        background-color: #f4c6c1; /* Pastel rose */
-    }
-
-    .text-dark {
-        color: #2d2d2d; /* Dark text for better contrast */
-    }
-
-    .display-4 {
-        font-size: 3rem;
-    }
-
-</style>

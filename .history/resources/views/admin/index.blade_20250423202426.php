@@ -112,7 +112,7 @@
                                     <th>Date</th>
                                     <th>Prix</th>
                                     <th>Coach</th>
-                                    <th>Numero de Coach</th>
+                                    <th>Numero de Telephone</th>
                                     <th>Voir Drive</th>
                                 </tr>
                             </thead>
@@ -177,7 +177,7 @@
 @endsection
 <style>
 
-    .aaa{
+    .bg-nude {
         background-color: #DE6C25FF; /* Soft beige/nude */
     }
 

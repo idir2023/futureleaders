@@ -7,7 +7,7 @@
         <div class="row">
             <!-- Coaches -->
             <div class="col-md-4 stretch-card grid-margin">
-                <div class="aaa card text-dark ">
+                <div class="card custom-card">
                     <div class="card-body d-flex align-items-center justify-content-between">
                         <div>
                             <h4 class="mb-2">Coaches</h4>
@@ -20,7 +20,7 @@
 
             <!-- Consultations -->
             <div class="col-md-4 stretch-card grid-margin">
-                <div class="card text-dark bg-pastel-green">
+                <div class="card bg-pastel-green">
                     <div class="card-body d-flex align-items-center justify-content-between">
                         <div>
                             <h4 class="mb-2">Consultations</h4>
@@ -33,8 +33,7 @@
 
             <!-- Users -->
             <div class="col-md-4 stretch-card grid-margin">
-                <div class="card text-dark bg-pastel-rose">
-
+                <div class="card bg-pastel-rose">
                     <div class="card-body d-flex align-items-center justify-content-between">
                         <div>
                             <h4 class="mb-2">Utilisateurs</h4>
@@ -112,35 +111,28 @@
                                     <th>Date</th>
                                     <th>Prix</th>
                                     <th>Coach</th>
-                                    <th>Numero de Coach</th>
+                                    <th>Numero de Telephone</th>
                                     <th>Voir Drive</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse($consultationsClient as $consultation)
                                     <tr>
-                                        <td>{{ $consultation->name }}
-                                        </td>
-                                        <td>{{ $consultation->created_at ? $consultation->created_at->format('d/m/Y') : '-' }}
-                                        </td>
+                                        <td>{{ $consultation->name }}</td>
+                                        <td>{{ $consultation->created_at ? $consultation->created_at->format('d/m/Y') : '-' }}</td>
                                         <td>{{ number_format($consultation->prix, 2) }} MAD</td>
                                         <td>{{ optional($consultation->coach)->nom ?? 'N/A' }}
-                                            {{ optional($consultation->coach)->prenom ?? '' }}
-                                        </td>
-                                        <td>{{ optional($consultation->coach)->numero ?? 'N/A' }}
-                                           
-                                        </td>
+                                            {{ optional($consultation->coach)->prenom ?? '' }}</td>
+                                        <td>{{ optional($consultation->coach)->numero ?? 'N/A' }}</td>
                                         <td>
                                             @if ($consultation->drive_link)
-                                                <a href="{{ $consultation->drive_link }}" target="_blank"
-                                                    class="btn btn-info btn-sm mt-1" title="Voir le lien Google Drive">
+                                                <a href="{{ $consultation->drive_link }}" target="_blank" class="btn btn-info btn-sm mt-1" title="Voir le lien Google Drive">
                                                     <i class="typcn typcn-document-text"></i> Voir Drive
                                                 </a>
                                             @else
                                                 <span class="text-muted">Aucun lien</span>
                                             @endif
                                         </td>
-
                                     </tr>
                                 @empty
                                     <tr>
@@ -152,32 +144,20 @@
                     </div>
                 </div>
             </div>
+            
             <!-- Back to Home Button -->
-            {{-- <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
-                <a class="btn  btn-sm d-flex align-items-center" href="{{ route('home') }}" style="color: #cba075">
-                    <i class="typcn typcn-arrow-back mr-1"></i> Retour à l'accueil
-                </a>
-            </div> --}}
             <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
-                <a class="btn btn-sm d-flex align-items-center" href="{{ route('home') }}" style="background: linear-gradient(45deg, #cba075, #cba075); color: #fff; padding: 10px 20px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); transition: background 0.3s ease, transform 0.2s ease;">
+                <a class="btn btn-sm d-flex align-items-center" href="{{ route('home') }}" style="background: linear-gradient(45deg, #DE6C25FF, #f4e1c1); color: #fff; padding: 10px 20px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); transition: background 0.3s ease, transform 0.2s ease;">
                     <i class="typcn typcn-arrow-back mr-1"></i> Retour à l'accueil
                 </a>
             </div>
-            
-            <!-- Optional hover effect -->
-            <style>
-                .btn:hover {
-                    background: linear-gradient(45deg, #cba075, #cba075);
-                    transform: scale(1.05);
-                }
-            </style>
         </div> <!-- End of Client Consultations Section -->
     @endif
-
 @endsection
-<style>
 
-    .aaa{
+<!-- Custom Styles for Colors -->
+<style>
+    .custom-card {
         background-color: #DE6C25FF; /* Soft beige/nude */
     }
 
@@ -196,5 +176,4 @@
     .display-4 {
         font-size: 3rem;
     }
-
 </style>

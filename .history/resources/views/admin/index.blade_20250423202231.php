@@ -7,7 +7,7 @@
         <div class="row">
             <!-- Coaches -->
             <div class="col-md-4 stretch-card grid-margin">
-                <div class="aaa card text-dark ">
+                <div class="card text-dark bg-nude">
                     <div class="card-body d-flex align-items-center justify-content-between">
                         <div>
                             <h4 class="mb-2">Coaches</h4>
@@ -112,7 +112,7 @@
                                     <th>Date</th>
                                     <th>Prix</th>
                                     <th>Coach</th>
-                                    <th>Numero de Coach</th>
+                                    <th>Numero de Telephone</th>
                                     <th>Voir Drive</th>
                                 </tr>
                             </thead>
@@ -176,9 +176,10 @@
 
 @endsection
 <style>
-
-    .aaa{
-        background-color: #DE6C25FF; /* Soft beige/nude */
+    <!-- Custom Styles for Colors -->
+<style>
+    .bg-nude {
+        background-color: #f0e0d6; /* Soft beige/nude */
     }
 
     .bg-pastel-green {
@@ -196,5 +197,5 @@
     .display-4 {
         font-size: 3rem;
     }
-
+</style>
 </style>

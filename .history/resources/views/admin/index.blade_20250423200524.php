@@ -7,7 +7,7 @@
         <div class="row">
             <!-- Coaches -->
             <div class="col-md-4 stretch-card grid-margin">
-                <div class="aaa card text-dark ">
+                <div class="card text-white bg-primary">
                     <div class="card-body d-flex align-items-center justify-content-between">
                         <div>
                             <h4 class="mb-2">Coaches</h4>
@@ -20,7 +20,7 @@
 
             <!-- Consultations -->
             <div class="col-md-4 stretch-card grid-margin">
-                <div class="card text-dark bg-pastel-green">
+                <div class="card text-white bg-success">
                     <div class="card-body d-flex align-items-center justify-content-between">
                         <div>
                             <h4 class="mb-2">Consultations</h4>
@@ -33,8 +33,7 @@
 
             <!-- Users -->
             <div class="col-md-4 stretch-card grid-margin">
-                <div class="card text-dark bg-pastel-rose">
-
+                <div class="card text-white bg-danger">
                     <div class="card-body d-flex align-items-center justify-content-between">
                         <div>
                             <h4 class="mb-2">Utilisateurs</h4>
@@ -108,27 +107,21 @@
                         <table class="table table-hover">
                             <thead class="table-light">
                                 <tr>
-                                    <th>Nom Complet</th>
+                                    <th
                                     <th>Date</th>
                                     <th>Prix</th>
                                     <th>Coach</th>
-                                    <th>Numero de Coach</th>
                                     <th>Voir Drive</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse($consultationsClient as $consultation)
                                     <tr>
-                                        <td>{{ $consultation->name }}
-                                        </td>
                                         <td>{{ $consultation->created_at ? $consultation->created_at->format('d/m/Y') : '-' }}
                                         </td>
                                         <td>{{ number_format($consultation->prix, 2) }} MAD</td>
                                         <td>{{ optional($consultation->coach)->nom ?? 'N/A' }}
                                             {{ optional($consultation->coach)->prenom ?? '' }}
-                                        </td>
-                                        <td>{{ optional($consultation->coach)->numero ?? 'N/A' }}
-                                           
                                         </td>
                                         <td>
                                             @if ($consultation->drive_link)
@@ -153,48 +146,12 @@
                 </div>
             </div>
             <!-- Back to Home Button -->
-            {{-- <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
+            <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
                 <a class="btn  btn-sm d-flex align-items-center" href="{{ route('home') }}" style="color: #cba075">
                     <i class="typcn typcn-arrow-back mr-1"></i> Retour à l'accueil
                 </a>
-            </div> --}}
-            <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
-                <a class="btn btn-sm d-flex align-items-center" href="{{ route('home') }}" style="background: linear-gradient(45deg, #cba075, #cba075); color: #fff; padding: 10px 20px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); transition: background 0.3s ease, transform 0.2s ease;">
-                    <i class="typcn typcn-arrow-back mr-1"></i> Retour à l'accueil
-                </a>
             </div>
-            
-            <!-- Optional hover effect -->
-            <style>
-                .btn:hover {
-                    background: linear-gradient(45deg, #cba075, #cba075);
-                    transform: scale(1.05);
-                }
-            </style>
         </div> <!-- End of Client Consultations Section -->
     @endif
 
 @endsection
-<style>
-
-    .aaa{
-        background-color: #DE6C25FF; /* Soft beige/nude */
-    }
-
-    .bg-pastel-green {
-        background-color: #b0e0a8; /* Pastel green */
-    }
-
-    .bg-pastel-rose {
-        background-color: #f4c6c1; /* Pastel rose */
-    }
-
-    .text-dark {
-        color: #2d2d2d; /* Dark text for better contrast */
-    }
-
-    .display-4 {
-        font-size: 3rem;
-    }
-
-</style>
