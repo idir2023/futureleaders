@@ -77,7 +77,50 @@
                                                         <i class="typcn typcn-link-outline"></i> <!-- Updated icon -->
                                                         Lien Drive
                                                     </a>
+                                                @else
+                                                    <a href="#" id="editDriveLink" class="btn btn-sm btn-success">
+                                                        <i class="typcn typcn-link"></i>
+                                                        Edit Lien Drive
+                                                    </a>
                                                 @endif
+
+                                                <!-- Edit Drive Link Modal -->
+                                                <div class="modal fade" id="editDriveLinkModal" tabindex="-1"
+                                                    role="dialog" aria-labelledby="editDriveLinkModalLabel"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="editDriveLinkModalLabel">Edit
+                                                                    Drive Link</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <!-- Form to Edit Drive Link -->
+                                                                <form id="editDriveLinkForm"
+                                                                    action="{{ route('update.drive_link', $consultation->id) }}"
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    @method('PUT')
+                                                                    <div class="form-group">
+                                                                        <label for="drive_link">Drive Link</label>
+                                                                        <input type="url" class="form-control"
+                                                                            id="drive_link" name="drive_link"
+                                                                            value="{{ $consultation->drive_link }}"
+                                                                            required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <button type="submit" class="btn btn-success">Save
+                                                                            Changes</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                             </div>
                                         </td>
@@ -127,6 +170,18 @@
     <script>
         $(document).ready(function() {
 
+            $('#editDriveLink').click(function(e) {
+                e.preventDefault(); // Prevent the default action of the link
+
+                // Get the current drive link from the element
+                var driveLink = "{{ $consultation->drive_link }}";
+
+                // Populate the modal input with the current drive link
+                $('#drive_link').val(driveLink);
+
+                // Show the modal
+                $('#editDriveLinkModal').modal('show');
+            });
             // Suppression
             $('.delete-consultation').on('click', function() {
                 const id = $(this).data('id');

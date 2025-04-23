@@ -130,4 +130,19 @@ class ConsultationController extends Controller
 
         return response()->json(['success' => 'Email envoyé avec succès.'], 200);
     }
+
+    public function updateDriveLink(Request $request, $id)
+{
+    $request->validate([
+        'drive_link' => 'required|url',
+    ]);
+
+    $consultation = Consultation::find($id);
+    $consultation->drive_link = $request->input('drive_link');
+    $consultation->save();
+
+    return redirect()->route('consultations.index')->with('success', 'Drive link updated successfully!');
+
+}
+
 }
