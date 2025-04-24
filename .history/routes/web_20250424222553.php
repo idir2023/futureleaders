@@ -24,7 +24,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('ranks', [CoachController::class, 'getRank'])->name('ranks.index');
 
  
-    Route::get('drives', [DriveController::class, 'index'])->name('drives.index');
+Route::get('drives', [DriveController::class, 'index'])->name('drives.index');
     // Liste des consultations
     Route::resource('consultations', ConsultationController::class);
     // routes/web.php

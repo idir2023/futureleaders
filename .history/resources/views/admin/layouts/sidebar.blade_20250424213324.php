@@ -32,7 +32,7 @@
                  </a>
              </li>
              <li class="nav-item">
-                <a class="nav-link" href="{{ route('drives.index') }}">
+                <a class="nav-link" href="{{ route('ranks.index') }}">
                     <i class="typcn typcn-chart-bar menu-icon"></i>
                     <span class="menu-title">Drives</span>
                 </a>

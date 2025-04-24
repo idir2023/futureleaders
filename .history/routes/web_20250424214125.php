@@ -6,7 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CoachController;
 use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\ClientController;
-use App\Http\Controllers\DriveController;
+use App\Http\Controllers\DrivesController;
 
 
 
@@ -22,9 +22,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     // Liste des coachs
     Route::resource('coaches', CoachController::class);
     Route::get('ranks', [CoachController::class, 'getRank'])->name('ranks.index');
-
- 
-    Route::get('drives', [DriveController::class, 'index'])->name('drives.index');
+    Route::get('ranks', [CoachController::class, 'getRank'])->name('ranks.index');
     // Liste des consultations
     Route::resource('consultations', ConsultationController::class);
     // routes/web.php
