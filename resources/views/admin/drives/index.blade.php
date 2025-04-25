@@ -13,6 +13,9 @@
                 </a>
             </div>
             <div class="card-body">
+                @if(session('success'))
+                    <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped">
                         <thead>
@@ -25,7 +28,7 @@
                         <tbody>
                             @forelse($drives as $drive)
                                 <tr>
-                                    <td>{{ $drive->drive_link }}</td>
+                                    <td><a href="{{ $drive->drive_link }}" target="_blank">{{ $drive->drive_link }}</a></td>
                                     <td>{{ $drive->duration }}</td>
                                     <td>
                                         <a href="{{ route('drives.edit', $drive->id) }}" class="btn btn-sm btn-info">
@@ -57,10 +60,10 @@
 <script>
     $(document).ready(function() {
         $('.delete-drive').click(function() {
-            var driveId = $(this).data('id');
+            let driveId = $(this).data('id');
             Swal.fire({
                 title: 'Êtes-vous sûr ?',
-                text: "Vous ne pourrez pas annuler cette action !",
+                text: "Cette action est irréversible !",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Oui, supprimer !',
@@ -68,12 +71,13 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: '/drives/' + driveId,
-                        type: 'DELETE',
+                        url: `/drives/${driveId}`,
+                        type: 'POST',
                         data: {
+                            _method: 'DELETE',
                             _token: '{{ csrf_token() }}',
                         },
-                        success: function(result) {
+                        success: function(response) {
                             $('button[data-id="' + driveId + '"]').closest('tr').remove();
                             Swal.fire('Supprimé !', 'Le drive a été supprimé.', 'success');
                         },

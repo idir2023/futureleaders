@@ -10,12 +10,13 @@ class IsAdmin
 {
     public function handle(Request $request, Closure $next)
     {
-        // If the user is not an admin, redirect them to home or login page
-        if (Auth::check() && !Auth::user()->is_admin) {
-            return redirect('/');  // Or any route you prefer
+        // Si l'utilisateur est connecté et que son rôle n'est pas 'admin'
+        if (Auth::check() && Auth::user()->role !== 'admin') {
+            return redirect('/'); // Rediriger vers l'accueil ou autre
         }
-
+    
         return $next($request);
     }
+    
 }
 

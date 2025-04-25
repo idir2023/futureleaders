@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Consultation;
 use Illuminate\Http\Request;
 use App\Models\Coach;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ConsultationTerminer;
+use App\Models\User;
+
 
 class ClientController extends Controller
 {
@@ -77,6 +81,10 @@ class ClientController extends Controller
             $consultation->paiement_status = 'payé';
             $consultation->save();
 
+            // Envoi d'un email à tous les utilisateurs ayant le rôle 'admin'
+            User::where('role', 'admin')->each(function ($user) use ($consultation) {
+                Mail::to($user->email)->send(new ConsultationTerminer($consultation));
+            });
             return redirect()->route('home')->with('success', 'Le reçu a été téléchargé avec succès!');
         }
 

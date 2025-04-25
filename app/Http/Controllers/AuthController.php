@@ -17,7 +17,7 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6|confirmed',
             'telephone' => 'nullable|string|max:15',
@@ -30,7 +30,7 @@ class AuthController extends Controller
             'telephone' => $request->telephone,
             'adresse' => $request->adresse,
             'password' => Hash::make($request->password),
-            'is_admin' => false, // Default to false for regular users
+            'role' => 'user', // Par défaut
         ]);
 
         Auth::login($user);
@@ -43,39 +43,33 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    // public function login(Request $request)
-    // {
-    //     $credentials = $request->only('email', 'password');
-
-    //     if (Auth::attempt($credentials)) {
-    //         $request->session()->regenerate();
-    //         return redirect()->route('dashboard');
-    //     }
-
-    //     return back()->withErrors([
-    //         'email' => 'Invalid credentials.',
-    //     ]);
-    // }
     public function login(Request $request)
     {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
         $credentials = $request->only('email', 'password');
-    
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-    
+
             $user = Auth::user();
-            if ($user->is_admin) {
+
+            // Si tu utilises un champ `role` (ex: admin, user, etc.)
+            if ($user->role === 'admin') {
                 return redirect()->route('dashboard');
             } else {
                 return redirect()->route('home');
             }
         }
-    
+
         return back()->withErrors([
-            'email' => 'Invalid credentials.',
+            'email' => 'Identifiants incorrects.',
         ]);
     }
-    
+
     public function logout(Request $request)
     {
         Auth::logout();

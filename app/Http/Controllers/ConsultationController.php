@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ConsultationConfirmation;
 use App\Mail\ConsultationPaymentIncomplete;
+use App\Models\Drive;
+use App\Models\User;
 
 class ConsultationController extends Controller
 {
@@ -17,8 +19,9 @@ class ConsultationController extends Controller
      */
     public function index()
     {
+        $drives = Drive::all();
         $consultations = Consultation::with('coach')->latest()->paginate(5);
-        return view('admin.consultations.index', compact('consultations'));
+        return view('admin.consultations.index', compact('consultations', 'drives'));
     }
 
     /**
@@ -132,17 +135,15 @@ class ConsultationController extends Controller
     }
 
     public function updateDriveLink(Request $request, $id)
-{
-    $request->validate([
-        'drive_link' => 'required|url',
-    ]);
+    {
+        $request->validate([
+            'drive_link' => 'required|url',
+        ]);
 
-    $consultation = Consultation::find($id);
-    $consultation->drive_link = $request->input('drive_link');
-    $consultation->save();
+        $consultation = Consultation::find($id);
+        $consultation->drive_link = $request->input('drive_link');
+        $consultation->save();
 
-    return redirect()->route('consultations.index')->with('success', 'Drive link updated successfully!');
-
-}
-
+        return redirect()->route('consultations.index')->with('success', 'Drive link updated successfully!');
+    }
 }

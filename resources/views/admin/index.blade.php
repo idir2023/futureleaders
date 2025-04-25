@@ -2,8 +2,7 @@
 @section('title', 'Dashboard')
 
 @section('content')
-    @if (auth()->user()->is_admin)
-
+    @if (auth()->user()->role === 'admin')
         <div class="row">
             <!-- Coaches -->
             <div class="col-md-4 stretch-card grid-margin">
@@ -128,7 +127,7 @@
                                             {{ optional($consultation->coach)->prenom ?? '' }}
                                         </td>
                                         <td>{{ optional($consultation->coach)->numero ?? 'N/A' }}
-                                           
+
                                         </td>
                                         <td>
                                             @if ($consultation->drive_link)
@@ -159,11 +158,12 @@
                 </a>
             </div> --}}
             <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
-                <a class="btn btn-sm d-flex align-items-center" href="{{ route('home') }}" style="background: linear-gradient(45deg, #cba075, #cba075); color: #fff; padding: 10px 20px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); transition: background 0.3s ease, transform 0.2s ease;">
+                <a class="btn btn-sm d-flex align-items-center" href="{{ route('home') }}"
+                    style="background: linear-gradient(45deg, #cba075, #cba075); color: #fff; padding: 10px 20px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); transition: background 0.3s ease, transform 0.2s ease;">
                     <i class="typcn typcn-arrow-back mr-1"></i> Retour à l'accueil
                 </a>
             </div>
-            
+
             <!-- Optional hover effect -->
             <style>
                 .btn:hover {
@@ -176,25 +176,27 @@
 
 @endsection
 <style>
-
-    .aaa{
-        background-color: #DE6C25FF; /* Soft beige/nude */
+    .aaa {
+        background-color: #DE6C25FF;
+        /* Soft beige/nude */
     }
 
     .bg-pastel-green {
-        background-color: #b0e0a8; /* Pastel green */
+        background-color: #b0e0a8;
+        /* Pastel green */
     }
 
     .bg-pastel-rose {
-        background-color: #f4c6c1; /* Pastel rose */
+        background-color: #f4c6c1;
+        /* Pastel rose */
     }
 
     .text-dark {
-        color: #2d2d2d; /* Dark text for better contrast */
+        color: #2d2d2d;
+        /* Dark text for better contrast */
     }
 
     .display-4 {
         font-size: 3rem;
     }
-
 </style>

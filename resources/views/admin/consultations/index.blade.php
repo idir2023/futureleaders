@@ -74,54 +74,52 @@
                                                     <a href="javascript:void(0);"
                                                         class="btn btn-sm btn-secondary send-drive-link"
                                                         data-id="{{ $consultation->id }}">
-                                                        <i class="typcn typcn-link-outline"></i> <!-- Updated icon -->
+                                                        <i class="typcn typcn-link-outline"></i>
                                                         Lien Drive
                                                     </a>
                                                 @else
-                                                    <a href="#" id="editDriveLink" class="btn btn-sm btn-success">
+                                                    <a href="javascript:void(0);"
+                                                        class="btn btn-sm btn-success edit-drive-link"
+                                                        data-id="{{ $consultation->id }}"
+                                                        data-drive="{{ $consultation->drive_link }}">
                                                         <i class="typcn typcn-link"></i>
                                                         Edit Lien Drive
                                                     </a>
                                                 @endif
 
-                                                <!-- Edit Drive Link Modal -->
+                                                <!-- Edit Drive Link Modal (placer en dehors de la boucle) -->
                                                 <div class="modal fade" id="editDriveLinkModal" tabindex="-1"
                                                     role="dialog" aria-labelledby="editDriveLinkModalLabel"
                                                     aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="editDriveLinkModalLabel">Edit
-                                                                    Drive Link</h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <!-- Form to Edit Drive Link -->
-                                                                <form id="editDriveLinkForm"
-                                                                    action="{{ route('update.drive_link', $consultation->id) }}"
-                                                                    method="POST">
-                                                                    @csrf
-                                                                    @method('PUT')
+                                                        <form id="editDriveLinkForm" method="POST">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="editDriveLinkModalLabel">
+                                                                        Modifier le lien Drive</h5>
+                                                                    <button type="button" class="close"
+                                                                        data-bs-dismiss="modal" aria-label="Fermer">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
                                                                     <div class="form-group">
-                                                                        <label for="drive_link">Drive Link</label>
+                                                                        <label for="edit_drive_link">Lien Drive</label>
                                                                         <input type="url" class="form-control"
-                                                                            id="drive_link" name="drive_link"
-                                                                            value="{{ $consultation->drive_link }}"
-                                                                            required>
+                                                                            id="edit_drive_link" name="drive_link" required>
                                                                     </div>
-                                                                    <div class="form-group">
-                                                                        <button type="submit" class="btn btn-success">Save
-                                                                            Changes</button>
+                                                                    <div class="form-group mt-2">
+                                                                        <button type="submit"
+                                                                            class="btn btn-success">Enregistrer</button>
                                                                     </div>
-                                                                </form>
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        </form>
                                                     </div>
                                                 </div>
-
+                                                {{--  --}}
                                             </div>
                                         </td>
                                     </tr>
@@ -153,9 +151,19 @@
                 </div>
                 <div class="modal-body">
                     <input type="hidden" id="consultation_id" name="consultation_id">
+
                     <div class="mb-3">
                         <label for="drive_link" class="form-label">Lien Google Drive</label>
-                        <input type="url" class="form-control" id="drive_link" name="drive_link" required>
+                        <select class="form-select" id="drive_link" name="drive_link" required>
+                            <option value="" disabled selected>Sélectionner un lien</option>
+                            @foreach ($drives as $link)
+                                <option value="{{ $link->drive_link }}">
+                                    {{ $link->drive_link }} (Durée : {{ $link->duration }})
+                                </option>
+                            @endforeach
+                        </select>
+                        <div class="form-text">Veuillez sélectionner un lien Google Drive parmi les options disponibles.
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -164,24 +172,31 @@
             </form>
         </div>
     </div>
+
+
 @endsection
 
 @section('scripts')
     <script>
         $(document).ready(function() {
 
-            $('#editDriveLink').click(function(e) {
-                e.preventDefault(); // Prevent the default action of the link
+            // Modifier lien Drive
+            $('.edit-drive-link').click(function(e) {
+                e.preventDefault();
+                const id = $(this).data('id');
+                const link = $(this).data('drive');
+                const form = $('#editDriveLinkForm');
 
-                // Get the current drive link from the element
-                var driveLink = "{{ $consultation->drive_link }}";
+                // Mettre le lien dans l'input
+                $('#edit_drive_link').val(link);
 
-                // Populate the modal input with the current drive link
-                $('#drive_link').val(driveLink);
+                // Modifier l'action du formulaire
+                form.attr('action', `/consultations/${id}/update-drive-link`);
 
-                // Show the modal
+                // Afficher le modal
                 $('#editDriveLinkModal').modal('show');
             });
+
             // Suppression
             $('.delete-consultation').on('click', function() {
                 const id = $(this).data('id');

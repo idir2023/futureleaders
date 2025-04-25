@@ -24,14 +24,17 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('ranks', [CoachController::class, 'getRank'])->name('ranks.index');
 
  
-    Route::get('drives', [DriveController::class, 'index'])->name('drives.index');
+    // 
+    Route::resource('drives', DriveController::class);
+    // 
     // Liste des consultations
     Route::resource('consultations', ConsultationController::class);
     // routes/web.php
     Route::post('/send-drive', [ConsultationController::class, 'sendDrive'])->name('sendDrive');
     Route::post('/send-email/{id}', [ConsultationController::class, 'sendEmail'])->name('consultations.sendEmail');
     Route::post('/send-email-anyerror/{id}', [ConsultationController::class, 'sendEmailError'])->name('consultations.sendEmailError');
-    Route::put('/{id}/update-drive-link', [ConsultationController::class, 'updateDriveLink'])->name('update.drive_link');
+    // Route::put('/{id}/update-drive-link', [ConsultationController::class, 'updateDriveLink'])->name('update.drive_link');
+    Route::put('/consultations/{id}/update-drive-link', [ConsultationController::class, 'updateDriveLink'])->name('update.drive_link');
 
 
 });
