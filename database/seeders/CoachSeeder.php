@@ -3,9 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\Coach;
+use App\Models\User;
 use App\Models\BankAccount;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class CoachSeeder extends Seeder
 {
@@ -40,7 +42,17 @@ class CoachSeeder extends Seeder
         ];
 
         foreach ($coaches as $data) {
+            // Créer un utilisateur
+            $user = User::create([
+                'name' => $data['nom'] . ' ' . $data['prenom'],
+                'email' => $data['email'],
+                'password' => Hash::make('password'), // Mot de passe temporaire
+                'role' => 'coach',
+            ]);
+
+            // Créer le coach lié à l'utilisateur
             $coach = Coach::create([
+                'user_id' => $user->id,
                 'nom' => $data['nom'],
                 'prenom' => $data['prenom'],
                 'email' => $data['email'],
@@ -51,6 +63,7 @@ class CoachSeeder extends Seeder
                 'date_naissance' => $data['date_naissance'],
             ]);
 
+            // Créer le compte bancaire du coach
             $coach->bankAccounts()->create([
                 'bank_name' => $data['bank_name'],
                 'rib' => $data['rib'],

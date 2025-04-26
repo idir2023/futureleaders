@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('date_naissance')->nullable();
             $table->string('ville')->nullable();
             $table->text('adresse')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

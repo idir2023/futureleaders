@@ -22,18 +22,21 @@ class Coach extends Model
         'code_promo',
         'ville',
         'adresse',
-        'date_naissance'
+        'date_naissance',
+        'user_id'
     ];
     public function bankAccounts()
-{
-    return $this->hasMany(BankAccount::class);
-}
-// app/Models/Coach.php
+    {
+        return $this->hasMany(BankAccount::class);
+    }
+    // app/Models/Coach.php
 
-public function consultations()
-{
-    return $this->hasMany(Consultation::class);
-}
-
-
+    public function consultations()
+    {
+        return $this->hasMany(Consultation::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
