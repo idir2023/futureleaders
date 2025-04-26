@@ -22,7 +22,7 @@
                                     <th>Téléphone</th>
                                     <th>Adresse</th>
                                     <th>Coach</th>
-                                    <th>Paiement</th>
+                                    <th>Statut Paiement</th>
                                     <th>Reçu de Paiement</th>
                                     <th>Actions</th>
                                 </tr>
@@ -60,13 +60,13 @@
                                             </button>
 
                                             <div class="d-flex flex-column gap-1">
-                                                <a href="#" class="btn btn-sm send-email-server"  style="background-color: #ffd9ab;"
+                                                <a href="#" class="btn btn-sm btn-primary send-email-server"
                                                     data-id="{{ $consultation->id }}"
                                                     data-name="{{ $consultation->name }}">
                                                     <i class="typcn typcn-mail"></i>
                                                     Confirmation
                                                 </a>
-                                                <a href="#" class="btn btn-sm  send-email-server-1"style="background-color: #ffd9ab;"
+                                                <a href="#" class="btn btn-sm  send-email-server-1"
                                                     data-id="{{ $consultation->id }}"
                                                     data-name="{{ $consultation->name }}">
                                                     <i class="typcn typcn-mail"></i>
@@ -75,14 +75,14 @@
 
                                                 @if (!$consultation->drive_link)
                                                     <a href="javascript:void(0);"
-                                                        class="btn btn-sm  send-drive-link"style="background-color: #ffd9ab;"
+                                                        class="btn btn-sm btn-secondary send-drive-link"
                                                         data-id="{{ $consultation->id }}">
                                                         <i class="typcn typcn-link-outline"></i>
                                                         Lien Drive
                                                     </a>
                                                 @else
                                                     <a href="javascript:void(0);"
-                                                        class="btn btn-sm  edit-drive-link"style="background-color: #ffd9ab;"
+                                                        class="btn btn-sm btn-success edit-drive-link"
                                                         data-id="{{ $consultation->id }}"
                                                         data-drive="{{ $consultation->drive_link }}">
                                                         <i class="typcn typcn-link"></i>
