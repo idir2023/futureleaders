@@ -23,7 +23,7 @@ class User extends Authenticatable
         'password',
         'telephone',
         'adresse',
-        'is_admin', // Added is_admin attribute
+        'role', // Added is_admin attribute
     ];
 
     /**
