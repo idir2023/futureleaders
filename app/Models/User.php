@@ -24,6 +24,7 @@ class User extends Authenticatable
         'telephone',
         'adresse',
         'role', // Added is_admin attribute
+        'code_promo',
     ];
 
     /**

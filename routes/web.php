@@ -7,6 +7,7 @@ use App\Http\Controllers\CoachController;
 use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DriveController;
+use App\Http\Controllers\UserController;
 
 
 
@@ -22,11 +23,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
     // Liste des coachs
     Route::resource('coaches', CoachController::class);
     Route::get('ranks', [CoachController::class, 'getRank'])->name('ranks.index');
-
- 
     // 
     Route::resource('drives', DriveController::class);
-    // 
+
+    Route::get('clients', [UserController::class, 'index'])->name('clients.index');
+
+    Route::put('clients/{id}/add-code_promo', [UserController::class, 'addPromoCode'])->name('clients.add-code_promo');
+
     // Liste des consultations
     Route::resource('consultations', ConsultationController::class);
     // routes/web.php
@@ -35,8 +38,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/send-email-anyerror/{id}', [ConsultationController::class, 'sendEmailError'])->name('consultations.sendEmailError');
     // Route::put('/{id}/update-drive-link', [ConsultationController::class, 'updateDriveLink'])->name('update.drive_link');
     Route::put('/consultations/{id}/update-drive-link', [ConsultationController::class, 'updateDriveLink'])->name('update.drive_link');
-
-
 });
 
 Route::group(

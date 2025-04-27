@@ -14,10 +14,9 @@ class DashboardController extends Controller
 
         $CoachesCount = $Coaches->count();
         $ConsultationsCount = $Consultations->count();
-        $UsersCount = $Users->count();
+        $UsersCount = \App\Models\User::where('role', 'user')->count();
         $consultationsClient = \App\Models\Consultation::where('user_id', auth()->user()->id)->get();
         // return view('admin.consultationClient', compact('consultations'));
-        return view('admin.index', compact('Coaches', 'Consultations','consultationsClient', 'Users', 'CoachesCount', 'ConsultationsCount', 'UsersCount'));
+        return view('admin.index', compact('Coaches', 'Consultations', 'consultationsClient', 'Users', 'CoachesCount', 'ConsultationsCount', 'UsersCount'));
     }
-   
 }

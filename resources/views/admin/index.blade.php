@@ -2,7 +2,7 @@
 @section('title', 'Dashboard')
 
 @section('content')
-    @if (auth()->user()->role === 'admin')
+    @if (auth()->user()->role === 'admin' || auth()->user()->role === 'coach')
         <div class="row">
             <!-- Coaches -->
             <div class="col-md-4 stretch-card grid-margin">
@@ -95,7 +95,7 @@
                 </div>
             </div>
         </div> <!-- End of Recent Consultations Section -->
-    @else
+    @elseif(auth()->user()->role === 'user')
         <!-- Client Consultations Section -->
         <div class="row">
             <div class="col-12">

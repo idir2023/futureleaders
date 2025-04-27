@@ -20,7 +20,21 @@ class ConsultationController extends Controller
     public function index()
     {
         $drives = Drive::all();
-        $consultations = Consultation::with('coach')->latest()->paginate(5);
+
+        if (auth()->user()->role == 'admin') {
+            $consultations = Consultation::with('coach')->latest()->paginate(5);
+        } elseif (auth()->user()->role == 'coach') {
+            $consultations = Consultation::join('coaches', 'consultations.coach_id', '=', 'coaches.id')
+                ->where('coaches.user_id', auth()->user()->id)
+                ->select('consultations.*')
+                ->with('coach')
+                ->latest()
+                ->paginate(5);
+        } else {
+            // Si jamais ce n'est ni admin ni coach, retourner une liste vide
+            $consultations = collect([]);
+        }
+
         return view('admin.consultations.index', compact('consultations', 'drives'));
     }
 

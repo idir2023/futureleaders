@@ -17,14 +17,6 @@
                 </a>
             </li>
 
-            <!-- Consultations -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('consultations.index') }}">
-                    <i class="typcn typcn-messages menu-icon"></i>
-                    <span class="menu-title">Consultations</span>
-                </a>
-            </li>
-
             <!-- Ranks -->
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('ranks.index') }}">
@@ -33,12 +25,31 @@
                 </a>
             </li>
 
+            <!-- Drives -->
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('drives.index') }}">
-                    <i class="typcn typcn-chart-bar menu-icon"></i>
+                    <i class="typcn typcn-folder menu-icon"></i>
                     <span class="menu-title">Drives</span>
                 </a>
             </li>
+        @endif
+
+        @if (auth()->user()->role === 'admin' || auth()->user()->role === 'coach')
+            <!-- Consultations (visible for both admin and coach) -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('consultations.index') }}">
+                    <i class="typcn typcn-messages menu-icon"></i>
+                    <span class="menu-title">Consultations</span>
+                </a>
+            </li>
+
+                 <!-- clinet -->
+                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('clients.index') }}">
+                        <i class="typcn typcn-folder menu-icon"></i>
+                        <span class="menu-title">Client</span>
+                    </a>
+                </li>
         @endif
     </ul>
 </nav>

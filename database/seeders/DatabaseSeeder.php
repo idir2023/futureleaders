@@ -17,5 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminUserSeeder::class);
         // Call the CoachSeeder to insert the coach users
         $this->call(CoachSeeder::class);
+        // Call the DriveSeeder to insert the drive data
+        $this->call(DriveSeeder::class);
      }
 }

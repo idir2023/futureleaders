@@ -46,7 +46,7 @@ class CoachSeeder extends Seeder
             $user = User::create([
                 'name' => $data['nom'] . ' ' . $data['prenom'],
                 'email' => $data['email'],
-                'password' => Hash::make('password'), // Mot de passe temporaire
+                'password' => Hash::make('12345678'), // Mot de passe temporaire
                 'role' => 'coach',
             ]);
 
