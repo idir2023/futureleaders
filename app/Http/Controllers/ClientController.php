@@ -37,11 +37,21 @@ class ClientController extends Controller
         // Vérifier le code promo si fourni
         $coach = null;
         if ($request->filled('code_promo')) {
-            $coach = Coach::where('code_promo', $request->input('code_promo'))->first();
+            // Si le coach est trouvé, vous pouvez gérer la logique de réduction de prix ici
+            $user = User::where('code_promo', $request->input('code_promo'))->first();
+            if ($user) {
+                $coach = Coach::join('consultations', 'coaches.id', '=', 'consultations.coach_id')
+                    ->where('consultations.user_id', $user->id)
+                    ->select('coaches.*')
+                    ->first();
+            } else {
+                 $coach = Coach::where('code_promo', $request->input('code_promo'))->first();
+            }
 
+            // dd($coach);
             // Si le coach n'est pas trouvé, vous pouvez gérer cette situation, par exemple :
             if (!$coach) {
-                return back()->withErrors(['code_promo' => 'Le code promo fourni est invalide.']);
+                return back()->with(['error' => 'Le code promo fourni est invalide.']);
             }
         }
 
@@ -56,6 +66,7 @@ class ClientController extends Controller
         $consultation->paiement_status = 'en attente'; // Par défaut, le statut de paiement est "en attente"
         $consultation->coach_id = $coach ? $coach->id : null; // Associer le coach si trouvé
         $consultation->user_id = auth()->user() ? auth()->user()->id : null; // Associer l'utilisateur connecté
+        $consultation->registered_by = $user ? $user->id : null; // Enregistrer l'utilisateur connecté
         $consultation->save();
 
         // Retourner la vue avec la confirmation de la consultation et le coach si trouvé
