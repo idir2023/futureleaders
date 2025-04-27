@@ -75,14 +75,14 @@
 
                                                 @if (!$consultation->drive_link)
                                                     <a href="javascript:void(0);"
-                                                        class="btn btn-sm  send-drive-link"style="background-color: #ffd9ab;"
+                                                        class="btn btn-sm  send-drive-link"
                                                         data-id="{{ $consultation->id }}">
                                                         <i class="typcn typcn-link-outline"></i>
                                                         Lien Drive
                                                     </a>
                                                 @else
                                                     <a href="javascript:void(0);"
-                                                        class="btn btn-sm  edit-drive-link"style="background-color: #ffd9ab;"
+                                                        class="btn btn-sm btn-success edit-drive-link"
                                                         data-id="{{ $consultation->id }}"
                                                         data-drive="{{ $consultation->drive_link }}">
                                                         <i class="typcn typcn-link"></i>

@@ -49,11 +49,11 @@
                 <span class="typcn typcn-th-menu"></span>
             </button>
         </div>
+        
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
 
         <ul class="navbar-nav navbar-nav-right">
-            
 
             <li class="nav-item dropdown">
                 <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"

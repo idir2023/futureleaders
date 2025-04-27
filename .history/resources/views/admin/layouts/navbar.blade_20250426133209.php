@@ -45,15 +45,19 @@
                     src="{{ asset('assets/images/logo.png') }}" alt="logo" /></a>
             <a class="navbar-brand brand-logo-mini" href="{{ route('dashboard') }}"><img
                     src="{{ asset('assets/images/logo_hor.png') }}" alt="logo" /></a>
-            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            {{-- <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                <span class="typcn typcn-th-menu"></span>
+            </button> --}}
+            <button id="toggleSidebar" class="navbar-toggler align-self-center" type="button">
                 <span class="typcn typcn-th-menu"></span>
             </button>
+            
         </div>
+
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
 
         <ul class="navbar-nav navbar-nav-right">
-            
 
             <li class="nav-item dropdown">
                 <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
@@ -98,3 +102,14 @@
         </button>
     </div>
 </nav>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggleButton = document.getElementById('toggleSidebar');
+        const sidebar = document.getElementById('sidebar');
+    
+        toggleButton.addEventListener('click', function () {
+            sidebar.classList.toggle('active');
+        });
+    });
+    </script>
+    

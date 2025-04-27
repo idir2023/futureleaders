@@ -82,7 +82,7 @@
                                                     </a>
                                                 @else
                                                     <a href="javascript:void(0);"
-                                                        class="btn btn-sm  edit-drive-link"style="background-color: #ffd9ab;"
+                                                        class="btn btn-sm btn-success edit-drive-link"
                                                         data-id="{{ $consultation->id }}"
                                                         data-drive="{{ $consultation->drive_link }}">
                                                         <i class="typcn typcn-link"></i>

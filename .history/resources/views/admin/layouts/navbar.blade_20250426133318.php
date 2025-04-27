@@ -53,7 +53,9 @@
     <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
 
         <ul class="navbar-nav navbar-nav-right">
-            
+            <button id="toggleSidebar" class="navbar-toggler align-self-center" type="button">
+                <span class="typcn typcn-th-menu"></span>
+            </button>
 
             <li class="nav-item dropdown">
                 <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
