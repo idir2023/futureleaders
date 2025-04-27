@@ -13,7 +13,7 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         {{-- <table class="table table-bordered table-striped align-middle"> --}}
-                     <table class="table table-hover table-striped table-bordered rounded shadow-sm">
+                        <table class="table table-hover table-striped table-bordered rounded shadow-sm">
 
                             <thead class="">
                                 <tr>
@@ -53,20 +53,21 @@
                                             @endif
                                         </td>
                                         <td>
-                                            
+
                                             <button class="btn btn-sm btn-danger delete-consultation mb-1"
                                                 data-id="{{ $consultation->id }}">
                                                 <i class="typcn typcn-trash"></i>
                                             </button>
 
                                             <div class="d-flex flex-column gap-1">
-                                                <a href="#" class="btn btn-sm send-email-server"  style="background-color: #ffd9ab;"
-                                                    data-id="{{ $consultation->id }}"
+                                                <a href="#" class="btn btn-sm send-email-server"
+                                                    style="background-color: #ffd9ab;" data-id="{{ $consultation->id }}"
                                                     data-name="{{ $consultation->name }}">
                                                     <i class="typcn typcn-mail"></i>
                                                     Confirmation
                                                 </a>
-                                                <a href="#" class="btn btn-sm  send-email-server-1"style="background-color: #ffd9ab;"
+                                                <a href="#"
+                                                    class="btn btn-sm  send-email-server-1"style="background-color: #ffd9ab;"
                                                     data-id="{{ $consultation->id }}"
                                                     data-name="{{ $consultation->name }}">
                                                     <i class="typcn typcn-mail"></i>
@@ -91,6 +92,8 @@
                                                 @endif
 
                                                 <!-- Edit Drive Link Modal (placer en dehors de la boucle) -->
+
+                                                <!-- Edit Drive Link Modal (outside the loop) -->
                                                 <div class="modal fade" id="editDriveLinkModal" tabindex="-1"
                                                     role="dialog" aria-labelledby="editDriveLinkModalLabel"
                                                     aria-hidden="true">
@@ -109,9 +112,32 @@
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <div class="form-group">
-                                                                        <label for="edit_drive_link">Lien Drive</label>
-                                                                        <input type="url" class="form-control"
-                                                                            id="edit_drive_link" name="drive_link" required>
+
+                                                                        <div class="mb-3">
+                                                                            <label for="drive_link" class="form-label">Lien
+                                                                                Google Drive</label>
+                                                                            <select class="form-select"
+                                                                                data-drive="{{ $consultation->drive_link }}"
+                                                                                data-id="{{ $consultation->id }}"
+                                                                                class="form-select" required
+                                                                                aria-label="Sélectionner un lien"
+                                                                                id="edit_drive_link" name="drive_link"
+                                                                                required>
+                                                                                <option value="" disabled selected>
+                                                                                    Sélectionner un lien</option>
+                                                                                @foreach ($drives as $link)
+                                                                                    <option
+                                                                                        value="{{ $link->drive_link }}">
+                                                                                        {{ $link->drive_link }} (Durée :
+                                                                                        {{ $link->duration }})
+                                                                                    </option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                            <div class="form-text">
+                                                                                Veuillez sélectionner un lien Google Drive
+                                                                                parmi les options disponibles.
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                     <div class="form-group mt-2">
                                                                         <button type="submit"
