@@ -17,6 +17,8 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+ Route::get('/registered-by-me', [DashboardController::class, 'getUserRegisteredByMe'])->name('registered_by_me');
+
 // Route::get('/consultation', [DashboardController::class, 'getConsultationClient'])->name('consultation.client');
 Route::middleware(['auth', 'admin'])->group(function () {
 

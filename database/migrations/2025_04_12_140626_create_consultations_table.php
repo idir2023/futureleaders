@@ -18,13 +18,16 @@ return new class extends Migration
             $table->string('telephone')->nullable();
             $table->string('adresse')->nullable();
             $table->text('probleme')->nullable();
-            $table->string('recu')->nullable();  
+            $table->string('recu')->nullable();
             $table->string('prix');
             $table->enum('paiement_status', ['en attente', 'payé'])->default('en attente');
             $table->string('drive_link')->nullable();
-            $table->string('registered_by')->nullable();
+            $table->unsignedBigInteger('registered_by')->nullable(); // ✅ Correction ici
             $table->foreignId('coach_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
+            // Ajouter la clé étrangère pour registered_by
+            $table->foreign('registered_by')->references('id')->on('users')->nullOnDelete();
+
             $table->timestamps();
         });
     }

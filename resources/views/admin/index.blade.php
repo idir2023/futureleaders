@@ -152,11 +152,49 @@
                 </div>
             </div>
             <!-- Back to Home Button -->
-            {{-- <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
-                <a class="btn  btn-sm d-flex align-items-center" href="{{ route('home') }}" style="color: #cba075">
-                    <i class="typcn typcn-arrow-back mr-1"></i> Retour à l'accueil
-                </a>
-            </div> --}}
+            <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
+                <div class="card shadow-sm border-0 w-100">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4" style="font-weight: bold; color: #333;">Mes informations</h4>
+            
+                        <table class="table table-bordered table-striped">
+                            <thead class="table-dark text-center">
+                                <tr>
+                                    <th scope="col">Détail</th>
+                                    <th scope="col">Information</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-dark text-center">
+                                <tr>
+                                    <td><strong>Nom</strong></td>
+                                    <td>{{ auth()->user()->name }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Email</strong></td>
+                                    <td>{{ auth()->user()->email }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Téléphone</strong></td>
+                                    <td>{{ auth()->user()->telephone ?? 'Non disponible' }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Code promo</strong></td>
+                                    <td>
+                                        @if(auth()->user()->code_promo)
+                                            <span class="badge bg-success">{{ auth()->user()->code_promo }}</span>
+                                        @else
+                                            <span class="badge bg-secondary">Aucun code promo</span>
+                                        @endif
+                                    </td>
+                                                                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+
+
             <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
                 <a class="btn btn-sm d-flex align-items-center" href="{{ route('home') }}"
                     style="background: linear-gradient(45deg, #cba075, #cba075); color: #fff; padding: 10px 20px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); transition: background 0.3s ease, transform 0.2s ease;">
