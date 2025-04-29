@@ -26,6 +26,7 @@
                                 <th>Comptes Bancaires</th>
                                 <th>Ville</th>
                                 <th>Adresse</th>
+                                {{-- <th>Mot de passe</th> --}}
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -51,6 +52,7 @@
                                     </td>
                                     <td>{{ $coach->ville }}</td>
                                     <td>{{ $coach->adresse }}</td>
+                                    {{-- <td>{{ $coach->user->password }}</td> --}}
                                     <td>
                                         <a href="{{ route('coaches.edit', $coach->id) }}" class="btn btn-sm btn-info">
                                             <i class="typcn typcn-edit"></i>

@@ -49,6 +49,7 @@ class CoachController extends Controller
             'date_naissance' => 'nullable|date',
             'ville' => 'nullable|string|max:255',
             'adresse' => 'nullable|string|max:500',
+            'password' => 'nullable|string|min:6',
             'bank_accounts' => 'nullable|array',
             'bank_accounts.*.bank_name' => 'nullable|string|max:255',
             'bank_accounts.*.rib' => 'nullable|string|max:50',
@@ -58,7 +59,7 @@ class CoachController extends Controller
         $user = User::create([
             'name' => $validated['nom'] . ' ' . $validated['prenom'],
             'email' => $validated['email'],
-            'password' => bcrypt('password'), // Attention! Il faut définir un mot de passe ici (provisoire ou demander à l'utilisateur)
+            'password' => bcrypt($validated['password']), // Attention! Il faut définir un mot de passe ici (provisoire ou demander à l'utilisateur)
             'role' => 'coach',
         ]);
 
@@ -126,7 +127,7 @@ class CoachController extends Controller
             'bank_accounts.*.rib' => ['nullable', 'string', 'max:50'],
         ]);
 
-        // Mise à jour des champs du coach
+        // Mise à jour du coach
         $coach->update([
             'nom' => $validated['nom'],
             'prenom' => $validated['prenom'],
@@ -138,10 +139,16 @@ class CoachController extends Controller
             'adresse' => $validated['adresse'] ?? null,
         ]);
 
-        // Mise à jour des comptes bancaires si présents
+        // Mise à jour de l'utilisateur lié (supposons que la relation est définie : $coach->user)
+        if ($coach->user) {
+            $coach->user->name = $validated['nom'] . ' ' . $validated['prenom'];
+            $coach->user->email = $validated['email'];
+            $coach->user->save();
+        }
+
+        // Mise à jour des comptes bancaires
         if (isset($validated['bank_accounts'])) {
-            // Supposons que Coach a une relation hasMany `bankAccounts`
-            $coach->bankAccounts()->delete(); // Supprimer les anciens comptes
+            $coach->bankAccounts()->delete(); // Supprime les anciens
             foreach ($validated['bank_accounts'] as $account) {
                 if (!empty($account['bank_name']) || !empty($account['rib'])) {
                     $coach->bankAccounts()->create([
@@ -155,6 +162,7 @@ class CoachController extends Controller
         return redirect()->route('coaches.index')
             ->with('success', 'Coach mis à jour avec succès.');
     }
+
 
     /**
      * Supprime un coach
