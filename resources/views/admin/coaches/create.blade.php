@@ -107,6 +107,15 @@
                         @enderror
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label for="password">Mot de passe <span class="text-danger">*</span></label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                        @error('password')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
             </div>
             <div class="card-footer text-right">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
@@ -118,14 +127,14 @@
 @endsection
 
 @section('scripts')
-<script>
-    document.getElementById('addBankAccount').addEventListener('click', function() {
-        let container = document.getElementById('bankAccountsContainer');
-        let index = container.getElementsByClassName('bankAccountRow').length;
+    <script>
+        document.getElementById('addBankAccount').addEventListener('click', function() {
+            let container = document.getElementById('bankAccountsContainer');
+            let index = container.getElementsByClassName('bankAccountRow').length;
 
-        let row = document.createElement('div');
-        row.classList.add('bankAccountRow', 'row', 'mb-2');
-        row.innerHTML = `
+            let row = document.createElement('div');
+            row.classList.add('bankAccountRow', 'row', 'mb-2');
+            row.innerHTML = `
             <div class="col-md-6">
                 <input type="text" class="form-control" name="bank_accounts[${index}][bank_name]" placeholder="Nom de la banque" required>
             </div>
@@ -133,16 +142,15 @@
                 <input type="text" class="form-control" name="bank_accounts[${index}][rib]" placeholder="RIB" required>
             </div>
         `;
-        container.appendChild(row);
-    });
+            container.appendChild(row);
+        });
 
-    document.getElementById('removeBankAccount').addEventListener('click', function() {
-        let container = document.getElementById('bankAccountsContainer');
-        let rows = container.getElementsByClassName('bankAccountRow');
-        if (rows.length > 1) {
-            container.removeChild(rows[rows.length - 1]);
-        }
-    });
-</script>
+        document.getElementById('removeBankAccount').addEventListener('click', function() {
+            let container = document.getElementById('bankAccountsContainer');
+            let rows = container.getElementsByClassName('bankAccountRow');
+            if (rows.length > 1) {
+                container.removeChild(rows[rows.length - 1]);
+            }
+        });
+    </script>
 @endsection
-
