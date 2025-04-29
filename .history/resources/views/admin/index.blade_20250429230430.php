@@ -144,13 +144,11 @@
                                                 <a href="{{ $consultation->drive_link }}" target="_blank" class="btn btn-sm btn-success"title="Voir le lien Google Drive">
                                                     Accéder au lien Drive
                                                 </a>
-                                                {{-- <small class="d-block text-muted">
-                                                    Expire le {{ \Carbon\Carbon::parse($consultation->drive_link_expire_at)->format('d/m/Y') }}
-                                                </small> --}}
-                                                
+                                                <small class="d-block text-muted">Expire le {{ $consultation->drive_link_expire_at->format('d/m/Y') }}</small>
                                             @elseif ($consultation->drive_link)
-                                                <span class="text-danger fw-bold">Lien expiré</span>
                                                 
+                                                <small class="d-block text-muted">Expire le {{ $consultation->drive_link_expire_at->format('d/m/Y') }}</small>
+
                                             @else
                                                 <span class="text-muted">Aucun lien disponible</span>
                                             @endif

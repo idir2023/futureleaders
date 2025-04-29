@@ -22,11 +22,6 @@ class Consultation extends Model
         'registered_by'
     ];
 
-    protected $casts = [
-        'drive_link_expire_at' => 'datetime',
-    ];
-    
-
  
 
     // App\Models\Consultation.php

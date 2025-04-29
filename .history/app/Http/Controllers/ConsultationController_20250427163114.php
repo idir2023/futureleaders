@@ -11,7 +11,7 @@ use App\Mail\ConsultationConfirmation;
 use App\Mail\ConsultationPaymentIncomplete;
 use App\Models\Drive;
 use App\Models\User;
-use Carbon\Carbon;
+
 class ConsultationController extends Controller
 {
     /**
@@ -114,48 +114,20 @@ class ConsultationController extends Controller
         return response()->json(['success' => true]);
     }
 
-    // public function sendDrive(Request $request)
-    // {
-    //     $consultationId = $request->input('consultation_id');
-    //     $driveLink = $request->input('drive_link');
+    public function sendDrive(Request $request)
+    {
+        $consultationId = $request->input('consultation_id');
+        $driveLink = $request->input('drive_link');
 
-    //     // You can store the link in the database or send it as part of an email
-    //     // For example, storing it in the consultation model
-    //     $consultation = Consultation::find($consultationId);
-    //     $consultation->drive_link = $driveLink;
-    //     $consultation->paiement_status = 'payé'; // Update payment status if needed
-    //     $consultation->save();
+        // You can store the link in the database or send it as part of an email
+        // For example, storing it in the consultation model
+        $consultation = Consultation::find($consultationId);
+        $consultation->drive_link = $driveLink;
+        $consultation->paiement_status = 'payé'; // Update payment status if needed
+        $consultation->save();
 
-    //     return response()->json(['success' => true]);
-    // }
-
-public function sendDrive(Request $request) 
-{
-    $consultationId = $request->input('consultation_id');
-    $driveLink = $request->input('drive_link');
-    
-
-    $consultation = Consultation::findOrFail($consultationId);
-
-    // Récupérer le lien depuis la table `drives`
-    $drive = Drive::where('drive_link', $driveLink)->first();
-
-    if (!$drive) {
-        return response()->json(['success' => false, 'message' => 'Lien Drive introuvable.']);
+        return response()->json(['success' => true]);
     }
-
-    // Calcul de la date d’expiration selon la durée en mois
-    $expirationDate = Carbon::now()->addMonths($drive->duration);
-
-    // Enregistrer le lien + la date d’expiration
-    $consultation->drive_link = $driveLink;
-    $consultation->drive_link_expire_at = $expirationDate;
-    $consultation->paiement_status = 'payé'; // si tu veux forcer le statut ici
-    $consultation->save();
-
-    return response()->json(['success' => true]);
-}
-
 
     public function sendEmail($id)
     {

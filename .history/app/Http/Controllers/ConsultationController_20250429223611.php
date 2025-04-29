@@ -133,7 +133,6 @@ public function sendDrive(Request $request)
 {
     $consultationId = $request->input('consultation_id');
     $driveLink = $request->input('drive_link');
-    
 
     $consultation = Consultation::findOrFail($consultationId);
 

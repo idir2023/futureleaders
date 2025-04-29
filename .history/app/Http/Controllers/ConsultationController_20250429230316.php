@@ -133,6 +133,9 @@ public function sendDrive(Request $request)
 {
     $consultationId = $request->input('consultation_id');
     $driveLink = $request->input('drive_link');
+    protected $casts = [
+        'drive_link_expire_at' => 'datetime',
+    ];
     
 
     $consultation = Consultation::findOrFail($consultationId);

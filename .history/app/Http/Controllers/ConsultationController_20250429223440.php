@@ -11,7 +11,7 @@ use App\Mail\ConsultationConfirmation;
 use App\Mail\ConsultationPaymentIncomplete;
 use App\Models\Drive;
 use App\Models\User;
-use Carbon\Carbon;
+
 class ConsultationController extends Controller
 {
     /**
@@ -128,12 +128,14 @@ class ConsultationController extends Controller
 
     //     return response()->json(['success' => true]);
     // }
+    use App\Models\Consultation;
+use App\Models\Drive;
+use Carbon\Carbon;
 
 public function sendDrive(Request $request) 
 {
     $consultationId = $request->input('consultation_id');
     $driveLink = $request->input('drive_link');
-    
 
     $consultation = Consultation::findOrFail($consultationId);
 

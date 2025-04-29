@@ -41,13 +41,13 @@
                                             @endif
                                         </td>
                                         
-                                        {{-- <td>
+                                        <td>
                                             <!-- Open the modal for the client -->
                                             <a href="javascript:void(0);" class="btn btn-info btn-sm" data-bs-toggle="modal"
                                                 data-bs-target="#promoCodeModal{{ $client->id }}">
                                                 Ajouter un code promo
                                             </a>
-                                        </td> --}}
+                                        </td>
                                     </tr>
 
                                     <!-- Modal for each client -->

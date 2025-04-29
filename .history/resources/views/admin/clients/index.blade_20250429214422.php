@@ -29,25 +29,14 @@
                                         <td>{{ $client->email }}</td>
                                         <td>{{ $client->telephone }}</td>
                                         <td>{{ $client->code_promo ? $client->code_promo : 'Aucun code promo' }}</td>
-                                        <td>
-                                            @if ($client->code_promo)
-                                                <span class="badge bg-success">Code déjà ajouté</span>
-                                            @else
-                                                <!-- Open the modal if no code_promo -->
-                                                <a href="javascript:void(0);" class="btn btn-info btn-sm" data-bs-toggle="modal"
-                                                    data-bs-target="#promoCodeModal{{ $client->id }}">
-                                                    Ajouter un code promo
-                                                </a>
-                                            @endif
-                                        </td>
                                         
-                                        {{-- <td>
+                                        <td>
                                             <!-- Open the modal for the client -->
                                             <a href="javascript:void(0);" class="btn btn-info btn-sm" data-bs-toggle="modal"
                                                 data-bs-target="#promoCodeModal{{ $client->id }}">
                                                 Ajouter un code promo
                                             </a>
-                                        </td> --}}
+                                        </td>
                                     </tr>
 
                                     <!-- Modal for each client -->
