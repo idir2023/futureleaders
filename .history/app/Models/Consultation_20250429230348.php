@@ -35,11 +35,4 @@ public function coach()
     return $this->belongsTo(Coach::class);
 }
 
-// Consultation.php
-public function user()
-{
-    return $this->belongsTo(User::class);
-}
-
-
 }

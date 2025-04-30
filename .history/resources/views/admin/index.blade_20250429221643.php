@@ -129,7 +129,7 @@
                                         <td>{{ optional($consultation->coach)->numero ?? 'N/A' }}
 
                                         </td>
-                                        {{-- <td>
+                                        <td>
                                             @if ($consultation->drive_link)
                                                 <a href="{{ $consultation->drive_link }}" target="_blank"
                                                     class="btn btn-info btn-sm mt-1" title="Voir le lien Google Drive">
@@ -138,22 +138,18 @@
                                             @else
                                                 <span class="text-muted">Aucun lien</span>
                                             @endif
-                                        </td> --}}
+                                        </td>
                                         <td>
                                             @if ($consultation->drive_link && now()->lessThan($consultation->drive_link_expire_at))
-                                                <a href="{{ $consultation->drive_link }}" target="_blank" class="btn btn-sm btn-success"title="Voir le lien Google Drive">
-                                                    Accéder au lien Drive
-                                                </a>
-                                                {{-- <small class="d-block text-muted">
-                                                    Expire le {{ \Carbon\Carbon::parse($consultation->drive_link_expire_at)->format('d/m/Y') }}
-                                                </small> --}}
-                                                
-                                            @elseif ($consultation->drive_link)
-                                                <span class="text-danger fw-bold">Lien expiré</span>
-                                                
-                                            @else
-                                                <span class="text-muted">Aucun lien disponible</span>
-                                            @endif
+    <a href="{{ $consultation->drive_link }}" target="_blank" class="btn btn-sm btn-success">
+        Accéder au lien Drive
+    </a>
+    <small class="d-block text-muted">Expire le {{ $consultation->drive_link_expire_at->format('d/m/Y') }}</small>
+@elseif ($consultation->drive_link)
+    <span class="text-danger fw-bold">Lien expiré</span>
+@else
+    <span class="text-muted">Aucun lien disponible</span>
+@endif
 
                                         </td>
 
