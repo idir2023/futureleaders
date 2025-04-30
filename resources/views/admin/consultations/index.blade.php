@@ -46,11 +46,13 @@
                                         </td>
                                         <td>
                                             @if ($consultation->recu)
-                                                <a href="{{ Storage::url($consultation->recu) }}" target="_blank">Voir le reçu</a>
+                                                <img width="100" src="{{ asset('storage/' . $consultation->recu) }}" alt="">
+                                                <a href="{{ asset('storage/' . $consultation->recu) }}" target="_blank">Voir le reçu</a>
                                             @else
                                                 <span class="text-muted">Aucun</span>
                                             @endif
-                                        </td>                                        
+                                        </td>
+                                        
                                         <td>
 
                                             <button class="btn btn-sm btn-danger delete-consultation mb-1"
