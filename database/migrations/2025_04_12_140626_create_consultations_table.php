@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('prix');
             $table->enum('paiement_status', ['en attente', 'payé'])->default('en attente');
             $table->string('drive_link')->nullable();
+            $table->date('drive_link_expire_at')->nullable();
             $table->unsignedBigInteger('registered_by')->nullable(); // ✅ Correction ici
             $table->foreignId('coach_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();

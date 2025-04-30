@@ -19,6 +19,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/registered-by-me', [DashboardController::class, 'getUserRegisteredByMe'])->name('registered_by_me');
 
+// Route::get('/consultation', [DashboardController::class, 'getConsultationClient'])->name('consultation.client');
 Route::middleware(['auth', 'admin'])->group(function () {
 
     // Liste des coachs
@@ -30,6 +31,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     // 
     Route::resource('drives', DriveController::class);
+    Route::post('/send-drive', [ConsultationController::class, 'sendDrive'])->name('sendDrive');
+    Route::put('/consultations/{id}/update-drive-link', [ConsultationController::class, 'updateDriveLink'])->name('update.drive_link');
+
 
     Route::get('clients', [UserController::class, 'index'])->name('clients.index');
 
@@ -38,10 +42,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     // Liste des consultations
     Route::resource('consultations', ConsultationController::class);
     // routes/web.php
-    Route::post('/send-drive', [ConsultationController::class, 'sendDrive'])->name('sendDrive');
     Route::post('/send-email/{id}', [ConsultationController::class, 'sendEmail'])->name('consultations.sendEmail');
     Route::post('/send-email-anyerror/{id}', [ConsultationController::class, 'sendEmailError'])->name('consultations.sendEmailError');
-    Route::put('/consultations/{id}/update-drive-link', [ConsultationController::class, 'updateDriveLink'])->name('update.drive_link');
 });
 
 Route::group(

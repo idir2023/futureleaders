@@ -77,7 +77,7 @@ class ClientController extends Controller
     {
         // Validation du fichier
         $request->validate([
-            'recu' => 'required|file|mimes:pdf,jpg,png,jpeg,gif,svg,webp,bmp,tiff,tga,psd|max:2048',
+            'recu' => 'required|file|mimes:pdf,jpg,png,jpeg,gif,svg,webp,bmp,tiff,tga,psd',
         ]);
 
         // Trouver la consultation par ID

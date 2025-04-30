@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@yield('title')</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- base:css -->
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/typicons/typicons.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/css/vendor.bundle.base.css') }}">
@@ -23,13 +24,13 @@
     <div class="container-scroller">
         <!-- Navbar -->
         @include('admin.layouts.navbar')
-        
+
         <div class="container-fluid page-body-wrapper">
             <!-- Sidebar -->
             @include('admin.layouts.sidebar')
-            
+
             <div class="main-panel">
-                
+
                 <div class="content-wrapper">
                     @yield('content')
                 </div>

@@ -13,21 +13,15 @@ class DriveSeeder extends Seeder
         DB::table('drive')->insert([
             [
                 'drive_link' => 'https://example.com/drive1',
-                'duration' => '2 hours',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'duration' => '2',
             ],
             [
                 'drive_link' => 'https://example.com/drive2',
-                'duration' => '3 hours',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'duration' => '3',
             ],
             [
                 'drive_link' => 'https://example.com/drive3',
-                'duration' => '1.5 hours',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'duration' => '1.5',
             ],
         ]);
     }

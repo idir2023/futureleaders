@@ -101,18 +101,39 @@ class ConsultationController extends Controller
     /**
      * Supprime une consultation.
      */
+    // public function destroy($id)
+    // {
+    //     $consultation = Consultation::findOrFail($id);
+
+    //     if ($consultation->recu) {
+    //         Storage::disk('public')->delete($consultation->recu);
+    //     }
+
+    //     $consultation->delete();
+
+    //     return response()->json(['success' => true]);
+    // }
+
     public function destroy($id)
-    {
-        $consultation = Consultation::findOrFail($id);
+{
+    $consultation = Consultation::findOrFail($id);
 
-        if ($consultation->recu) {
-            Storage::disk('public')->delete($consultation->recu);
-        }
-
-        $consultation->delete();
-
-        return response()->json(['success' => true]);
+    // Supprimer le reçu s'il existe
+    if ($consultation->recu) {
+        Storage::disk('public')->delete($consultation->recu);
     }
+
+    // Supprimer l'utilisateur lié s'il existe
+    if ($consultation->user) {
+        $consultation->user->delete();
+    }
+
+    // Supprimer la consultation
+    $consultation->delete();
+
+    return response()->json(['success' => true]);
+}
+
 
     // public function sendDrive(Request $request)
     // {

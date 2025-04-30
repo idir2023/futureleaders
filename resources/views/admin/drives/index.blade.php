@@ -29,12 +29,12 @@
                             @forelse($drives as $drive)
                                 <tr>
                                     <td><a href="{{ $drive->drive_link }}" target="_blank">{{ $drive->drive_link }}</a></td>
-                                    <td>{{ $drive->duration }}</td>
+                                    <td>{{ $drive->duration }} Mois</td>
                                     <td>
                                         <a href="{{ route('drives.edit', $drive->id) }}" class="btn btn-sm btn-info">
                                             <i class="typcn typcn-edit"></i>
                                         </a>
-                                        <button class="btn btn-sm btn-warning delete-drive" data-id="{{ $drive->id }}">
+                                        <button class="btn btn-sm btn-danger delete-drive" data-id="{{ $drive->id }}">
                                             <i class="typcn typcn-trash"></i>
                                         </button>
                                     </td>
