@@ -73,32 +73,74 @@ class ClientController extends Controller
         return view('consultations.complete_paiment', compact('coach', 'consultation')); // Vue pour la confirmation de la consultation
     }
 
+    // public function uploadRecu(Request $request, $id)
+    // {
+    //     // Validation du fichier
+    //     $request->validate([
+    //         'recu' => 'required|file|mimes:pdf,jpg,png,jpeg,gif,svg,webp,bmp,tiff,tga,psd',
+    //     ]);
+
+    //     // Trouver la consultation par ID
+    //     $consultation = Consultation::findOrFail($id);
+
+    //     if ($request->hasFile('recu')) {
+    //         // Stocker le fichier dans 'public/recus' (accessible publiquement)
+    //         $filePath = $request->file('recu')->store('recus', 'public');
+
+    //         // Mettre à jour la base de données
+    //         $consultation->recu = $filePath; // 'recus/filename.pdf'
+    //         $consultation->paiement_status = 'payé';
+    //         $consultation->save();
+
+    //         // Envoi d'un email à tous les utilisateurs ayant le rôle 'admin'
+    //         User::where('role', 'admin')->each(function ($user) use ($consultation) {
+    //             Mail::to($user->email)->send(new ConsultationTerminer($consultation));
+    //         });
+    //         return redirect()->route('home')->with('success', 'Le reçu a été téléchargé avec succès!');
+    //     }
+
+    //     return back()->withErrors(['recu' => 'Veuillez télécharger un reçu valide.']);
+    // }
+
     public function uploadRecu(Request $request, $id)
     {
         // Validation du fichier
         $request->validate([
             'recu' => 'required|file|mimes:pdf,jpg,png,jpeg,gif,svg,webp,bmp,tiff,tga,psd',
         ]);
-
+    
         // Trouver la consultation par ID
         $consultation = Consultation::findOrFail($id);
-
+    
         if ($request->hasFile('recu')) {
-            // Stocker le fichier dans 'public/recus' (accessible publiquement)
+            // Stocker le fichier dans storage/app/public/recus
             $filePath = $request->file('recu')->store('recus', 'public');
-
-            // Mettre à jour la base de données
-            $consultation->recu = $filePath; // 'recus/filename.pdf'
+    
+            // Chemins source et destination
+            $sourcePath = storage_path('app/public/' . $filePath);
+            $destinationPath = public_path('storage/' . $filePath);
+    
+            // Créer le dossier de destination si nécessaire
+            if (!file_exists(dirname($destinationPath))) {
+                mkdir(dirname($destinationPath), 0755, true);
+            }
+    
+            // Copier manuellement le fichier vers public/storage/recus
+            copy($sourcePath, $destinationPath);
+    
+            // Mise à jour de la base de données
+            $consultation->recu = $filePath;
             $consultation->paiement_status = 'payé';
             $consultation->save();
-
-            // Envoi d'un email à tous les utilisateurs ayant le rôle 'admin'
+    
+            // Envoi d'un email aux admins
             User::where('role', 'admin')->each(function ($user) use ($consultation) {
                 Mail::to($user->email)->send(new ConsultationTerminer($consultation));
             });
+    
             return redirect()->route('home')->with('success', 'Le reçu a été téléchargé avec succès!');
         }
-
+    
         return back()->withErrors(['recu' => 'Veuillez télécharger un reçu valide.']);
     }
 }
