@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('prenom');
             $table->string('email')->unique();
             $table->string('numero')->nullable();
-            $table->string('code_promo')->nullable();
+            $table->string('code_promo')->unique()->nullable(); // Code promo unique, optionnel
             $table->date('date_naissance')->nullable();
             $table->string('ville')->nullable();
             $table->text('adresse')->nullable();

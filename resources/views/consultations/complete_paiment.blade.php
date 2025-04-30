@@ -319,7 +319,7 @@
           <h3 class="form-title"><i class="fas fa-cloud-upload-alt"></i> Upload du reçu de paiement:</h3>
           <form action="{{ route('upload.recu', $consultation->id) }}" method="POST" enctype="multipart/form-data" id="uploadForm">
             @csrf
-            @method('PUT')
+            @method('patch')
 
             <div class="file-input-container">
               <label for="recu" class="file-input-label">

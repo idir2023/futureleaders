@@ -1,12 +1,25 @@
 @component('mail::message')
-# Bonjour {{ $consultation->name }},
-
-Nous avons remarqué que **votre paiement n'a pas été effectué complètement**.
-
-Si vous avez rencontré des difficultés, merci de vérifier vos informations de paiement ou de nous contacter pour toute question.
+# 🔔 **Action Required: Incomplete Payment**
 
 ---
 
-**Nous vous remercions pour votre compréhension et restons à votre disposition.**
+**Hello {{ $consultation->name }},**
+
+We’ve noticed that **your payment hasn’t been fully completed**. This could be due to a data entry error or a technical issue.
+
+To finalize your transaction, please check your payment details and complete the payment as soon as possible.
+
+If you’ve encountered any issues or have any questions, feel free to **contact us**. Our team is here to assist you in resolving any problems quickly.
+
+---
+
+@component('mail::button', ['url' => 'https://youracademy.example.com/payment', 'color' => 'warning'])
+Complete Payment
+@endcomponent
+
+---
+
+**Thank you for your understanding, and we remain at your disposal.**  
+The **Future Leaders Academy** Team
 
 @endcomponent

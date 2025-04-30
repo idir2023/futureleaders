@@ -7,6 +7,8 @@ use App\Models\Coach;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\BankAccount;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class CoachController extends Controller
@@ -21,15 +23,47 @@ class CoachController extends Controller
         $coaches = Coach::paginate(5);
         return view('admin.coaches.index', compact('coaches'));
     }
+    // public function getRank()
+    // {
+    //     // withCount va ajouter la colonne consultations_count
+    //     $coachs = Coach::withCount('consultations')
+    //         ->orderByDesc('consultations_count')
+    //         ->paginate(5);
+
+    //     return view('admin.ranks.index', compact('coachs'));
+    // }
     public function getRank()
     {
-        // withCount va ajouter la colonne consultations_count
-        $coachs = Coach::withCount('consultations')
-            ->orderByDesc('consultations_count')
-            ->paginate(5);
+        // $coachs = Coach::withCount('consultations')
+        //     ->with(['parraineClients.user']) // Charger les clients enregistrés
+        //     ->orderByDesc('consultations_count')
+        //     ->paginate(5);
+
+        $coachs = Coach::withCount([
+            'consultations as clients_count' => function ($query) {
+                $query->select(DB::raw('COUNT(DISTINCT user_id)'));
+            }
+        ])
+        ->with(['parraineClients.user'])
+        ->orderByDesc('clients_count')
+        ->paginate(5);
+    
 
         return view('admin.ranks.index', compact('coachs'));
     }
+
+    public function getParrainedClients($id)
+    {
+
+        $clients = User::join('consultations', 'users.id', '=', 'consultations.user_id')
+            ->where('consultations.registered_by', $id)
+            ->select('users.*')
+            ->get();
+        // dd($clients);
+
+        return response()->json($clients);
+    }
+
 
     public function create()
     {
@@ -94,6 +128,18 @@ class CoachController extends Controller
     }
 
 
+    public function changePassword(Request $request, $id)
+    {
+        $request->validate([
+            'password' => ['required', 'string', 'min:6']
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return response()->json(['success' => true]);
+    }
 
 
     public function edit($id)

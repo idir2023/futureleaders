@@ -46,19 +46,21 @@
                 </a>
             </li>
 
-            <!-- Ranks -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('ranks.index') }}">
-                    <i class="typcn typcn-chart-bar menu-icon"></i>
-                    <span class="menu-title">Classement</span>
-                </a>
-            </li>
-
             <!-- Drives -->
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('drives.index') }}">
                     <i class="typcn typcn-folder menu-icon"></i>
                     <span class="menu-title">Drives</span>
+                </a>
+            </li>
+        @endif
+
+        @if (auth()->user()->role === 'admin' || auth()->user()->role === 'coach')
+            <!-- Ranks -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('ranks.index') }}">
+                    <i class="typcn typcn-chart-bar menu-icon"></i>
+                    <span class="menu-title">Classement</span>
                 </a>
             </li>
         @endif

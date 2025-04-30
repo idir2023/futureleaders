@@ -15,9 +15,9 @@ class CoachSeeder extends Seeder
     {
         $coaches = [
             [
-                'nom' => 'Idir',
-                'prenom' => 'Lahcen',
-                'email' => 'lahcen.coach@example.com',
+                'nom' => 'Caoch 1',
+                'prenom' => 'ahmed',
+                'email' => 'ahmed.coach@example.com',
                 'numero' => '0612345678',
                 'code_promo' => 'PROMO2025',
                 'ville' => 'Essaouira',
@@ -27,7 +27,7 @@ class CoachSeeder extends Seeder
                 'rib' => 'MA64000111110000000000000001',
             ],
             [
-                'nom' => 'Benali',
+                'nom' => 'Caoche 2',
                 'prenom' => 'Sara',
                 'email' => 'sara.coach@example.com',
                 'numero' => '0623456789',

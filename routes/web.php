@@ -17,14 +17,17 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
- Route::get('/registered-by-me', [DashboardController::class, 'getUserRegisteredByMe'])->name('registered_by_me');
+Route::get('/registered-by-me', [DashboardController::class, 'getUserRegisteredByMe'])->name('registered_by_me');
 
-// Route::get('/consultation', [DashboardController::class, 'getConsultationClient'])->name('consultation.client');
 Route::middleware(['auth', 'admin'])->group(function () {
 
     // Liste des coachs
     Route::resource('coaches', CoachController::class);
+    Route::post('/coaches/{user}/change-password', [CoachController::class, 'changePassword']);
+
     Route::get('ranks', [CoachController::class, 'getRank'])->name('ranks.index');
+    Route::get('/ranks/{user}/clients', [CoachController::class, 'getParrainedClients']);
+
     // 
     Route::resource('drives', DriveController::class);
 
@@ -38,7 +41,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/send-drive', [ConsultationController::class, 'sendDrive'])->name('sendDrive');
     Route::post('/send-email/{id}', [ConsultationController::class, 'sendEmail'])->name('consultations.sendEmail');
     Route::post('/send-email-anyerror/{id}', [ConsultationController::class, 'sendEmailError'])->name('consultations.sendEmailError');
-    // Route::put('/{id}/update-drive-link', [ConsultationController::class, 'updateDriveLink'])->name('update.drive_link');
     Route::put('/consultations/{id}/update-drive-link', [ConsultationController::class, 'updateDriveLink'])->name('update.drive_link');
 });
 
@@ -56,6 +58,6 @@ Route::group(
         Route::get('/create-consultation/{price}', [ClientController::class, 'CreateConsultation'])->name('create-consultation');
         Route::post('/create-consultation', [ClientController::class, 'StoreConsultation'])->name('store-consultation');
         Route::get('/complete-payment/{id}', [ClientController::class, 'CompletePayment'])->name('complete_paiment');
-        Route::put('/upload/recu/{coach}', [ClientController::class, 'uploadRecu'])->name('upload.recu');
+        Route::patch('/upload/recu/{coach}', [ClientController::class, 'uploadRecu'])->name('upload.recu');
     }
 );

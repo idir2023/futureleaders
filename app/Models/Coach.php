@@ -39,4 +39,14 @@ class Coach extends Model
     {
         return $this->belongsTo(User::class);
     }
+    // Coach.php
+
+
+    // Clients parrainés via les consultations
+    public function parraineClients()
+    {
+        return $this->hasMany(Consultation::class)
+            ->whereNotNull('user_id')
+            ->with('user'); // Charger le user
+    }
 }

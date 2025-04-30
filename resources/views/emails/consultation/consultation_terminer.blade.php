@@ -1,15 +1,18 @@
-@component('mail::message')
-# Consultation Terminée
+  @component('mail::message')
+# 🎉 Great News! **Your Referral {{ $consultation->name }} Has Joined Our Academy**
 
-<p>Bonjour,</p>
+---
 
-<p>Nous vous informons que la consultation suivante a été terminée :</p>
+**Dear {{ $consultation->coach->nom }} {{ $consultation->coach->prenom }},**
 
-<p><strong>Nom :</strong> {{ $consultation->name }}</p>
-<p><strong>Email :</strong> {{ $consultation->email }}</p>
-<p><strong>Téléphone :</strong> {{ $consultation->telephone }}</p>
-<p>Merci pour votre confiance. Nous vous souhaitons une excellente journée ! 😄</p>
+We are excited to let you know that your referral, **{{ $consultation->name }}**, has successfully joined our academy.  
+**Congratulations!** 🎉 They have enrolled in the **silver package**.
 
-<p>Bon courage, et excellente journée à vous ! 😄</p>
+Thank you for your continuous support and dedication in helping us grow. We truly value your efforts. 🙏
+
+Warm regards,  
+**Future Leaders Academy**
+
 @endcomponent
+
  

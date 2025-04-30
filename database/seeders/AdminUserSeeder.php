@@ -18,8 +18,8 @@ class AdminUserSeeder extends Seeder
         // Create an admin user
         User::create([
             'name' => 'Admin',
-            'email' => 'admin@admin.com',
-            'password' => Hash::make('12345678'), // Utilise un mot de passe sécurisé en prod
+            'email' => 'Karim30merroun@gmail.com',
+            'password' => Hash::make('Karimmerroun01'), // Utilise un mot de passe sécurisé en prod
             'role' => 'admin',
         ]);
     }
