@@ -1,8 +1,8 @@
-@extends('admin.layouts.master')
 
-@section('title', 'Gestion des ranks')
 
-@section('content')
+<?php $__env->startSection('title', 'Gestion des ranks'); ?>
+
+<?php $__env->startSection('content'); ?>
     <div class="row">
         <div class="col-12">
             <div class="card shadow border-0">
@@ -23,75 +23,78 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($coachs as $index => $coach)
+                                <?php $__empty_1 = true; $__currentLoopData = $coachs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $coach): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                     <tr>
-                                        <td class="fw-bold">{{ $coachs->firstItem() + $index }}</td>
-                                        <td>{{ $coach->nom }} {{ $coach->prenom }}</td>
-                                        <td>{{ $coach->email }}</td>
+                                        <td class="fw-bold"><?php echo e($coachs->firstItem() + $index); ?></td>
+                                        <td><?php echo e($coach->nom); ?> <?php echo e($coach->prenom); ?></td>
+                                        <td><?php echo e($coach->email); ?></td>
                                         <td>
                                             <span class="badge bg-success px-3 py-2">
-                                                {{ $coach->clients_count }}
+                                                <?php echo e($coach->clients_count); ?>
+
                                             </span>
                                         </td>
                                         <td>
-                                            @if ($coach->clients_count > 0)
-                                                @switch($index)
-                                                    @case(0)
+                                            <?php if($coach->clients_count > 0): ?>
+                                                <?php switch($index):
+                                                    case (0): ?>
                                                         <span class="badge bg-warning text-dark fs-6">🥇 1er</span>
-                                                    @break
+                                                    <?php break; ?>
 
-                                                    @case(1)
+                                                    <?php case (1): ?>
                                                         <span class="badge bg-secondary fs-6">🥈 2ème</span>
-                                                    @break
+                                                    <?php break; ?>
 
-                                                    @case(2)
+                                                    <?php case (2): ?>
                                                         <span class="badge bg-orange text-white fs-6">🥉 3ème</span>
-                                                    @break
+                                                    <?php break; ?>
 
-                                                    @default
-                                                        <span class="badge bg-light text-dark">{{ $index + 1 }}<sup>e</sup></span>
-                                                @endswitch
-                                            @else
+                                                    <?php default: ?>
+                                                        <span class="badge bg-light text-dark"><?php echo e($index + 1); ?><sup>e</sup></span>
+                                                <?php endswitch; ?>
+                                            <?php else: ?>
                                                 <span class="badge bg-light text-dark">Pas de rang</span>
-                                            @endif
+                                            <?php endif; ?>
                                         </td>
-                                        @php
+                                        <?php
                                             $UserCoachs = \App\Models\User::where('parrain_id', $coach->user_id)->get();
-                                        @endphp
+                                        ?>
                                         <td class="text-start">
-                                            @foreach ($UserCoachs as $UserCoach)
+                                            <?php $__currentLoopData = $UserCoachs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $UserCoach): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <a href="javascript:void(0);"
                                                     class="btn btn-outline-primary btn-sm btn-show-clients"
-                                                    data-id="{{ $UserCoach->id }}" data-level="0">
-                                                    {{ $UserCoach->name }}
-                                                    @if ($UserCoach) +
-                                                    @endif
+                                                    data-id="<?php echo e($UserCoach->id); ?>" data-level="0">
+                                                    <?php echo e($UserCoach->name); ?>
+
+                                                    <?php if($UserCoach): ?> +
+                                                    <?php endif; ?>
                                                 </a>
-                                            @endforeach
-                                            {{-- Conteneur pour afficher les clients parrainés dynamiquement --}}
-                                            <div class="clients-container mt-2" id="clients-parraines-{{ $coach->user_id }}"></div>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            
+                                            <div class="clients-container mt-2" id="clients-parraines-<?php echo e($coach->user_id); ?>"></div>
                                         </td>
                                     </tr>
-                                @empty
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                     <tr>
                                         <td colspan="6" class="text-center text-danger">Aucun coach trouvé</td>
                                     </tr>
-                                @endforelse
+                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
 
-                    {{-- Pagination --}}
+                    
                     <div class="mt-4 d-flex justify-content-center">
-                        {{ $coachs->links() }}
+                        <?php echo e($coachs->links()); ?>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('scripts')
+<?php $__env->startSection('scripts'); ?>
 <script>
     $(document).ready(function() {
         $('.btn-show-clients').on('click', function() {
@@ -130,4 +133,6 @@
         });
     });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\lahce\Downloads\futureleaders\resources\views/admin/ranks/index.blade.php ENDPATH**/ ?>

@@ -23,47 +23,70 @@ class CoachController extends Controller
         $coaches = Coach::paginate(5);
         return view('admin.coaches.index', compact('coaches'));
     }
-    // public function getRank()
-    // {
-    //     // withCount va ajouter la colonne consultations_count
-    //     $coachs = Coach::withCount('consultations')
-    //         ->orderByDesc('consultations_count')
-    //         ->paginate(5);
 
-    //     return view('admin.ranks.index', compact('coachs'));
-    // }
     public function getRank()
     {
-        // $coachs = Coach::withCount('consultations')
-        //     ->with(['parraineClients.user']) // Charger les clients enregistrés
-        //     ->orderByDesc('consultations_count')
-        //     ->paginate(5);
-
         $coachs = Coach::withCount([
             'consultations as clients_count' => function ($query) {
                 $query->select(DB::raw('COUNT(DISTINCT user_id)'));
             }
         ])
-        ->with(['parraineClients.user'])
-        ->orderByDesc('clients_count')
-        ->paginate(5);
-    
+            ->with(['parraineClients.user'])
+            ->orderByDesc('clients_count')
+            ->paginate(5);
 
         return view('admin.ranks.index', compact('coachs'));
     }
 
-    public function getParrainedClients($id)
+    public function getParrainedClients($id, $level = 0)
     {
+        // Fetch the coach user with their filleuls at the specified level
+        $user = User::with(['filleuls' => function ($query) use ($level) {
+            // Fetch all filleuls for the specified level, handling pagination correctly
+            $query->skip($level * 5)->take(5); // For pagination, you can adjust the '5' to whatever number you want per level
+        }])->find($id);
 
-        $clients = User::join('consultations', 'users.id', '=', 'consultations.user_id')
-            ->where('consultations.registered_by', $id)
-            ->select('users.*')
-            ->get();
-        // dd($clients);
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
 
-        return response()->json($clients);
+        // Get the direct filleuls for the specified level
+        $descendants = $user->filleuls;
+
+        // We need to recursively get the descendants for each filleul
+        $allDescendants = [];
+        foreach ($descendants as $filleul) {
+            // Add the filleul to the list
+            $allDescendants[] = $filleul;
+
+            // Recursively get all the descendants for this filleul
+            if ($filleul->filleuls->isNotEmpty()) {
+                $allDescendants = array_merge($allDescendants, $this->getAllDescendants($filleul, $level + 1));
+            }
+        }
+
+        return response()->json([
+            'descendants' => $allDescendants  // All direct and indirect filleuls (descendants)
+        ]);
     }
 
+    private function getAllDescendants($user, $level)
+    {
+        $descendants = [];
+
+        // Loop through direct filleuls
+        foreach ($user->filleuls as $filleul) {
+            // Add the current filleul to the descendants array
+            $descendants[] = $filleul;
+
+            // Recursively add all indirect filleuls (children of the current filleul)
+            if ($filleul->filleuls->isNotEmpty()) {
+                $descendants = array_merge($descendants, $this->getAllDescendants($filleul, $level + 1));
+            }
+        }
+
+        return $descendants;
+    }
 
     public function create()
     {

@@ -23,12 +23,24 @@ class DashboardController extends Controller
 
     public function getUserRegisteredByMe()
     {
-        // 1. Récupérer tous les utilisateurs liés à ce coach via consultations
-        $clients = User::join('consultations', 'users.id', '=', 'consultations.user_id')
-            ->where('consultations.registered_by', auth()->user()->id)
-            ->select('users.*')
-            ->get();
-
-        return view('admin.clients.registered_by_me', compact('clients'));
+        $user = User::with('filleuls.filleuls')->find(auth()->id());
+    
+        $descendants = $this->getAllDescendants($user);
+    
+        return view('admin.clients.registered_by_me', compact('user', 'descendants'));
     }
+    
+    // Fonction récursive pour récupérer tous les filleuls (directs et indirects)
+    private function getAllDescendants($user)
+    {
+        $descendants = [];
+    
+        foreach ($user->filleuls as $filleul) {
+            $descendants[] = $filleul;
+            $descendants = array_merge($descendants, $this->getAllDescendants($filleul));
+        }
+    
+        return $descendants;
+    }
+    
 }

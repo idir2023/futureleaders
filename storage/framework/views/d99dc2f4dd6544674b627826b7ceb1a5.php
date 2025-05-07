@@ -137,14 +137,13 @@
                                         
                                         <td>
                                             <?php if($consultation->drive_link && now()->lessThan($consultation->drive_link_expire_at)): ?>
-                                                <a href="<?php echo e($consultation->drive_link); ?>" target="_blank" class="btn btn-sm btn-success"title="Voir le lien Google Drive">
+                                                <a href="<?php echo e($consultation->drive_link); ?>" target="_blank"
+                                                    class="btn btn-sm btn-success"title="Voir le lien Google Drive">
                                                     Accéder au lien Drive
                                                 </a>
                                                 
-                                                
                                             <?php elseif($consultation->drive_link): ?>
                                                 <span class="text-danger fw-bold">Lien expiré</span>
-                                                
                                             <?php else: ?>
                                                 <span class="text-muted">Aucun lien disponible</span>
                                             <?php endif; ?>
@@ -167,7 +166,7 @@
                 <div class="card shadow-sm border-0 w-100">
                     <div class="card-body">
                         <h4 class="card-title mb-4" style="font-weight: bold; color: #333;">Mes informations</h4>
-            
+
                         <table class="table table-bordered table-striped">
                             <thead class="table-dark text-center">
                                 <tr>
@@ -197,13 +196,14 @@
                                             <span class="badge bg-secondary">Aucun code promo</span>
                                         <?php endif; ?>
                                     </td>
-                                                                    </tr>
+
+                                </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-            
+
 
 
             <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">

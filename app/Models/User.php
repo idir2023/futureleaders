@@ -25,6 +25,8 @@ class User extends Authenticatable
         'adresse',
         'role', // Added is_admin attribute
         'code_promo',
+        'parrain_id',
+        'profit_user'
     ];
 
     /**
@@ -46,4 +48,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    // Le parrain (parent)
+    public function parrain()
+    {
+        return $this->belongsTo(User::class, 'parrain_id');
+    }
+    // Les filleuls (enfants)
+    public function filleuls()
+    {
+        return $this->hasMany(User::class, 'parrain_id');
+    }
 }

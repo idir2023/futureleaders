@@ -17,9 +17,13 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('telephone')->nullable();
             $table->string('adresse')->nullable();
-            $table->string('code_promo')->nullable();
+            $table->string('code_promo')->nullable()->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            // Nullable parrain_id (self-referencing foreign key)
+            $table->unsignedBigInteger('parrain_id')->nullable();
+            $table->foreign('parrain_id')->references('id')->on('users')->onDelete('set null');
+            $table->string('profit_user')->nullable();
             $table->rememberToken();
             $table->enum('role', ['admin', 'user', 'coach'])->default('user'); // Nouveau champ role
             $table->timestamps();

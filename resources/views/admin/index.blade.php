@@ -141,16 +141,15 @@
                                         </td> --}}
                                         <td>
                                             @if ($consultation->drive_link && now()->lessThan($consultation->drive_link_expire_at))
-                                                <a href="{{ $consultation->drive_link }}" target="_blank" class="btn btn-sm btn-success"title="Voir le lien Google Drive">
+                                                <a href="{{ $consultation->drive_link }}" target="_blank"
+                                                    class="btn btn-sm btn-success"title="Voir le lien Google Drive">
                                                     Accéder au lien Drive
                                                 </a>
                                                 {{-- <small class="d-block text-muted">
                                                     Expire le {{ \Carbon\Carbon::parse($consultation->drive_link_expire_at)->format('d/m/Y') }}
                                                 </small> --}}
-                                                
                                             @elseif ($consultation->drive_link)
                                                 <span class="text-danger fw-bold">Lien expiré</span>
-                                                
                                             @else
                                                 <span class="text-muted">Aucun lien disponible</span>
                                             @endif
@@ -173,7 +172,7 @@
                 <div class="card shadow-sm border-0 w-100">
                     <div class="card-body">
                         <h4 class="card-title mb-4" style="font-weight: bold; color: #333;">Mes informations</h4>
-            
+
                         <table class="table table-bordered table-striped">
                             <thead class="table-dark text-center">
                                 <tr>
@@ -197,19 +196,20 @@
                                 <tr>
                                     <td><strong>Code promo</strong></td>
                                     <td>
-                                        @if(auth()->user()->code_promo)
+                                        @if (auth()->user()->code_promo)
                                             <span class="badge bg-success">{{ auth()->user()->code_promo }}</span>
                                         @else
                                             <span class="badge bg-secondary">Aucun code promo</span>
                                         @endif
                                     </td>
-                                                                    </tr>
+
+                                </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-            
+
 
 
             <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
