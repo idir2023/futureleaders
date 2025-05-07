@@ -23,12 +23,8 @@ return new class extends Migration
             $table->enum('paiement_status', ['en attente', 'payé'])->default('en attente');
             $table->string('drive_link')->nullable();
             $table->date('drive_link_expire_at')->nullable();
-            $table->unsignedBigInteger('registered_by')->nullable(); // ✅ Correction ici
-            $table->foreignId('coach_id')->nullable()->constrained()->nullOnDelete();
+             $table->foreignId('coach_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
-            // Ajouter la clé étrangère pour registered_by
-            $table->foreign('registered_by')->references('id')->on('users')->nullOnDelete();
-
             $table->timestamps();
         });
     }

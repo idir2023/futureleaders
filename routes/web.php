@@ -27,10 +27,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/coaches/{user}/change-password', [CoachController::class, 'changePassword']);
 
     Route::get('ranks', [CoachController::class, 'getRank'])->name('ranks.index');
-    // Route::get('/ranks/{user}/clients', [CoachController::class, 'getParrainedClients']);
-    // في الـ routes/web.php أو api.php
-Route::get('/ranks/{id}/clients', [CoachController::class, 'getParrainedClients']);
 
+    Route::get('/ranks/{id}/clients', [CoachController::class, 'getClientsParraines']);
 
     // 
     Route::resource('drives', DriveController::class);

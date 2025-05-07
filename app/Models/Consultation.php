@@ -19,7 +19,6 @@ class Consultation extends Model
         'recu',
         'paiement_status',
         'coach_id',
-        'registered_by'
     ];
 
     protected $casts = [
