@@ -50,29 +50,31 @@
                                                     <?php break; ?>
 
                                                     <?php default: ?>
-                                                        <span class="badge bg-light text-dark"><?php echo e($index + 1); ?><sup>e</sup></span>
+                                                        <span
+                                                            class="badge bg-light text-dark"><?php echo e($index + 1); ?><sup>e</sup></span>
                                                 <?php endswitch; ?>
                                             <?php else: ?>
                                                 <span class="badge bg-light text-dark">Pas de rang</span>
                                             <?php endif; ?>
                                         </td>
-                                        <?php
-                                            $UserCoachs = \App\Models\User::where('parrain_id', $coach->user_id)->get();
-                                        ?>
-                                        <td class="text-start">
-                                            <?php $__currentLoopData = $UserCoachs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $UserCoach): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <a href="javascript:void(0);"
-                                                    class="btn btn-outline-primary btn-sm btn-show-clients"
-                                                    data-id="<?php echo e($UserCoach->id); ?>" data-level="0">
-                                                    <?php echo e($UserCoach->name); ?>
 
-                                                    <?php if($UserCoach): ?> +
-                                                    <?php endif; ?>
+                                        <td class="text-start">
+                                            <?php $__empty_2 = true; $__currentLoopData = $coach->parraineClients; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $consultation): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_2 = false; ?>
+                                                <a href="javascript:void(0)"
+                                                    class="show-parrain-modal d-inline-flex align-items-center gap-2 mb-1 px-3 py-2 rounded-pill"
+                                                    data-user-id="<?php echo e($consultation->user->id ?? 0); ?>"
+                                                    data-user-name="<?php echo e($consultation->user->name ?? 'Non défini'); ?>"
+                                                    style="background-color: #d1ecf1; color: #0c5460; text-decoration: none; font-weight: 500; font-size: 0.95rem;">
+
+                                                    <span><?php echo e($consultation->user->name ?? 'Non défini'); ?></span>
+                                                    <span
+                                                        style="color: #007bff; font-weight: bold; font-size: 1rem;">＋</span>
                                                 </a>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                            
-                                            <div class="clients-container mt-2" id="clients-parraines-<?php echo e($coach->user_id); ?>"></div>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_2): ?>
+                                                <span class="text-muted">Aucun</span>
+                                            <?php endif; ?>
                                         </td>
+
                                     </tr>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                     <tr>
@@ -81,6 +83,24 @@
                                 <?php endif; ?>
                             </tbody>
                         </table>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="parrainModal" tabindex="-1" aria-labelledby="parrainModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header bg-warning text-white">
+                                    <h5 class="modal-title" id="parrainModalLabel">Clients parrainés par <span
+                                            id="modalClientName"></span></h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                        aria-label="Fermer"></button>
+                                </div>
+                                <div class="modal-body" id="modalClientList">
+                                    Chargement...
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     
@@ -95,44 +115,42 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('scripts'); ?>
-<script>
-    $(document).ready(function() {
-        $('.btn-show-clients').on('click', function() {
-            var userId = $(this).data('id'); // ID of the coach
-            var container = $('#clients-parraines-' + userId); // Container to display the descendants
-            var level = $(this).data('level'); // Current level (0 for the first clients, 1 for the next, etc.)
-            var self = $(this); // Store reference to the clicked button
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.show-parrain-modal').forEach(function(el) {
+                el.addEventListener('click', function() {
+                    const userId = this.dataset.userId;
+                    const userName = this.dataset.userName;
 
-            container.html('<span class="text-muted">Chargement...</span>');
+                    document.getElementById('modalClientName').innerText = userName;
+                    document.getElementById('modalClientList').innerHTML = 'Chargement...';
 
-            $.ajax({
-                url: '/ranks/' + userId + '/clients/' + level, // Send the level parameter
-                type: 'GET',
-                success: function(response) {
-                    if (response.descendants.length > 0) {
-                        var html = '<ul class="list-group">';
-                        $.each(response.descendants, function(index, client) {
-                            html += '<li class="list-group-item d-flex justify-content-between align-items-center">';
-                            html += '<span>' + client.name + '</span>';
-                            html += '(<small class="text-muted">' + client.email + '</small>)';
-                            html += '</li>';
+                    // Show modal
+                    const modal = new bootstrap.Modal(document.getElementById('parrainModal'));
+                    modal.show();
+
+                    // Fetch parrainés
+                    fetch(`/ranks/${userId}/clients`)
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.length > 0) {
+                                const list = data.map(client =>
+                                    `<li>${client.name} (${client.email})</li>`).join('');
+                                document.getElementById('modalClientList').innerHTML =
+                                    `<ul>${list}</ul>`;
+                            } else {
+                                document.getElementById('modalClientList').innerHTML =
+                                    `<p class="text-muted">Aucun client parrainé.</p>`;
+                            }
+                        })
+                        .catch(err => {
+                            document.getElementById('modalClientList').innerHTML =
+                                `<p class="text-danger">Erreur lors du chargement.</p>`;
                         });
-                        html += '</ul>';
-                        container.html(html);
-
-                        // Update the level for the next request (increment level)
-                        self.data('level', level + 1);
-                    } else {
-                        container.html('<div class="alert alert-info">Aucun client parrainé à ce niveau.</div>');
-                    }
-                },
-                error: function() {
-                    container.html('<div class="alert alert-danger">Erreur lors du chargement.</div>');
-                }
+                });
             });
         });
-    });
-</script>
+    </script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('admin.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\lahce\Downloads\futureleaders\resources\views/admin/ranks/index.blade.php ENDPATH**/ ?>

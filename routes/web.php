@@ -29,7 +29,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('ranks', [CoachController::class, 'getRank'])->name('ranks.index');
     // Route::get('/ranks/{user}/clients', [CoachController::class, 'getParrainedClients']);
     // في الـ routes/web.php أو api.php
-Route::get('/ranks/{id}/clients/{level}', [CoachController::class, 'getParrainedClients']);
+Route::get('/ranks/{id}/clients', [CoachController::class, 'getParrainedClients']);
+
 
     // 
     Route::resource('drives', DriveController::class);

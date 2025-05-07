@@ -319,6 +319,11 @@ public function StoreConsultation(Request $request)
             User::where('role', 'admin')->each(function ($user) use ($consultation) {
                 Mail::to($user->email)->send(new ConsultationTerminer($consultation));
             });
+
+              // Envoi d'un email au coach
+            if ($consultation->coach) {
+                Mail::to($consultation->coach->email)->send(new ConsultationTerminer($consultation));
+            }
     
             return redirect()->route('home')->with('success', 'Le reçu a été téléchargé avec succès!');
         }
