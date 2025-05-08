@@ -63,31 +63,36 @@
 
                                         <td class="text-start">
                                             @if ($clients->count() > 0)
-                                                @foreach ($clients as $client)
-                                                    <div class="mb-1">
-                                                        <span class="badge bg-light text-dark">
-                                                            {{ $client->name }}
-                                                            @php
-                                                                $clients_count = \App\Models\User::where('parrain_id', $client->id)->count();
-                                                            @endphp
-                                                        </span>
-                                                        @if($clients_count > 0)
-                                                        <a href="javascript:void(0)" class="show-parrain-modal"
-                                                            data-user-id="{{ $client->id }}">
-                                                            <span
-                                                                style="color: #007bff; font-weight: bold; font-size: 1rem;">＋</span>
-                                                        </a>
-                                                        @endif
+                                                <div class="d-flex flex-wrap gap-2">
+                                                    @foreach ($clients as $client)
+                                                        @php
+                                                            $clients_count = \App\Models\User::where(
+                                                                'parrain_id',
+                                                                $client->id,
+                                                            )->count();
+                                                        @endphp
 
-                                                        <!-- Contenu à afficher dynamiquement -->
-                                                        <div id="parrain-content-{{ $client->id }}" class="mt-2 ms-3"
-                                                            style="display: none;"></div>
-                                                    </div>
-                                                @endforeach
+                                                        <div>
+                                                            <span class="badge bg-light text-dark">
+                                                                {{ $client->name }}
+                                                                @if ($clients_count > 0)
+                                                                    <a href="javascript:void(0)" class="show-parrain-modal"
+                                                                        data-user-id="{{ $client->id }}">
+                                                                        <span
+                                                                            style="color: #007bff; font-weight: bold; font-size: 1rem;">＋</span>
+                                                                    </a>
+                                                                @endif
+                                                            </span>
+                                                            <div id="parrain-content-{{ $client->id }}" class="mt-2 ms-3"
+                                                                style="display: none;"></div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
                                             @else
                                                 <span class="badge bg-light text-dark">Pas de clients parrainés</span>
                                             @endif
                                         </td>
+
                                     </tr>
                                     @empty
                                         <tr>
@@ -109,70 +114,75 @@
     @endsection
 
     @section('scripts')
-    
-    <script>
-        $(document).ready(function () {
-            var isProcessing = {};
 
-            $(document).on('click', '.show-parrain-modal', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
+        <script>
+            $(document).ready(function() {
+                var isProcessing = {};
 
-                var $this = $(this);
-                let userId = $this.data('user-id');
-                let targetDiv = $('#parrain-content-' + userId);
+                $(document).on('click', '.show-parrain-modal', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
 
-                // Empêche les requêtes multiples
-                if (isProcessing[userId]) {
-                    return;
-                }
+                    var $this = $(this);
+                    let userId = $this.data('user-id');
+                    let targetDiv = $('#parrain-content-' + userId);
 
-                // Si déjà visible, cacher et remettre le bouton à ＋
-                if (targetDiv.is(':visible')) {
-                    targetDiv.slideUp();
-                    $this.find('span').text('＋');
-                    return;
-                } else {
-                    $this.find('span').text('−');
-                }
-
-                isProcessing[userId] = true;
-                targetDiv.html('<p class="text-muted">Chargement...</p>').slideDown();
-
-                $.ajax({
-                    url: '/ranks/' + userId + '/clients',
-                    method: 'GET',
-                    dataType: 'json',
-                    cache: false,
-                    success: function (data) {
-                        if (data.clients && data.clients.length > 0) {
-                            let html = '<ul class="list-group">';
-                            data.clients.forEach(function (client) {
-                                const clientId = client.id || '';
-                                html += `
-                                    <li class="list-group-item py-1 px-2 d-flex justify-content-between align-items-center">
-                                        <span>${client.name || 'Sans nom'}</span>
-                                        <a href="javascript:void(0)" class="show-parrain-modal" data-user-id="${clientId}">
-                                            <span style="color: #007bff; font-weight: bold; font-size: 1rem;">＋</span>
-                                        </a>
-                                        <div id="parrain-content-${clientId}" class="mt-2 ms-3" style="display: none;"></div>
-                                    </li>`;
-                            });
-                            html += '</ul>';
-                            targetDiv.html(html);
-                        } else {
-                            targetDiv.html('<p class="text-muted">Aucun client parrainé trouvé.</p>');
-                        }
-                    },
-                    error: function (xhr, status, error) {
-                        targetDiv.html('<p class="text-danger">Erreur lors du chargement. Veuillez réessayer.</p>');
-                    },
-                    complete: function () {
-                        isProcessing[userId] = false;
+                    // Empêche les requêtes multiples
+                    if (isProcessing[userId]) {
+                        return;
                     }
+
+                    // Si déjà visible, cacher et remettre le bouton à ＋
+                    if (targetDiv.is(':visible')) {
+                        targetDiv.slideUp();
+                        $this.find('span').text('＋');
+                        return;
+                    } else {
+                        $this.find('span').text('−');
+                    }
+
+                    isProcessing[userId] = true;
+                    targetDiv.html('<p class="text-muted">Chargement...</p>').slideDown();
+
+                    $.ajax({
+                        url: '/ranks/' + userId + '/clients',
+                        method: 'GET',
+                        dataType: 'json',
+                        cache: false,
+                        success: function(data) {
+                            if (data.clients && data.clients.length > 0) {
+                                let html = '';
+                                data.clients.forEach(function(client) {
+                                    const clientId = client.id || '';
+                                    html +=
+                                        `<div class="mb-1">
+                                         <span class="badge bg-light text-dark">
+                                        ${client.name || 'Sans nom'}
+                                        ${client.has_parrain ? `
+                                                <a type="button" class="show-parrain-modal" data-user-id="${clientId}">
+                                                <span style="color: #007bff; font-weight: bold; font-size: 1rem;">＋</span>
+                                                </a>` : ''}
+                                        </span>
+                                        </div>
+                                        <div id="parrain-content-${clientId}" class="ms-4 mb-2" style="display: none;"></div>`;
+                                });
+                                targetDiv.html(html);
+                            } else {
+                                targetDiv.html(
+                                    '<p class="text-muted">Aucun client parrainé trouvé.</p>');
+                            }
+
+                        },
+                        error: function(xhr, status, error) {
+                            targetDiv.html(
+                                '<p class="text-danger">Erreur lors du chargement. Veuillez réessayer.</p>'
+                            );
+                        },
+                        complete: function() {
+                            isProcessing[userId] = false;
+                        }
+                    });
                 });
             });
-        });
-    </script>
-@endsection
- 
+        </script>
+    @endsection

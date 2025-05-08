@@ -39,11 +39,27 @@ class CoachController extends Controller
     }
 
 
+    // public function getClientsParraines($id)
+    // {
+    //     $clients = User::where('parrain_id', $id)->get();
+    //     return response()->json(['clients' => $clients]);
+    // }
+
     public function getClientsParraines($id)
-    {
-        $clients = User::where('parrain_id', $id)->get();
-        return response()->json(['clients' => $clients]);
-    }
+{
+    $clients = User::where('parrain_id', $id)
+        ->get()
+        ->map(function ($client) {
+            return [
+                'id' => $client->id,
+                'name' => $client->name,
+                'has_parrain' => User::where('parrain_id', $client->id)->exists(),
+            ];
+        });
+
+    return response()->json(['clients' => $clients]);
+}
+
 
     public function create()
     {
