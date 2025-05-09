@@ -26,14 +26,25 @@ class CoachController extends Controller
 
     public function getRank()
     {
-        $coachs = Coach::withCount([
-            'consultations as clients_count' => function ($query) {
-                $query->select(DB::raw('COUNT(DISTINCT user_id)'));
-            }
-        ])
-            ->orderByDesc('clients_count')
-            ->paginate(5);
+        if (auth()->user()->role == 'admin') {
 
+            $coachs = Coach::withCount([
+                'consultations as clients_count' => function ($query) {
+                    $query->select(DB::raw('COUNT(DISTINCT user_id)'));
+                }
+            ])
+                ->orderByDesc('clients_count')
+                ->paginate(5);
+        } else {
+            $coachs = Coach::withCount([
+                'consultations as clients_count' => function ($query) {
+                    $query->select(DB::raw('COUNT(DISTINCT user_id)'));
+                }
+            ])
+                ->where('user_id', auth()->user()->id)
+                ->orderByDesc('clients_count')
+                ->paginate(5);
+        }
 
         return view('admin.ranks.index', compact('coachs'));
     }
@@ -46,19 +57,19 @@ class CoachController extends Controller
     // }
 
     public function getClientsParraines($id)
-{
-    $clients = User::where('parrain_id', $id)
-        ->get()
-        ->map(function ($client) {
-            return [
-                'id' => $client->id,
-                'name' => $client->name,
-                'has_parrain' => User::where('parrain_id', $client->id)->exists(),
-            ];
-        });
+    {
+        $clients = User::where('parrain_id', $id)
+            ->get()
+            ->map(function ($client) {
+                return [
+                    'id' => $client->id,
+                    'name' => $client->name,
+                    'has_parrain' => User::where('parrain_id', $client->id)->exists(),
+                ];
+            });
 
-    return response()->json(['clients' => $clients]);
-}
+        return response()->json(['clients' => $clients]);
+    }
 
 
     public function create()
