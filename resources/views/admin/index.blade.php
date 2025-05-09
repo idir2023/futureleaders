@@ -171,7 +171,7 @@
             <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
                 <div class="card shadow-sm border-0 w-100">
                     <div class="card-body">
-                        <h4 class="card-title mb-4" style="font-weight: bold; color: #333;">Mes informations</h4>
+                        <h4 class="card-title mb-4 fw-bold text-dark">Mes informations</h4>
 
                         <table class="table table-bordered table-striped">
                             <thead class="table-dark text-center">
@@ -180,7 +180,7 @@
                                     <th scope="col">Information</th>
                                 </tr>
                             </thead>
-                            <tbody class="text-dark text-center">
+                            <tbody class="text-center text-dark">
                                 <tr>
                                     <td><strong>Nom</strong></td>
                                     <td>{{ auth()->user()->name }}</td>
@@ -202,14 +202,24 @@
                                             <span class="badge bg-secondary">Aucun code promo</span>
                                         @endif
                                     </td>
-
+                                </tr>
+                                <tr>
+                                    <td><strong>Mon profit</strong></td>
+                                    <td>
+                                        @if (auth()->user()->profit_user && auth()->user()->profit_user > 0)
+                                            <span class="badge bg-success">
+                                                {{ number_format(auth()->user()->profit_user, 2) }} MAD
+                                            </span>
+                                        @else
+                                            <span class="badge bg-secondary">Aucun profit</span>
+                                        @endif
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-
 
 
             <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">

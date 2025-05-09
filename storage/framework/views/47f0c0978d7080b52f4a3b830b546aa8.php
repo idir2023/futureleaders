@@ -154,24 +154,26 @@
                         cache: false,
                         success: function(data) {
                             if (data.clients && data.clients.length > 0) {
-    let html = '';
-    data.clients.forEach(function(client) {
-        const clientId = client.id || '';
-        html += `<div class="mb-1">
-            <span class="badge bg-light text-dark">
-                ${client.name || 'Sans nom'}
-                ${client.has_parrain ? `
-                    <a type="button" class="show-parrain-modal" data-user-id="${clientId}">
-                        <span style="color: #007bff; font-weight: bold; font-size: 1rem;">＋</span>
-                    </a>` : ''}
-            </span>
-        </div>
-        <div id="parrain-content-${clientId}" class="ms-4 mb-2" style="display: none;"></div>`;
-    });
-    targetDiv.html(html);
-} else {
-    targetDiv.html('<p class="text-muted">Aucun client parrainé trouvé.</p>');
-}
+                                let html = '';
+                                data.clients.forEach(function(client) {
+                                    const clientId = client.id || '';
+                                    html +=
+                                        `<div class="mb-1">
+                                         <span class="badge bg-light text-dark">
+                                        ${client.name || 'Sans nom'}
+                                        ${client.has_parrain ? `
+                                                <a type="button" class="show-parrain-modal" data-user-id="${clientId}">
+                                                <span style="color: #007bff; font-weight: bold; font-size: 1rem;">＋</span>
+                                                </a>` : ''}
+                                        </span>
+                                        </div>
+                                        <div id="parrain-content-${clientId}" class="ms-4 mb-2" style="display: none;"></div>`;
+                                });
+                                targetDiv.html(html);
+                            } else {
+                                targetDiv.html(
+                                    '<p class="text-muted">Aucun client parrainé trouvé.</p>');
+                            }
 
                         },
                         error: function(xhr, status, error) {

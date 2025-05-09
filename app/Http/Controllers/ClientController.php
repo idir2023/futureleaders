@@ -24,6 +24,93 @@ class ClientController extends Controller
         return view('consultations.create', compact('price')); // Vue pour la création de la consultation
     }
 
+    // public function StoreConsultation(Request $request)
+    // {
+    //     // 1. Validation des données reçues
+    //     $request->validate([
+    //         'name' => 'required|string|max:255',
+    //         'email' => 'required|email|max:255',
+    //         'telephone' => 'nullable|string|max:20',
+    //         'adresse' => 'nullable|string|max:255',
+    //         'probleme' => 'nullable|string',
+    //         'prix' => 'required|numeric',
+    //         'code_promo' => 'nullable|string|max:255',
+    //     ]);
+
+    //     $user = auth()->user();
+    //     $parrain = null;
+    //     $coach = null;
+
+    //     // 2. Si un code promo est fourni
+    //     if ($request->filled('code_promo')) {
+    //         $codePromo = $request->input('code_promo');
+
+    //         // Chercher un utilisateur avec ce code
+    //         $parrain = User::where('code_promo', $codePromo)->first();
+
+    //         if ($parrain) {
+    //             // Si le parrain n'a jamais été défini
+    //             if (is_null($user->parrain_id)) {
+    //                 // Récupérer les descendants du parrain
+    //                 $descendants = $this->getAllDescendants($parrain);
+    //                 $nb = count($descendants);
+    //                 // Calcul du profit selon le nombre de filleuls
+    //                 if ($nb < 5) {
+    //                     $profit = $request->prix * 0.20;
+    //                 } elseif ($nb < 10) {
+    //                     $profit = $request->prix * 0.25;
+    //                 } elseif ($nb < 25) {
+    //                     $profit = $request->prix * 0.30;
+    //                 } elseif ($nb < 50) {
+    //                     $profit = $request->prix * 0.15;
+    //                 } else {
+    //                     $profit = $request->prix * 0.30;
+    //                 }
+
+    //                 // Mise à jour du profit du parrain
+    //                 $parrain->update([
+    //                     'profit_user' => $parrain->profit_user + $profit,
+    //                 ]);
+
+    //                 // Mise à jour du parrain de l'utilisateur
+    //                 $user->update([
+    //                     'parrain_id' => $parrain->id,
+    //                 ]);
+    //             }
+
+    //             // Trouver un coach lié au parrain (facultatif)
+    //             $coach = Coach::join('consultations', 'coaches.id', '=', 'consultations.coach_id')
+    //                 ->where('consultations.user_id', $parrain->id)
+    //                 ->select('coaches.*')
+    //                 ->first();
+    //         } else {
+    //             // Sinon, chercher un coach avec ce code promo
+    //             $coach = Coach::where('code_promo', $codePromo)->first();
+    //             $user->update([
+    //                 'parrain_id' => $coach->user_id,
+    //             ]);
+    //             if (!$coach) {
+    //                 return back()->with('error', 'Le code promo fourni est invalide.');
+    //             }
+    //         }
+    //     }
+
+    //     // 3. Création de la consultation
+    //     $consultation = new Consultation();
+    //     $consultation->name = $request->name;
+    //     $consultation->email = $request->email;
+    //     $consultation->telephone = $request->telephone;
+    //     $consultation->adresse = $request->adresse;
+    //     $consultation->probleme = $request->probleme;
+    //     $consultation->prix = $request->prix;
+    //     $consultation->paiement_status = 'en attente';
+    //     $consultation->coach_id = $coach?->id;
+    //     $consultation->user_id = $user->id;
+    //     $consultation->save();
+
+    //     return view('consultations.complete_paiment', compact('coach', 'consultation'));
+    // }
+
     public function StoreConsultation(Request $request)
     {
         // 1. Validation des données reçues
@@ -38,7 +125,6 @@ class ClientController extends Controller
         ]);
 
         $user = auth()->user();
-        $parrain = null;
         $coach = null;
 
         // 2. Si un code promo est fourni
@@ -48,13 +134,19 @@ class ClientController extends Controller
             // Chercher un utilisateur avec ce code
             $parrain = User::where('code_promo', $codePromo)->first();
 
-            if ($parrain) {
-                // Si le parrain n'a jamais été défini
-                if (is_null($user->parrain_id)) {
-                    // Récupérer les descendants du parrain
-                    $descendants = $this->getAllDescendants($parrain);
+            if ($parrain && is_null($user->parrain_id)) {
+                // Associer ce parrain à l'utilisateur
+                $user->update(['parrain_id' => $parrain->id]);
+
+                // Appliquer le profit au parrain et ses niveaux supérieurs
+                $maxLevels = 3;
+                $current = $parrain;
+                $level = 0;
+
+                while ($current && $level < $maxLevels) {
+                    $descendants = $this->getAllDescendants($current);
                     $nb = count($descendants);
-                    // Calcul du profit selon le nombre de filleuls
+
                     if ($nb < 5) {
                         $profit = $request->prix * 0.20;
                     } elseif ($nb < 10) {
@@ -67,29 +159,27 @@ class ClientController extends Controller
                         $profit = $request->prix * 0.30;
                     }
 
-                    // Mise à jour du profit du parrain
-                    $parrain->update([
-                        'profit_user' => $parrain->profit_user + $profit,
+                    $current->update([
+                        'profit_user' => $current->profit_user + $profit,
                     ]);
 
-                    // Mise à jour du parrain de l'utilisateur
-                    $user->update([
-                        'parrain_id' => $parrain->id,
-                    ]);
+                    $current = $current->parrain;
+                    $level++;
                 }
 
-                // Trouver un coach lié au parrain (facultatif)
+                // Récupérer un coach lié au parrain
                 $coach = Coach::join('consultations', 'coaches.id', '=', 'consultations.coach_id')
                     ->where('consultations.user_id', $parrain->id)
                     ->select('coaches.*')
                     ->first();
-            } else {
-                // Sinon, chercher un coach avec ce code promo
+            }
+
+            // Si aucun utilisateur trouvé avec ce code, chercher un coach directement
+            if (!$parrain) {
                 $coach = Coach::where('code_promo', $codePromo)->first();
-                $user->update([
-                    'parrain_id' => $coach->user_id,
-                ]);
-                if (!$coach) {
+                if ($coach) {
+                    $user->update(['parrain_id' => $coach->user_id]);
+                } else {
                     return back()->with('error', 'Le code promo fourni est invalide.');
                 }
             }
@@ -159,15 +249,25 @@ class ClientController extends Controller
         return back()->withErrors(['recu' => 'Veuillez télécharger un reçu valide.']);
     }
 
-    private function getAllDescendants($user)
+    // private function getAllDescendants($user)
+    // {
+    //     $descendants = [];
+
+    //     foreach ($user->filleuls as $filleul) {
+    //         $descendants[] = $filleul;
+    //         $descendants = array_merge($descendants, $this->getAllDescendants($filleul));
+    //     }
+
+    //     return $descendants;
+    // }
+
+    public function getAllDescendants($user)
     {
         $descendants = [];
-
         foreach ($user->filleuls as $filleul) {
             $descendants[] = $filleul;
             $descendants = array_merge($descendants, $this->getAllDescendants($filleul));
         }
-
         return $descendants;
     }
 }
