@@ -18,6 +18,8 @@
 
     <!-- favicon -->
     <link rel="shortcut icon" href="<?php echo e(asset('admin/assets/images/favicon.ico')); ?>" />
+
+ 
 </head>
 
 <body>

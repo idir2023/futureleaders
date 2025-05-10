@@ -7,6 +7,7 @@ use App\Http\Controllers\CoachController;
 use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DriveController;
+use App\Http\Controllers\TraderController;
 use App\Http\Controllers\UserController;
 
 
@@ -46,9 +47,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/send-email/{id}', [ConsultationController::class, 'sendEmail'])->name('consultations.sendEmail');
     Route::post('/send-email-anyerror/{id}', [ConsultationController::class, 'sendEmailError'])->name('consultations.sendEmailError');
 
-    Route::get('/traders', [App\Http\Controllers\TraderController::class, 'index'])->name('traders.index');
-    Route::post('/traders/import', [App\Http\Controllers\TraderController::class, 'import'])->name('traders.import');
-    Route::get('/traders/export-template', [App\Http\Controllers\TraderController::class, 'exportTemplate'])->name('traders.export-template');
+    Route::get('/traders', [TraderController::class, 'index'])->name('traders.index');
+    Route::delete('/traders/{id}', [TraderController::class, 'destroy'])->name('traders.destroy');
+    Route::post('/traders/import', [TraderController::class, 'import'])->name('traders.import');
+    Route::get('/traders/export-template', [TraderController::class, 'exportTemplate'])->name('traders.export-template');
 });
 
 Route::group(

@@ -13,6 +13,16 @@
             top: 0;
             z-index: 1;
         }
+
+        .orange-text {
+            color: orange;
+        }
+
+        .orange-bg {
+            background-color: orange;
+            color: white;
+            /* Optional: Change text color to white for better readability */
+        }
     </style>
 
     <div class="container-fluid">
@@ -152,24 +162,27 @@
                                             <td>{{ $trader->start_date ? $trader->start_date->format('d/m/Y') : '' }}</td>
                                             <td>{{ $trader->end_date ? $trader->end_date->format('d/m/Y') : '' }}</td>
                                             <td>{{ $trader->rank }}</td>
-                                            <td>{{ number_format($trader->commission, 2) }}</td>
+                                            <td class="orange-text">{{ number_format($trader->commission, 2) }}</td>
+                                            <!-- Applying orange-text here -->
                                             <td>{{ number_format($trader->revenue, 2) }}</td>
                                             <td>
                                                 <div class="btn-group" role="group">
                                                     <button type="button" class="btn btn-sm btn-info view-trader"
                                                         data-id="{{ $trader->id }}">
-                                                        <i class="fas fa-eye"></i>
+                                                        <i class="typcn typcn-eye"></i>
                                                     </button>
                                                     <button type="button" class="btn btn-sm btn-warning edit-trader"
                                                         data-id="{{ $trader->id }}">
-                                                        <i class="fas fa-edit"></i>
+                                                        <i class="typcn typcn-edit"></i>
                                                     </button>
                                                     <button type="button" class="btn btn-sm btn-danger delete-trader"
-                                                        data-id="{{ $trader->id }}">
-                                                        <i class="fas fa-trash"></i>
+                                                        data-id="{{ $trader->id }}" data-bs-toggle="modal"
+                                                        data-bs-target="#confirmDeleteModal">
+                                                        <i class="typcn typcn-trash"></i> 
                                                     </button>
                                                 </div>
                                             </td>
+
                                         </tr>
                                     @empty
                                         <tr>
@@ -178,6 +191,8 @@
                                     @endforelse
                                 </tbody>
                             </table>
+
+                            {{ $traders->links() }}
                         </div>
                     </div>
                 </div>
@@ -215,22 +230,64 @@
             </div>
         </div>
     </div>
+    <!-- Confirmation Delete Modal -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmer la suppression</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Êtes-vous sûr de vouloir supprimer ce trader ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-danger" id="confirmDeleteButton">Supprimer</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection
 
 @section('scripts')
     <script>
-        $(document).ready(function() {
-            // Initialize DataTables
-            $('#traders-table').DataTable({
-                language: {
-                    url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/fr-FR.json',
-                },
-                order: [
-                    [0, 'asc']
-                ],
-                pageLength: 25
-            });
+        let deleteTraderId = null;
+
+        // When delete button is clicked
+        $('.delete-trader').on('click', function() {
+            deleteTraderId = $(this).data('id'); // Get the trader ID
+        });
+
+        // Confirm the deletion
+        $('#confirmDeleteButton').on('click', function() {
+            if (deleteTraderId !== null) {
+                // Send the delete request using AJAX
+                $.ajax({
+                    url: '/traders/' + deleteTraderId,
+                    method: 'DELETE',
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            // Remove the trader row from the table
+                            $('button[data-id="' + deleteTraderId + '"]').closest('tr').remove();
+                            $('#confirmDeleteModal').modal('hide');
+                            alert('Trader supprimé avec succès!');
+                        } else {
+                            alert('Erreur lors de la suppression');
+                        }
+                    },
+                    error: function() {
+                        alert('Erreur lors de la suppression');
+                    }
+                });
+            }
         });
     </script>
+
 @endsection
