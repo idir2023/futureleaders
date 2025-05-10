@@ -29,7 +29,7 @@
         <div class="row mb-4">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                    <div class="card-header bg-warning text-white d-flex justify-content-between align-items-center">
                         <h3 class="mb-0">Gestion des Traders</h3>
                         <div>
                             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#importModal">
@@ -112,7 +112,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header bg-dark text-white">
+                    <div class="card-header bg-warning text-white">
                         <h4 class="mb-0">Liste des Traders</h4>
                     </div>
                     <div class="card-body">
@@ -133,8 +133,8 @@
                         @endif
 
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover" id="traders-table">
-                                <thead class="table-dark">
+                            <table class="table table-striped table-hover table-bordered" id="traders-table">
+                                <thead>
                                     <tr>
                                         <th>Nom</th>
                                         <th>Téléphone</th>
@@ -204,7 +204,7 @@
     <div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="importModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header bg-dark text-white">
+                <div class="modal-header bg-warning text-white">
                     <h5 class="modal-title" id="importModalLabel">Importer des Traders</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
@@ -224,7 +224,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                        <button type="submit" class="btn btn-success">Importer</button>
+                        <button type="submit" class="btn btn-warning">Importer</button>
                     </div>
                 </form>
             </div>
