@@ -498,209 +498,209 @@
         </div>
     </section>
     <!--
-                                                <section class="team--section section--container" id="team">
-                                                    <div class="team--header">
-                                                        <div class="container-lg">
-                                                            <div class="title--container">
-                                                                <h3 class="subtitle"> <?php echo e(__('team.subtitle')); ?> </h3>
-                                                                <h2 class="main--title"> <?php echo __('team.title'); ?> </h2>
-                                                            </div>
-                                                            <div class="team--content">
-                                                                <p class="main--content text--sm"> <?php echo e(__('team.content-1')); ?> </p>
-                                                                
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="team--members container-lg">
-                                                        <div class="team--members-main" id="contact">
-                                                            <div class="team--members-main_card">
-                                                                <div class="team--members-main_img">
-                                                                    <img src="<?php echo e(asset('assets/images/team/karim.webp')); ?>" alt="mohamed karim merroun">
-                                                                </div>
-                                                                <div class="team--members-main_content">
-                                                                    <div>
-                                                                        <h4><a href="https://karti.io/v/MOHAMEDKARIM" target="_blank"
-                                                                                rel="noopener noreferrer"><?php echo e(__('team.mohamed')); ?>
+                                                                        <section class="team--section section--container" id="team">
+                                                                            <div class="team--header">
+                                                                                <div class="container-lg">
+                                                                                    <div class="title--container">
+                                                                                        <h3 class="subtitle"> <?php echo e(__('team.subtitle')); ?> </h3>
+                                                                                        <h2 class="main--title"> <?php echo __('team.title'); ?> </h2>
+                                                                                    </div>
+                                                                                    <div class="team--content">
+                                                                                        <p class="main--content text--sm"> <?php echo e(__('team.content-1')); ?> </p>
+                                                                                        
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="team--members container-lg">
+                                                                                <div class="team--members-main" id="contact">
+                                                                                    <div class="team--members-main_card">
+                                                                                        <div class="team--members-main_img">
+                                                                                            <img src="<?php echo e(asset('assets/images/team/karim.webp')); ?>" alt="mohamed karim merroun">
+                                                                                        </div>
+                                                                                        <div class="team--members-main_content">
+                                                                                            <div>
+                                                                                                <h4><a href="https://karti.io/v/MOHAMEDKARIM" target="_blank"
+                                                                                                        rel="noopener noreferrer"><?php echo e(__('team.mohamed')); ?>
 
-                                                                                <?php echo e($current_lang === 'ar' ? '←' : '→'); ?></a></h4>
-                                                                        <p> <?php echo e(__('team.mohamed_role')); ?> </p>
-                                                                        <ul>
-                                                                            <li><a href="https://instagram.com/m.karimmerroun" target="_blank"
-                                                                                    rel="noopener noreferrer"><img
-                                                                                        src="<?php echo e(asset('assets/icons/social/fill/instagram.svg')); ?>"
-                                                                                        alt="instagram"></a></li>
-                                                                            <li><a href="https://wa.me/212664004450" target="_blank" rel="noopener noreferrer"><img
-                                                                                        src="<?php echo e(asset('assets/icons/social/fill/whatsapp.svg')); ?>"
-                                                                                        alt="whatsapp icon"></a></li>
-                                                                            <li><a href="https://www.youtube.com/@mohamedkarim_dreamer2299" target="_blank"
-                                                                                    rel="noopener noreferrer"><img
-                                                                                        src="<?php echo e(asset('assets/icons/social/fill/youtube.svg')); ?>" alt="facebook"></a>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="team--members-main_card">
-                                                                <div class="team--members-main_img">
-                                                                    <img src="<?php echo e(asset('assets/images/team/zouhair-merroun.webp')); ?>" alt="Zouhair Merroun">
-                                                                </div>
-                                                                <div class="team--members-main_content">
-                                                                    <div>
-                                                                        <h4> <?php echo e(__('team.zouhair')); ?> </h4>
-                                                                        <p> <?php echo e(__('team.zouhair_role')); ?> </p>
-                                                                        <ul>
-                                                                            <li><a href="https://instagram.com/zezo_merroun" target="_blank"
-                                                                                    rel="noopener noreferrer"><img
-                                                                                        src="<?php echo e(asset('assets/icons/social/fill/instagram.svg')); ?>"
-                                                                                        alt="instagram"></a></li>
-                                                                            <li><a href="https://wa.me/212646053652" target="_blank" rel="noopener noreferrer"><img
-                                                                                        src="<?php echo e(asset('assets/icons/social/fill/whatsapp.svg')); ?>"
-                                                                                        alt="Whatsapp icon"></a></li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                                                                        <?php echo e($current_lang === 'ar' ? '←' : '→'); ?></a></h4>
+                                                                                                <p> <?php echo e(__('team.mohamed_role')); ?> </p>
+                                                                                                <ul>
+                                                                                                    <li><a href="https://instagram.com/m.karimmerroun" target="_blank"
+                                                                                                            rel="noopener noreferrer"><img
+                                                                                                                src="<?php echo e(asset('assets/icons/social/fill/instagram.svg')); ?>"
+                                                                                                                alt="instagram"></a></li>
+                                                                                                    <li><a href="https://wa.me/212664004450" target="_blank" rel="noopener noreferrer"><img
+                                                                                                                src="<?php echo e(asset('assets/icons/social/fill/whatsapp.svg')); ?>"
+                                                                                                                alt="whatsapp icon"></a></li>
+                                                                                                    <li><a href="https://www.youtube.com/@mohamedkarim_dreamer2299" target="_blank"
+                                                                                                            rel="noopener noreferrer"><img
+                                                                                                                src="<?php echo e(asset('assets/icons/social/fill/youtube.svg')); ?>" alt="facebook"></a>
+                                                                                                    </li>
+                                                                                                </ul>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="team--members-main_card">
+                                                                                        <div class="team--members-main_img">
+                                                                                            <img src="<?php echo e(asset('assets/images/team/zouhair-merroun.webp')); ?>" alt="Zouhair Merroun">
+                                                                                        </div>
+                                                                                        <div class="team--members-main_content">
+                                                                                            <div>
+                                                                                                <h4> <?php echo e(__('team.zouhair')); ?> </h4>
+                                                                                                <p> <?php echo e(__('team.zouhair_role')); ?> </p>
+                                                                                                <ul>
+                                                                                                    <li><a href="https://instagram.com/zezo_merroun" target="_blank"
+                                                                                                            rel="noopener noreferrer"><img
+                                                                                                                src="<?php echo e(asset('assets/icons/social/fill/instagram.svg')); ?>"
+                                                                                                                alt="instagram"></a></li>
+                                                                                                    <li><a href="https://wa.me/212646053652" target="_blank" rel="noopener noreferrer"><img
+                                                                                                                src="<?php echo e(asset('assets/icons/social/fill/whatsapp.svg')); ?>"
+                                                                                                                alt="Whatsapp icon"></a></li>
+                                                                                                </ul>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
 
 
-                                                        <div class="team--members-leaders">
-                                                            <div class="team--members-leaders_card">
-                                                                <div class="team--members-leaders_img">
-                                                                    <div class="team--members-leaders_img-start">
-                                                                        <img src="<?php echo e(asset('assets/images/team/najlae.webp')); ?>" alt="mohamed karim merroun">
-                                                                        <button data-member="najlae" class="modal--btn"><img
-                                                                                src="<?php echo e(asset('assets/icons/video_start.svg')); ?>"
-                                                                                alt="Start video icon orange"></button>
-                                                                    </div>
-                                                                    <div class="team--members-leaders_content">
-                                                                        <div>
-                                                                            <ul>
-                                                                                <li>
-                                                                                    <a href="https://www.instagram.com/najlaa.meroun" target="_blank"
-                                                                                        rel="noopener noreferrer">
-                                                                                        <img src="<?php echo e(asset('assets/icons/social/fill/instagram.svg')); ?>"
-                                                                                            alt="instagram">
-                                                                                    </a>
-                                                                                </li>
-                                                                                <li><a href="https://wa.me/212681472358" target="_blank"
-                                                                                        rel="noopener noreferrer"><img
-                                                                                            src="<?php echo e(asset('assets/icons/social/fill/whatsapp.svg')); ?>"
-                                                                                            alt="Whatsapp icon"></a></li>
-                                                                            </ul>
-                                                                            <h4> <?php echo __('team.najlae'); ?> </h4>
-                                                                            <p> <?php echo e(__('team.najlae_role')); ?> </p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                                                <div class="team--members-leaders">
+                                                                                    <div class="team--members-leaders_card">
+                                                                                        <div class="team--members-leaders_img">
+                                                                                            <div class="team--members-leaders_img-start">
+                                                                                                <img src="<?php echo e(asset('assets/images/team/najlae.webp')); ?>" alt="mohamed karim merroun">
+                                                                                                <button data-member="najlae" class="modal--btn"><img
+                                                                                                        src="<?php echo e(asset('assets/icons/video_start.svg')); ?>"
+                                                                                                        alt="Start video icon orange"></button>
+                                                                                            </div>
+                                                                                            <div class="team--members-leaders_content">
+                                                                                                <div>
+                                                                                                    <ul>
+                                                                                                        <li>
+                                                                                                            <a href="https://www.instagram.com/najlaa.meroun" target="_blank"
+                                                                                                                rel="noopener noreferrer">
+                                                                                                                <img src="<?php echo e(asset('assets/icons/social/fill/instagram.svg')); ?>"
+                                                                                                                    alt="instagram">
+                                                                                                            </a>
+                                                                                                        </li>
+                                                                                                        <li><a href="https://wa.me/212681472358" target="_blank"
+                                                                                                                rel="noopener noreferrer"><img
+                                                                                                                    src="<?php echo e(asset('assets/icons/social/fill/whatsapp.svg')); ?>"
+                                                                                                                    alt="Whatsapp icon"></a></li>
+                                                                                                    </ul>
+                                                                                                    <h4> <?php echo __('team.najlae'); ?> </h4>
+                                                                                                    <p> <?php echo e(__('team.najlae_role')); ?> </p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
 
-                                                            <div class="team--members-leaders_card">
-                                                                <div class="team--members-leaders_img">
-                                                                    <div class="team--members-leaders_img-start">
-                                                                        <img src="<?php echo e(asset('assets/images/team/imrane.webp')); ?>" alt="mohamed karim merroun">
-                                                                        <button data-member="imrane" class="modal--btn"><img
-                                                                                src="<?php echo e(asset('assets/icons/video_start.svg')); ?>"
-                                                                                alt="Start video icon orange"></button>
-                                                                    </div>
-                                                                    <div class="team--members-leaders_content">
-                                                                        <div>
-                                                                            <ul>
-                                                                                <li>
-                                                                                    <a href="https://instagram.com/im_rane8" target="_blank"
-                                                                                        rel="noopener noreferrer">
-                                                                                        <img src="<?php echo e(asset('assets/icons/social/fill/instagram.svg')); ?>"
-                                                                                            alt="instagram">
-                                                                                    </a>
-                                                                                </li>
-                                                                                <li><a href="https://wa.me/212684312907" target="_blank"
-                                                                                        rel="noopener noreferrer"><img
-                                                                                            src="<?php echo e(asset('assets/icons/social/fill/whatsapp.svg')); ?>"
-                                                                                            alt="Whatsapp icon"></a></li>
-                                                                            </ul>
+                                                                                    <div class="team--members-leaders_card">
+                                                                                        <div class="team--members-leaders_img">
+                                                                                            <div class="team--members-leaders_img-start">
+                                                                                                <img src="<?php echo e(asset('assets/images/team/imrane.webp')); ?>" alt="mohamed karim merroun">
+                                                                                                <button data-member="imrane" class="modal--btn"><img
+                                                                                                        src="<?php echo e(asset('assets/icons/video_start.svg')); ?>"
+                                                                                                        alt="Start video icon orange"></button>
+                                                                                            </div>
+                                                                                            <div class="team--members-leaders_content">
+                                                                                                <div>
+                                                                                                    <ul>
+                                                                                                        <li>
+                                                                                                            <a href="https://instagram.com/im_rane8" target="_blank"
+                                                                                                                rel="noopener noreferrer">
+                                                                                                                <img src="<?php echo e(asset('assets/icons/social/fill/instagram.svg')); ?>"
+                                                                                                                    alt="instagram">
+                                                                                                            </a>
+                                                                                                        </li>
+                                                                                                        <li><a href="https://wa.me/212684312907" target="_blank"
+                                                                                                                rel="noopener noreferrer"><img
+                                                                                                                    src="<?php echo e(asset('assets/icons/social/fill/whatsapp.svg')); ?>"
+                                                                                                                    alt="Whatsapp icon"></a></li>
+                                                                                                    </ul>
 
-                                                                            <h4> <?php echo __('team.imrane'); ?> </h4>
-                                                                            <p> <?php echo e(__('team.imrane_role')); ?> </p>
-                                                                        </div>
-                                                                    </div>
+                                                                                                    <h4> <?php echo __('team.imrane'); ?> </h4>
+                                                                                                    <p> <?php echo e(__('team.imrane_role')); ?> </p>
+                                                                                                </div>
+                                                                                            </div>
 
-                                                                </div>
-                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
 
-                                                            <div class="team--members-leaders_card">
-                                                                <div class="team--members-leaders_img">
-                                                                    <div class="team--members-leaders_img-start">
-                                                                        <img src="<?php echo e(asset('assets/images/team/fatima.webp')); ?>" alt="mohamed karim merroun">
-                                                                        <button data-member="fatima" class="modal--btn"><img
-                                                                                src="<?php echo e(asset('assets/icons/video_start.svg')); ?>"
-                                                                                alt="Start video icon orange"></button>
-                                                                    </div>
-                                                                    <div class="team--members-leaders_content">
-                                                                        <div>
-                                                                            <ul>
-                                                                                <li>
-                                                                                    <a href="https://instagram.com/fatimaa_nb" target="_blank"
-                                                                                        rel="noopener noreferrer">
-                                                                                        <img src="<?php echo e(asset('assets/icons/social/fill/instagram.svg')); ?>"
-                                                                                            alt="instagram">
-                                                                                    </a>
-                                                                                </li>
-                                                                                <li><a href="https://wa.me/212632288347" target="_blank"
-                                                                                        rel="noopener noreferrer"><img
-                                                                                            src="<?php echo e(asset('assets/icons/social/fill/whatsapp.svg')); ?>"
-                                                                                            alt="Whatsapp icon"></a></li>
-                                                                            </ul>
+                                                                                    <div class="team--members-leaders_card">
+                                                                                        <div class="team--members-leaders_img">
+                                                                                            <div class="team--members-leaders_img-start">
+                                                                                                <img src="<?php echo e(asset('assets/images/team/fatima.webp')); ?>" alt="mohamed karim merroun">
+                                                                                                <button data-member="fatima" class="modal--btn"><img
+                                                                                                        src="<?php echo e(asset('assets/icons/video_start.svg')); ?>"
+                                                                                                        alt="Start video icon orange"></button>
+                                                                                            </div>
+                                                                                            <div class="team--members-leaders_content">
+                                                                                                <div>
+                                                                                                    <ul>
+                                                                                                        <li>
+                                                                                                            <a href="https://instagram.com/fatimaa_nb" target="_blank"
+                                                                                                                rel="noopener noreferrer">
+                                                                                                                <img src="<?php echo e(asset('assets/icons/social/fill/instagram.svg')); ?>"
+                                                                                                                    alt="instagram">
+                                                                                                            </a>
+                                                                                                        </li>
+                                                                                                        <li><a href="https://wa.me/212632288347" target="_blank"
+                                                                                                                rel="noopener noreferrer"><img
+                                                                                                                    src="<?php echo e(asset('assets/icons/social/fill/whatsapp.svg')); ?>"
+                                                                                                                    alt="Whatsapp icon"></a></li>
+                                                                                                    </ul>
 
-                                                                            <h4> <?php echo __('team.fatima'); ?> </h4>
-                                                                            <p> <?php echo e(__('team.fatima_role')); ?> </p>
-                                                                        </div>
-                                                                    </div>
+                                                                                                    <h4> <?php echo __('team.fatima'); ?> </h4>
+                                                                                                    <p> <?php echo e(__('team.fatima_role')); ?> </p>
+                                                                                                </div>
+                                                                                            </div>
 
-                                                                </div>
-                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
 
-                                                            <div class="team--members-leaders_card">
-                                                                <div class="team--members-leaders_img">
-                                                                    <div class="team--members-leaders_img-start">
-                                                                        <img src="<?php echo e(asset('assets/images/team/nouhayla.webp')); ?>" alt="mohamed karim merroun">
-                                                                        <button data-member="nouhayla" class="modal--btn"><img
-                                                                                src="<?php echo e(asset('assets/icons/video_start.svg')); ?>"
-                                                                                alt="Start video icon orange"></button>
-                                                                    </div>
+                                                                                    <div class="team--members-leaders_card">
+                                                                                        <div class="team--members-leaders_img">
+                                                                                            <div class="team--members-leaders_img-start">
+                                                                                                <img src="<?php echo e(asset('assets/images/team/nouhayla.webp')); ?>" alt="mohamed karim merroun">
+                                                                                                <button data-member="nouhayla" class="modal--btn"><img
+                                                                                                        src="<?php echo e(asset('assets/icons/video_start.svg')); ?>"
+                                                                                                        alt="Start video icon orange"></button>
+                                                                                            </div>
 
-                                                                    <div class="team--members-leaders_content">
-                                                                        <div>
-                                                                            <ul>
-                                                                                <li>
-                                                                                    <a href="https://instagram.com/emeulye6" target="_blank"
-                                                                                        rel="noopener noreferrer">
-                                                                                        <img src="<?php echo e(asset('assets/icons/social/fill/instagram.svg')); ?>"
-                                                                                            alt="instagram">
-                                                                                    </a>
-                                                                                </li>
-                                                                                <li><a href="https://wa.me/212687651732" target="_blank"
-                                                                                        rel="noopener noreferrer"><img
-                                                                                            src="<?php echo e(asset('assets/icons/social/fill/whatsapp.svg')); ?>"
-                                                                                            alt="Whatsapp icon"></a></li>
-                                                                            </ul>
+                                                                                            <div class="team--members-leaders_content">
+                                                                                                <div>
+                                                                                                    <ul>
+                                                                                                        <li>
+                                                                                                            <a href="https://instagram.com/emeulye6" target="_blank"
+                                                                                                                rel="noopener noreferrer">
+                                                                                                                <img src="<?php echo e(asset('assets/icons/social/fill/instagram.svg')); ?>"
+                                                                                                                    alt="instagram">
+                                                                                                            </a>
+                                                                                                        </li>
+                                                                                                        <li><a href="https://wa.me/212687651732" target="_blank"
+                                                                                                                rel="noopener noreferrer"><img
+                                                                                                                    src="<?php echo e(asset('assets/icons/social/fill/whatsapp.svg')); ?>"
+                                                                                                                    alt="Whatsapp icon"></a></li>
+                                                                                                    </ul>
 
-                                                                            <h4> <?php echo __('team.nouhayla'); ?> </h4>
-                                                                            <p> <?php echo e(__('team.nouhayla_role')); ?> </p>
-                                                                        </div>
-                                                                    </div>
+                                                                                                    <h4> <?php echo __('team.nouhayla'); ?> </h4>
+                                                                                                    <p> <?php echo e(__('team.nouhayla_role')); ?> </p>
+                                                                                                </div>
+                                                                                            </div>
 
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="members--temp">
-                                                        <div class="title--container container-lg">
-                                                            <h2 class="main--title"> <?php echo __('team.contact_title'); ?> </h2>
-                                                            <p class="main--content text--sm"> <?php echo e(__('team.contact')); ?> </p>
-                                                        </div>
-                                                    </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="members--temp">
+                                                                                <div class="title--container container-lg">
+                                                                                    <h2 class="main--title"> <?php echo __('team.contact_title'); ?> </h2>
+                                                                                    <p class="main--content text--sm"> <?php echo e(__('team.contact')); ?> </p>
+                                                                                </div>
+                                                                            </div>
 
-                                                </section>
-                                                -->
+                                                                        </section>
+                                                                        -->
     <section class="pricing--container">
         <div class="pricing--section">
             <header class="pricing--header container-lg" id="pricing">
@@ -740,423 +740,187 @@
 
 
         </div>
+
+
         <div class="pricing--table">
             <header class="pricing--table-header" id="pricing1">
                 <img src="<?php echo e(asset('assets/images/promotion.png')); ?>" alt="">
-                <div>
-                    <img src="<?php echo e(asset('assets/images/ranks/silver-rank.png')); ?>" alt="">
-                    <span>
-                        <span><?php echo e(__('pricing.pack')); ?></span>
-                        <h5><?php echo e(__('pricing.silver')); ?></h5>
-                        <span>3 <?php echo e(__('pricing.months')); ?></span>
-                    </span>
-                    <span>
-                        <span><?php echo e(__('pricing.three_zero')); ?> <?php echo e(__('pricing.dh')); ?></span>
-                        <span><?php echo e(__('pricing.three_nine')); ?> <?php echo e(__('pricing.dh')); ?></span>
-                        <div>*<?php echo e(__('pricing.no_inscription_fees')); ?></div>
-                        <?php if(auth()->guard()->check()): ?>
-                            <a class="btn-consultation" href="<?php echo e(route('create-consultation', ['price' => 300])); ?>">
-                                <?php echo e(__('pricing.consultation')); ?>
+                <?php $__currentLoopData = $packs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pack): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div>
+                        <img src="<?php echo e(asset('assets/images/ranks/' . $pack->image)); ?>" alt="">
 
-                            </a>
-                        <?php else: ?>
-                            <a class="btn-login" href="<?php echo e(route('login')); ?>">
-                                <?php echo e(__('pricing.login_first')); ?>
+                        <span>
+                            <span><?php echo e(__('pricing.pack')); ?></span>
+                            <h5><?php echo e($pack->name); ?></h5>
+                            <span><?php echo e($pack->duration_months); ?><?php echo e(__('pricing.months')); ?></span>
+                        </span>
+                        <span>
+                            <span><?php echo e($pack->price); ?> <?php echo e(__('pricing.dh')); ?></span>
+                            <span><?php echo e($pack->old_price); ?> <?php echo e(__('pricing.dh')); ?></span>
+                            <?php if($pack->has_inscription_fees == false): ?>
+                                <div>*<?php echo e(__('pricing.no_inscription_fees')); ?></div>
+                            <?php else: ?>
+                                <div>*<?php echo e(__('pricing.inscription_fees')); ?></div>
+                            <?php endif; ?>
 
-                            </a>
-                        <?php endif; ?>
+                            <?php if(auth()->guard()->check()): ?>
+                                <a class="btn-consultation"
+                                    href="<?php echo e(route('create-consultation', ['price' => $pack->price])); ?>">
+                                    <?php echo e(__('pricing.consultation')); ?>
 
-                    </span>
-                </div>
-                <div>
-                    <img src="<?php echo e(asset('assets/images/ranks/gold-rank.png')); ?>" alt="">
-                    <span>
-                        <span><?php echo e(__('pricing.pack')); ?></span>
-                        <h5><?php echo e(__('pricing.gold')); ?></h5>
-                        <span>6 <?php echo e(__('pricing.months')); ?></span>
-                    </span>
-                    <span>
-                        <span><?php echo e(__('pricing.five')); ?> <?php echo e(__('pricing.dh')); ?></span>
-                        <span><?php echo e(__('pricing.seven')); ?> <?php echo e(__('pricing.dh')); ?></span>
-                        <div>*<?php echo e(__('pricing.no_inscription_fees')); ?></div>
-                        <?php if(auth()->guard()->check()): ?>
-                            <a class="btn-consultation" href="<?php echo e(route('create-consultation', ['price' => 500])); ?>">
-                                <?php echo e(__('pricing.consultation')); ?>
+                                </a>
+                            <?php else: ?>
+                                <a class="btn-login" href="<?php echo e(route('login')); ?>">
+                                    <?php echo e(__('pricing.login_first')); ?>
 
-                            </a>
-                        <?php else: ?>
-                            <a class="btn-login" href="<?php echo e(route('login')); ?>">
-                                <?php echo e(__('pricing.login_first')); ?>
-
-                            </a>
-                        <?php endif; ?>
-                    </span>
-                </div>
-                <div>
-                    <img src="<?php echo e(asset('assets/images/ranks/diamond-rank.png')); ?>" alt="">
-                    <span>
-                        <span><?php echo e(__('pricing.pack')); ?></span>
-                        <h5><?php echo e(__('pricing.diamond')); ?></h5>
-                        <span>1 <?php echo e(__('pricing.year')); ?></span>
-                    </span>
-                    <span>
-                        <span><?php echo e(__('pricing.ten_thousand')); ?> <?php echo e(__('pricing.dh')); ?></span>
-                        <span><?php echo e(__('pricing.forteen')); ?> <?php echo e(__('pricing.dh')); ?></span>
-                        <div>*<?php echo e(__('pricing.no_inscription_fees')); ?></div>
-                        <?php if(auth()->guard()->check()): ?>
-                            <a class="btn-consultation " href="<?php echo e(route('create-consultation', ['price' => 1000])); ?>">
-                                <?php echo e(__('pricing.consultation')); ?>
-
-                            </a>
-                        <?php else: ?>
-                            <a class="btn-login" href="<?php echo e(route('login')); ?>">
-                                <?php echo e(__('pricing.login_first')); ?>
-
-                            </a>
-                        <?php endif; ?>
-                    </span>
-                </div>
+                                </a>
+                            <?php endif; ?>
+                        </span>
+                    </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </header>
 
             <div class="pricing--table-content">
                 <ul>
                     <li>
                         <span><?php echo e(__('pricing.live_trading')); ?></span>
-                        <span>
-                            <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                        </span>
-                        <span>
-                            <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                        </span>
-                        <span>
-                            <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                        </span>
+                        <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
+                        <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
+                        <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
                     </li>
 
                     <li>
                         <span><?php echo e(__('pricing.forex_definitions')); ?></span>
-                        <span>
-                            <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                        </span>
-                        <span>
-                            <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                        </span>
-                        <span>
-                            <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                        </span>
+                        <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
+                        <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
+                        <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
                     </li>
+
                     <li>
                         <span><?php echo e(__('pricing.trading_basics')); ?></span>
-                        <span>
-                            <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                        </span>
-                        <span>
-                            <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                        </span>
-                        <span>
-                            <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                        </span>
+                        <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
+                        <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
+                        <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
                     </li>
+
                     <li>
                         <span><?php echo e(__('pricing.trading_fundamentals')); ?></span>
-                        <span>
-                            <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                        </span>
-                        <span>
-                            <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                        </span>
-                        <span>
-                            <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                        </span>
+                        <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
+                        <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
+                        <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
                     </li>
+
                     <li>
                         <span><?php echo e(__('pricing.basics_of_risk_management')); ?></span>
-                        <span>
-                            <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                        </span>
-                        <span>
-                            <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                        </span>
-                        <span>
-                            <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                        </span>
+                        <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
+                        <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
+                        <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
                     </li>
+
                     <li>
                         <span><?php echo e(__('pricing.advanced_market_analysis')); ?></span>
-                        <span>
-                            &nbsp;
-                        </span>
-                        <span>
-                            <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                        </span>
-                        <span>
-                            <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                        </span>
+                        <span>&nbsp;</span>
+                        <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
+                        <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
                     </li>
+
                     <li>
                         <span><?php echo e(__('pricing.technical_analysis')); ?></span>
-                        <span>
-                            &nbsp;
-                        </span>
-                        <span>
-                            <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                        </span>
-                        <span>
-                            <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                        </span>
+                        <span>&nbsp;</span>
+                        <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
+                        <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
                     </li>
+
                     <li>
                         <span><?php echo e(__('pricing.advanced_technical_analysis')); ?></span>
-                        <span>
-                            &nbsp;
-                        </span>
-                        <span>
-                            &nbsp;
-                        </span>
-                        <span>
-                            <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                        </span>
+                        <span>&nbsp;</span>
+                        <span>&nbsp;</span>
+                        <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
                     </li>
+
                     <li>
                         <span><?php echo e(__('pricing.trading_strategies')); ?></span>
-                        <span>
-                            &nbsp;
-                        </span>
-                        <span>
-                            &nbsp;
-                        </span>
-                        <span>
-                            <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                        </span>
+                        <span>&nbsp;</span>
+                        <span>&nbsp;</span>
+                        <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
                     </li>
+
                     <li>
                         <span><?php echo e(__('pricing.advanced_risk_management')); ?></span>
-                        <span>
-                            &nbsp;
-                        </span>
-                        <span>
-                            &nbsp;
-                        </span>
-                        <span>
-                            <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                        </span>
+                        <span>&nbsp;</span>
+                        <span>&nbsp;</span>
+                        <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
                     </li>
                 </ul>
             </div>
         </div>
 
+
         <div class="pricing--table pricing--table-mobile">
             <header class="pricing--table-header">
-                <div>
-                    <img src="<?php echo e(asset('assets/images/ranks/silver-rank.png')); ?>" alt="">
-                    <span>
-                        <span><?php echo e(__('pricing.pack')); ?></span>
-                        <h5><?php echo e(__('pricing.silver')); ?></h5>
-                        <span>3 <?php echo e(__('pricing.months')); ?></span>
-                    </span>
-                    <span>
-                        <span><?php echo e(__('pricing.three_zero')); ?> <?php echo e(__('pricing.dh')); ?></span>
-                        <span><?php echo e(__('pricing.three_nine')); ?> <?php echo e(__('pricing.dh')); ?></span>
-                        <div>*<?php echo e(__('pricing.no_inscription_fees')); ?></div>
-                        <?php if(auth()->guard()->check()): ?>
-                            <a class="btn-consultation " href="<?php echo e(route('create-consultation', ['price' => 1000])); ?>">
-                                <?php echo e(__('pricing.consultation')); ?>
+                <?php $__currentLoopData = $packs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pack): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div>
+                        <img src="<?php echo e(asset('assets/images/ranks/' . $pack->image)); ?>" alt="">
+                        <span>
+                            <span><?php echo e(__('pricing.pack')); ?></span>
+                            <h5><?php echo e(__('pricing.silver')); ?></h5>
+                            <span><?php echo e($pack->duration); ?> <?php echo e(__('pricing.months')); ?></span>
+                        </span>
+                        <span>
+                            <span><?php echo e($pack->price); ?> <?php echo e(__('pricing.dh')); ?></span>
+                            <span><?php echo e($pack->old_price); ?> <?php echo e(__('pricing.dh')); ?></span>
+                            <?php if($pack->has_inscription_fees == false): ?>
+                                <div>*<?php echo e(__('pricing.no_inscription_fees')); ?></div>
+                            <?php else: ?>
+                                <div>*<?php echo e(__('pricing.inscription_fees')); ?></div>
+                            <?php endif; ?>
+                            <?php if(auth()->guard()->check()): ?>
+                                <a class="btn-consultation "
+                                    href="<?php echo e(route('create-consultation', ['price' => $pack->price])); ?>">
+                                    <?php echo e(__('pricing.consultation')); ?>
 
-                            </a>
-                        <?php else: ?>
-                            <a class="btn-login" href="<?php echo e(route('login')); ?>">
-                                <?php echo e(__('pricing.login_first')); ?>
+                                </a>
+                            <?php else: ?>
+                                <a class="btn-login" href="<?php echo e(route('login')); ?>">
+                                    <?php echo e(__('pricing.login_first')); ?>
 
-                            </a>
-                        <?php endif; ?>
-                    </span>
-                    <ul>
-                        <li>
-                            <span>
-                                <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                            </span>
-                            <span><?php echo e(__('pricing.live_trading')); ?></span>
-                        </li>
-                        <li>
-                            <span>
-                                <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                            </span>
-                            <span><?php echo e(__('pricing.forex_definitions')); ?></span>
-                        </li>
-                        <li>
-                            <span>
-                                <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                            </span>
-                            <span><?php echo e(__('pricing.trading_basics')); ?></span>
-                        </li>
-                        <li>
-                            <span>
-                                <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                            </span>
-                            <span><?php echo e(__('pricing.trading_fundamentals')); ?></span>
-                        </li>
-                        <li>
-                            <span>
-                                <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                            </span>
-                            <span><?php echo e(__('pricing.basics_of_risk_management')); ?></span>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <img src="<?php echo e(asset('assets/images/ranks/gold-rank.png')); ?>" alt="">
-                    <span>
-                        <span><?php echo e(__('pricing.pack')); ?></span>
-                        <h5><?php echo e(__('pricing.gold')); ?></h5>
-                        <span>6 <?php echo e(__('pricing.months')); ?></span>
-                    </span>
-                    <span>
-                        <span><?php echo e(__('pricing.five')); ?> <?php echo e(__('pricing.dh')); ?></span>
-                        <span><?php echo e(__('pricing.seven')); ?> <?php echo e(__('pricing.dh')); ?></span>
-                        <div>*<?php echo e(__('pricing.no_inscription_fees')); ?></div>
-                        <?php if(auth()->guard()->check()): ?>
-                            <a class="btn-consultation " href="<?php echo e(route('create-consultation', ['price' => 1000])); ?>">
-                                <?php echo e(__('pricing.consultation')); ?>
-
-                            </a>
-                        <?php else: ?>
-                            <a class="btn-login" href="<?php echo e(route('login')); ?>">
-                                <?php echo e(__('pricing.login_first')); ?>
-
-                            </a>
-                        <?php endif; ?>
-                    </span>
-                    <ul>
-                        <li>
-                            <span>
-                                <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                            </span>
-                            <span><?php echo e(__('pricing.live_trading')); ?></span>
-                        </li>
-                        <li>
-                            <span>
-                                <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                            </span>
-                            <span><?php echo e(__('pricing.forex_definitions')); ?></span>
-                        </li>
-                        <li>
-                            <span>
-                                <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                            </span>
-                            <span><?php echo e(__('pricing.trading_basics')); ?></span>
-                        </li>
-                        <li>
-                            <span>
-                                <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                            </span>
-                            <span><?php echo e(__('pricing.trading_fundamentals')); ?></span>
-                        </li>
-                        <li>
-                            <span>
-                                <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                            </span>
-                            <span><?php echo e(__('pricing.basics_of_risk_management')); ?></span>
-                        </li>
-                        <li>
-                            <span>
-                                <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                            </span>
-                            <span><?php echo e(__('pricing.advanced_market_analysis')); ?></span>
-                        </li>
-                        <li>
-                            <span>
-                                <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                            </span>
-                            <span><?php echo e(__('pricing.technical_analysis')); ?></span>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <img src="<?php echo e(asset('assets/images/ranks/diamond-rank.png')); ?>" alt="">
-                    <span>
-                        <span><?php echo e(__('pricing.pack')); ?></span>
-                        <h5><?php echo e(__('pricing.diamond')); ?></h5>
-                        <span>1 <?php echo e(__('pricing.year')); ?></span>
-                    </span>
-                    <span>
-                        <span><?php echo e(__('pricing.ten_thousand')); ?> <?php echo e(__('pricing.dh')); ?></span>
-                        <span><?php echo e(__('pricing.forteen')); ?> <?php echo e(__('pricing.dh')); ?></span>
-                        <div>*<?php echo e(__('pricing.no_inscription_fees')); ?></div>
-                        <?php if(auth()->guard()->check()): ?>
-                            <a class="btn-consultation " href="<?php echo e(route('create-consultation', ['price' => 1000])); ?>">
-                                <?php echo e(__('pricing.consultation')); ?>
-
-                            </a>
-                        <?php else: ?>
-                            <a class="btn-login" href="<?php echo e(route('login')); ?>">
-                                <?php echo e(__('pricing.login_first')); ?>
-
-                            </a>
-                        <?php endif; ?>
-                    </span>
-                    <ul>
-                        <li>
-                            <span>
-                                <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                            </span>
-                            <span><?php echo e(__('pricing.live_trading')); ?></span>
-                        </li>
-                        <li>
-                            <span>
-                                <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                            </span>
-                            <span><?php echo e(__('pricing.forex_definitions')); ?></span>
-                        </li>
-                        <li>
-                            <span>
-                                <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                            </span>
-                            <span><?php echo e(__('pricing.trading_basics')); ?></span>
-                        </li>
-                        <li>
-                            <span>
-                                <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                            </span>
-                            <span><?php echo e(__('pricing.trading_fundamentals')); ?></span>
-                        </li>
-                        <li>
-                            <span>
-                                <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                            </span>
-                            <span><?php echo e(__('pricing.basics_of_risk_management')); ?></span>
-                        </li>
-                        <li>
-                            <span>
-                                <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                            </span>
-                            <span><?php echo e(__('pricing.advanced_market_analysis')); ?></span>
-                        </li>
-                        <li>
-                            <span>
-                                <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                            </span>
-                            <span><?php echo e(__('pricing.technical_analysis')); ?></span>
-                        </li>
-                        <li>
-                            <span>
-                                <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                            </span>
-                            <span><?php echo e(__('pricing.advanced_technical_analysis')); ?></span>
-                        </li>
-                        <li>
-                            <span>
-                                <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                            </span>
-                            <span><?php echo e(__('pricing.trading_strategies')); ?></span>
-                        </li>
-                        <li>
-                            <span>
-                                <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
-                            </span>
-                            <span><?php echo e(__('pricing.advanced_risk_management')); ?></span>
-                        </li>
-                    </ul>
-                </div>
+                                </a>
+                            <?php endif; ?>
+                        </span>
+                        <ul>
+                            <li>
+                                <span>
+                                    <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
+                                </span>
+                                <span><?php echo e(__('pricing.live_trading')); ?></span>
+                            </li>
+                            <li>
+                                <span>
+                                    <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
+                                </span>
+                                <span><?php echo e(__('pricing.forex_definitions')); ?></span>
+                            </li>
+                            <li>
+                                <span>
+                                    <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
+                                </span>
+                                <span><?php echo e(__('pricing.trading_basics')); ?></span>
+                            </li>
+                            <li>
+                                <span>
+                                    <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
+                                </span>
+                                <span><?php echo e(__('pricing.trading_fundamentals')); ?></span>
+                            </li>
+                            <li>
+                                <span>
+                                    <img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt="">
+                                </span>
+                                <span><?php echo e(__('pricing.basics_of_risk_management')); ?></span>
+                            </li>
+                        </ul>
+                    </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </header>
 
         </div>

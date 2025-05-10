@@ -45,6 +45,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     // routes/web.php
     Route::post('/send-email/{id}', [ConsultationController::class, 'sendEmail'])->name('consultations.sendEmail');
     Route::post('/send-email-anyerror/{id}', [ConsultationController::class, 'sendEmailError'])->name('consultations.sendEmailError');
+
+    Route::get('/traders', [App\Http\Controllers\TraderController::class, 'index'])->name('traders.index');
+    Route::post('/traders/import', [App\Http\Controllers\TraderController::class, 'import'])->name('traders.import');
+    Route::get('/traders/export-template', [App\Http\Controllers\TraderController::class, 'exportTemplate'])->name('traders.export-template');
 });
 
 Route::group(

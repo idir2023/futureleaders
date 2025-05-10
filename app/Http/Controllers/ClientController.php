@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Coach;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ConsultationTerminer;
+use App\Models\Pack;
 use App\Models\User;
 
 
@@ -15,7 +16,8 @@ class ClientController extends Controller
     // Afficher la page d'accueil
     public function index()
     {
-        return view('index'); // Adapté à ta vue
+        $packs = Pack::all();
+        return view('index', compact('packs')); // Adapté à ta vue
     }
 
     // Afficher le formulaire de création de consultation

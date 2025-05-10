@@ -12,12 +12,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-      
+
         // Call the AdminUserSeeder to insert the admin user
         $this->call(AdminUserSeeder::class);
         // Call the CoachSeeder to insert the coach users
         $this->call(CoachSeeder::class);
         // Call the DriveSeeder to insert the drive data
         $this->call(DriveSeeder::class);
-     }
+        // database/seeders/DatabaseSeeder.php
+        $this->call(PackSeeder::class);
+
+    }
 }
