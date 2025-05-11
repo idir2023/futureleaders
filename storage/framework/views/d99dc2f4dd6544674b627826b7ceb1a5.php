@@ -203,13 +203,22 @@
                                 <tr>
                                     <td><strong>Code promo</strong></td>
                                     <td>
-                                        <?php if(auth()->user()->code_promo): ?>
-                                            <span class="badge bg-success"><?php echo e(auth()->user()->code_promo); ?></span>
+                                        <?php
+                                            $coach = \App\Models\Coach::where('user_id', auth()->id())->first();
+                                            $userCode = auth()->user()->code_promo ?? null;
+                                            $coachCode = $coach?->code_promo ?? null;
+                                        ?>
+
+                                        <?php if($coachCode): ?>
+                                            <span class="badge bg-success"><?php echo e($coachCode); ?></span>
+                                        <?php elseif($userCode): ?>
+                                            <span class="badge bg-success"><?php echo e($userCode); ?></span>
                                         <?php else: ?>
                                             <span class="badge bg-secondary">Aucun code promo</span>
                                         <?php endif; ?>
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <td><strong>Mon profit</strong></td>
                                     <td>

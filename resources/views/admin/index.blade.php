@@ -200,13 +200,22 @@
                                 <tr>
                                     <td><strong>Code promo</strong></td>
                                     <td>
-                                        @if (auth()->user()->code_promo)
-                                            <span class="badge bg-success">{{ auth()->user()->code_promo }}</span>
+                                        @php
+                                            $coach = \App\Models\Coach::where('user_id', auth()->id())->first();
+                                            $userCode = auth()->user()->code_promo ?? null;
+                                            $coachCode = $coach?->code_promo ?? null;
+                                        @endphp
+
+                                        @if ($coachCode)
+                                            <span class="badge bg-success">{{ $coachCode }}</span>
+                                        @elseif ($userCode)
+                                            <span class="badge bg-success">{{ $userCode }}</span>
                                         @else
                                             <span class="badge bg-secondary">Aucun code promo</span>
                                         @endif
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <td><strong>Mon profit</strong></td>
                                     <td>

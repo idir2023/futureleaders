@@ -102,6 +102,8 @@ class CoachController extends Controller
             'email' => $validated['email'],
             'password' => bcrypt($validated['password']), // Attention! Il faut définir un mot de passe ici (provisoire ou demander à l'utilisateur)
             'role' => 'coach',
+            'telephone' => $validated['numero'],
+            'rank' => 'Master',
         ]);
 
         // Create the coach

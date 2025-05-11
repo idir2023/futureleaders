@@ -48,8 +48,8 @@ class CoachSeeder extends Seeder
                 'email' => $data['email'],
                 'password' => Hash::make('12345678'), // Mot de passe temporaire
                 'telephone' => $data['numero'],
-                'code_promo' => $data['code_promo'],
                 'role' => 'coach',
+                'rank' => 'Master',
             ]);
 
             // Créer le coach lié à l'utilisateur
