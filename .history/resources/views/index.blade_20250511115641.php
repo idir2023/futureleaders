@@ -781,14 +781,14 @@
                 <ul>
                     <li>
                         <span>{{ __('pricing.live_trading') }}</span>
-                              <span>&nbsp;</span>
+                        
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                     </li>
 
                     <li>
                         <span>{{ __('pricing.forex_definitions') }}</span>
-                        <span>&nbsp;</span>
+                     
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                     </li>

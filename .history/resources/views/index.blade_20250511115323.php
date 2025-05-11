@@ -711,7 +711,7 @@
                     <p class="main--content"> {{ __('pricing.content') }} </p>
                 </div>
                 <img src="{{ asset('assets/images/certificates.png') }}" alt="">
-                <div class="black--ellipse">&nbsp;</div>
+                
             </header>
 
             <div class="pricing--regular">
@@ -719,13 +719,13 @@
                     <div>
                         <h5>{{ __('pricing.regular') }} <span>{{ __('pricing.subscription') }}</span></h5>
                     </div>
-                    <span><span>&nbsp;</span></span>
+              
                     <div>
                         <p>
                             {{ __('pricing.regular_desc') }}
                         </p>
                     </div>
-                    <span><span>&nbsp;</span></span>
+                    
                     <div class="price">
                         <div><span> {{ __('pricing.one_two') }}
                                 {{ __('pricing.dh') }}</span><span>/{{ __('pricing.month') }}</span></div>
@@ -781,70 +781,71 @@
                 <ul>
                     <li>
                         <span>{{ __('pricing.live_trading') }}</span>
-                              <span>&nbsp;</span>
+                        
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                     </li>
 
                     <li>
                         <span>{{ __('pricing.forex_definitions') }}</span>
-                        <span>&nbsp;</span>
+                        
+                     
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                     </li>
 
                     <li>
                         <span>{{ __('pricing.trading_basics') }}</span>
-                        <span>&nbsp;</span>
+                   
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                     </li>
 
                     <li>
                         <span>{{ __('pricing.trading_fundamentals') }}</span>
-                        <span>&nbsp;</span>
+                        
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                     </li>
 
                     <li>
                         <span>{{ __('pricing.basics_of_risk_management') }}</span>
-                        <span>&nbsp;</span>
+                    
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                     </li>
 
                     <li>
                         <span>{{ __('pricing.advanced_market_analysis') }}</span>
-                        <span>&nbsp;</span>
+                       
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                     </li>
 
                     <li>
                         <span>{{ __('pricing.technical_analysis') }}</span>
-                        <span>&nbsp;</span>
+                  
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                     </li>
 
                     <li>
                         <span>{{ __('pricing.advanced_technical_analysis') }}</span>
-                        <span>&nbsp;</span>
+                     
                         <span>&nbsp;</span>
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                     </li>
 
                     <li>
                         <span>{{ __('pricing.trading_strategies') }}</span>
-                        <span>&nbsp;</span>
+                   
                         <span>&nbsp;</span>
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                     </li>
 
                     <li>
                         <span>{{ __('pricing.advanced_risk_management') }}</span>
-                        <span>&nbsp;</span>
+                    
                         <span>&nbsp;</span>
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                     </li>
