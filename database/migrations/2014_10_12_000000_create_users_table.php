@@ -20,10 +20,10 @@ return new class extends Migration
             $table->string('code_promo')->nullable()->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            // Nullable parrain_id (self-referencing foreign key)
             $table->unsignedBigInteger('parrain_id')->nullable();
             $table->foreign('parrain_id')->references('id')->on('users')->onDelete('set null');
-            $table->string('profit_user')->nullable();
+            $table->string('profit_user')->nullable(); // commission
+            $table->string('rank')->nullable(); // commission
             $table->rememberToken();
             $table->enum('role', ['admin', 'user', 'coach'])->default('user'); // Nouveau champ role
             $table->timestamps();

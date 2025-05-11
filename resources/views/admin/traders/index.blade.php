@@ -33,11 +33,14 @@
                         <h3 class="mb-0">Gestion des Traders</h3>
                         <div>
                             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#importModal">
-                                <i class="fas fa-file-import"></i> Importer
+                                <i class="typcn typcn-download-outline"></i> Importer
                             </button>
-                            <a href="{{ route('traders.export-template') }}" class="btn btn-outline-light">
-                                <i class="fas fa-download"></i> Télécharger Template
+
+                            <a href="{{ route('traders.export') }}" class="btn btn-outline-light">
+                                <i class="typcn typcn-upload-outline"></i> Exporter
                             </a>
+
+
                         </div>
                     </div>
                 </div>
@@ -45,7 +48,7 @@
         </div>
 
         <!-- Stats Cards -->
-        <div class="row mb-4">
+        {{-- <div class="row mb-4">
             <div class="col-xl-3 col-md-6">
                 <div class="card bg-success text-white">
                     <div class="card-body">
@@ -106,7 +109,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- Traders Table -->
         <div class="row">
@@ -167,10 +170,7 @@
                                             <td>{{ number_format($trader->revenue, 2) }}</td>
                                             <td>
                                                 <div class="btn-group" role="group">
-                                                    <button type="button" class="btn btn-sm btn-info view-trader"
-                                                        data-id="{{ $trader->id }}">
-                                                        <i class="typcn typcn-eye"></i>
-                                                    </button>
+
                                                     <button type="button" class="btn btn-sm btn-warning edit-trader"
                                                         data-id="{{ $trader->id }}">
                                                         <i class="typcn typcn-edit"></i>
@@ -178,7 +178,7 @@
                                                     <button type="button" class="btn btn-sm btn-danger delete-trader"
                                                         data-id="{{ $trader->id }}" data-bs-toggle="modal"
                                                         data-bs-target="#confirmDeleteModal">
-                                                        <i class="typcn typcn-trash"></i> 
+                                                        <i class="typcn typcn-trash"></i>
                                                     </button>
                                                 </div>
                                             </td>

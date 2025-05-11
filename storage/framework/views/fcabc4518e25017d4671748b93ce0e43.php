@@ -33,11 +33,14 @@
                         <h3 class="mb-0">Gestion des Traders</h3>
                         <div>
                             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#importModal">
-                                <i class="fas fa-file-import"></i> Importer
+                                <i class="typcn typcn-download-outline"></i> Importer
                             </button>
-                            <a href="<?php echo e(route('traders.export-template')); ?>" class="btn btn-outline-light">
-                                <i class="fas fa-download"></i> Télécharger Template
+
+                            <a href="<?php echo e(route('traders.export')); ?>" class="btn btn-outline-light">
+                                <i class="typcn typcn-upload-outline"></i> Exporter
                             </a>
+
+
                         </div>
                     </div>
                 </div>
@@ -45,68 +48,7 @@
         </div>
 
         <!-- Stats Cards -->
-        <div class="row mb-4">
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-success text-white">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <h5 class="card-title">Total Revenue</h5>
-                                <h3 class="card-text"><?php echo e(number_format($stats['total_revenue'], 2)); ?> dh</h3>
-                            </div>
-                            <div class="stats-icon">
-                                <i class="fas fa-money-bill-wave fa-2x"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-info text-white">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <h5 class="card-title">Broker Commission</h5>
-                                <h3 class="card-text"><?php echo e(number_format($stats['broker_commission'], 2)); ?> dh</h3>
-                            </div>
-                            <div class="stats-icon">
-                                <i class="fas fa-percentage fa-2x"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-danger text-white">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <h5 class="card-title">Academy Commission</h5>
-                                <h3 class="card-text"><?php echo e(number_format($stats['academy_commission'], 2)); ?> dh</h3>
-                            </div>
-                            <div class="stats-icon">
-                                <i class="fas fa-university fa-2x"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-primary text-white">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <h5 class="card-title">Total Commission</h5>
-                                <h3 class="card-text"><?php echo e(number_format($stats['total_commission'], 2)); ?> dh</h3>
-                            </div>
-                            <div class="stats-icon">
-                                <i class="fas fa-chart-line fa-2x"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
 
         <!-- Traders Table -->
         <div class="row">
@@ -169,10 +111,7 @@
                                             <td><?php echo e(number_format($trader->revenue, 2)); ?></td>
                                             <td>
                                                 <div class="btn-group" role="group">
-                                                    <button type="button" class="btn btn-sm btn-info view-trader"
-                                                        data-id="<?php echo e($trader->id); ?>">
-                                                        <i class="typcn typcn-eye"></i>
-                                                    </button>
+
                                                     <button type="button" class="btn btn-sm btn-warning edit-trader"
                                                         data-id="<?php echo e($trader->id); ?>">
                                                         <i class="typcn typcn-edit"></i>
@@ -180,7 +119,7 @@
                                                     <button type="button" class="btn btn-sm btn-danger delete-trader"
                                                         data-id="<?php echo e($trader->id); ?>" data-bs-toggle="modal"
                                                         data-bs-target="#confirmDeleteModal">
-                                                        <i class="typcn typcn-trash"></i> 
+                                                        <i class="typcn typcn-trash"></i>
                                                     </button>
                                                 </div>
                                             </td>

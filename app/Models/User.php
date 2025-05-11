@@ -26,7 +26,8 @@ class User extends Authenticatable
         'role', // Added is_admin attribute
         'code_promo',
         'parrain_id',
-        'profit_user'
+        'profit_user',
+        'rank'
     ];
 
     /**
