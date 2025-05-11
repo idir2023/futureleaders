@@ -50,7 +50,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/traders', [TraderController::class, 'index'])->name('traders.index');
     Route::delete('/traders/{id}', [TraderController::class, 'destroy'])->name('traders.destroy');
     Route::post('/traders/import', [TraderController::class, 'import'])->name('traders.import');
+    Route::get('/traders/export', [TraderController::class, 'export'])->name('traders.export');
     Route::get('/traders/export-template', [TraderController::class, 'exportTemplate'])->name('traders.export-template');
+
 });
 
 Route::group(

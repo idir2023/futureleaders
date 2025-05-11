@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TradersExport;
 use App\Models\Trader;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\TradersImport;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+
 
 class TraderController extends Controller
 {
@@ -30,24 +33,26 @@ class TraderController extends Controller
         ]);
 
         try {
-            // Save the file in public/templates
+            // Récupérer le fichier
             $file = $request->file('file');
-            $destinationPath = public_path('templates');
-            $fileName = 'traders_template.xlsx';
 
-            if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0755, true);
-            }
+            // Nom unique pour éviter les conflits
+            $fileName = 'traders_template_' . uniqid() . '.' . $file->getClientOriginalExtension();
 
-            $file->move($destinationPath, $fileName);
+            // Sauvegarde dans le dossier storage/app/templates
+            $path = $file->storeAs('templates', $fileName);
 
-            // Import after saving
-            Excel::import(new TradersImport, $destinationPath . '/' . $fileName);
+            // Importer les données
+            Excel::import(new TradersImport, storage_path('app/' . $path));
 
             return redirect()->route('traders.index')->with('success', 'Données importées avec succès et fichier sauvegardé.');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Erreur lors de l\'importation: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Erreur lors de l\'importation : ' . $e->getMessage());
         }
+    }
+    public function export()
+    {
+        return Excel::download(new TradersExport, 'traders.xlsx');
     }
 
 
@@ -56,15 +61,21 @@ class TraderController extends Controller
         return response()->download(public_path('templates/traders_template.xlsx'));
     }
 
-    public function destroy($id)
-    {
-        $trader = Trader::findOrFail($id);
+public function destroy($id)
+{
+    $trader = Trader::findOrFail($id);
 
-        // Delete the trader
-        if ($trader->delete()) {
-            return response()->json(['success' => true]);
-        }
-
-        return response()->json(['success' => false], 500);
+    // Delete the related user if exists
+    if ($trader->user) {
+        $trader->user->delete();
     }
+
+    // Delete the trader
+    if ($trader->delete()) {
+        return response()->json(['success' => true]);
+    }
+
+    return response()->json(['success' => false], 500);
+}
+
 }

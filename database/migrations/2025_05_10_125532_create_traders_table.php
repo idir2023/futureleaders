@@ -13,21 +13,33 @@ return new class extends Migration
     {
         Schema::create('traders', function (Blueprint $table) {
             $table->id();
-             $table->string('name')->nullable();
+            $table->string('name')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('email')->nullable();
             $table->string('address')->nullable();
-            $table->datetime('birthdate')->nullable();
+            $table->date('birthdate')->nullable();
+
+            // Pack status
             $table->string('pack')->default('Non valide');
-            $table->datetime('start_date')->nullable();
-            $table->datetime('end_date')->nullable();
+
+            // Dates
+            $table->timestamp('start_date')->nullable();
+            $table->timestamp('end_date')->nullable();
+
+            // Rank and status
             $table->string('rank')->default('Unranked');
+            $table->string('status')->default('Non valide');
+
+            // Commissions
             $table->decimal('commission', 10, 2)->default(0);
             $table->decimal('revenue', 10, 2)->default(0);
             $table->decimal('broker_commission', 10, 2)->default(0);
             $table->decimal('academy_commission', 10, 2)->default(0);
             $table->decimal('total_commission', 10, 2)->default(0);
-            $table->string('status')->default('Non valide');
+
+            // Relation avec users
+            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
+
             $table->timestamps();
         });
     }

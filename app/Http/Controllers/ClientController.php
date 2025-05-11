@@ -151,18 +151,24 @@ class ClientController extends Controller
 
                     if ($nb < 5) {
                         $profit = $request->prix * 0.20;
+                        $rank = 'Unranked';
                     } elseif ($nb < 10) {
                         $profit = $request->prix * 0.25;
+                        $rank = 'Silver';
                     } elseif ($nb < 25) {
                         $profit = $request->prix * 0.30;
+                        $rank = 'Gold';
                     } elseif ($nb < 50) {
                         $profit = $request->prix * 0.15;
+                        $rank = 'Diamond';
                     } else {
                         $profit = $request->prix * 0.30;
+                        $rank = 'Master';
                     }
 
                     $current->update([
                         'profit_user' => $current->profit_user + $profit,
+                        'rank' => $rank,
                     ]);
 
                     $current = $current->parrain;
