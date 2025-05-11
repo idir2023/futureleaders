@@ -52,7 +52,7 @@ class DashboardController extends Controller
             $CoachesCount = $Coaches->count();
             $ConsultationsCount = $Consultations->count();
             $UsersCount = User::where('role', 'user')->count();
-            $consultationsClient = Consultation::where('user_id', auth()->user()->id)->get();
+
         } elseif (auth()->user()->role == 'coach') {
             // Récupérer les données spécifiques à un coach
             $Coaches = Coach::where('user_id', auth()->user()->id)->get();
@@ -64,8 +64,10 @@ class DashboardController extends Controller
             $CoachesCount = $Coaches->count();
             $ConsultationsCount = $Consultations->count();
             $UsersCount = User::where('role', 'user')->count();
-            $consultationsClient = Consultation::where('user_id', auth()->user()->id)->get();
         }
+
+        $consultationsClient = Consultation::where('user_id', auth()->user()->id)->get();
+
 
         // Retourner la vue avec les données appropriées
         return view('admin.index', compact('Coaches', 'Consultations', 'consultationsClient', 'Users', 'CoachesCount', 'ConsultationsCount', 'UsersCount'));
@@ -92,4 +94,5 @@ class DashboardController extends Controller
 
         return $descendants;
     }
+    
 }
