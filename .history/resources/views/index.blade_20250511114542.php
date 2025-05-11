@@ -781,42 +781,43 @@
                 <ul>
                     <li>
                         <span>{{ __('pricing.live_trading') }}</span>
-                              <span>&nbsp;</span>
+                        
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                     </li>
 
                     <li>
                         <span>{{ __('pricing.forex_definitions') }}</span>
-                        <span>&nbsp;</span>
+                        
+                     
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                     </li>
 
                     <li>
                         <span>{{ __('pricing.trading_basics') }}</span>
-                        <span>&nbsp;</span>
+                   
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                     </li>
 
                     <li>
                         <span>{{ __('pricing.trading_fundamentals') }}</span>
-                        <span>&nbsp;</span>
+                        
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                     </li>
 
                     <li>
                         <span>{{ __('pricing.basics_of_risk_management') }}</span>
-                        <span>&nbsp;</span>
+                    
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                     </li>
 
                     <li>
                         <span>{{ __('pricing.advanced_market_analysis') }}</span>
-                        <span>&nbsp;</span>
+                       
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                         <span><img src="{{ asset('assets/icons/check.svg') }}" alt=""></span>
                     </li>
