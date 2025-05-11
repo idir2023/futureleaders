@@ -47,6 +47,8 @@ class CoachSeeder extends Seeder
                 'name' => $data['nom'] . ' ' . $data['prenom'],
                 'email' => $data['email'],
                 'password' => Hash::make('12345678'), // Mot de passe temporaire
+                'telephone' => $data['numero'],
+                'code_promo' => $data['code_promo'],
                 'role' => 'coach',
             ]);
 

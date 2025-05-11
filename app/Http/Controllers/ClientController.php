@@ -171,32 +171,20 @@ class ClientController extends Controller
             $consultation->save();
 
             // Envoi d'un email aux admins
-            User::where('role', 'admin')->each(function ($user) use ($consultation) {
-                Mail::to($user->email)->send(new ConsultationTerminer($consultation));
-            });
+            // User::where('role', 'admin')->each(function ($user) use ($consultation) {
+            //     Mail::to($user->email)->send(new ConsultationTerminer($consultation));
+            // });
 
-            // Envoi d'un email au coach
-            if ($consultation->coach) {
-                Mail::to($consultation->coach->email)->send(new ConsultationTerminer($consultation));
-            }
+            // // Envoi d'un email au coach
+            // if ($consultation->coach) {
+            //     Mail::to($consultation->coach->email)->send(new ConsultationTerminer($consultation));
+            // }
 
             return redirect()->route('home')->with('success', 'Le reçu a été téléchargé avec succès!');
         }
 
         return back()->withErrors(['recu' => 'Veuillez télécharger un reçu valide.']);
     }
-
-    // private function getAllDescendants($user)
-    // {
-    //     $descendants = [];
-
-    //     foreach ($user->filleuls as $filleul) {
-    //         $descendants[] = $filleul;
-    //         $descendants = array_merge($descendants, $this->getAllDescendants($filleul));
-    //     }
-
-    //     return $descendants;
-    // }
 
     public function getAllDescendants($user)
     {

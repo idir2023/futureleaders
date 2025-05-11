@@ -784,35 +784,35 @@
                 <ul>
                     <li>
                         <span><?php echo e(__('pricing.live_trading')); ?></span>
-                        <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
+                              <span>&nbsp;</span>
                         <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
                         <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
                     </li>
 
                     <li>
                         <span><?php echo e(__('pricing.forex_definitions')); ?></span>
-                        <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
+                        <span>&nbsp;</span>
                         <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
                         <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
                     </li>
 
                     <li>
                         <span><?php echo e(__('pricing.trading_basics')); ?></span>
-                        <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
+                        <span>&nbsp;</span>
                         <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
                         <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
                     </li>
 
                     <li>
                         <span><?php echo e(__('pricing.trading_fundamentals')); ?></span>
-                        <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
+                        <span>&nbsp;</span>
                         <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
                         <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
                     </li>
 
                     <li>
                         <span><?php echo e(__('pricing.basics_of_risk_management')); ?></span>
-                        <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
+                        <span>&nbsp;</span>
                         <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
                         <span><img src="<?php echo e(asset('assets/icons/check.svg')); ?>" alt=""></span>
                     </li>

@@ -97,7 +97,7 @@
         </div> <!-- End of Recent Consultations Section -->
     <?php elseif(auth()->user()->role === 'user'): ?>
         <!-- Client Consultations Section -->
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header bg-light">
@@ -134,7 +134,7 @@
 
 
                                         </td>
-                                        
+
                                         <td>
                                             <?php if($consultation->drive_link && now()->lessThan($consultation->drive_link_expire_at)): ?>
                                                 <a href="<?php echo e($consultation->drive_link); ?>" target="_blank"
@@ -161,6 +161,19 @@
                     </div>
                 </div>
             </div>
+            <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
+                <a class="btn btn-sm d-flex align-items-center" href="<?php echo e(route('home')); ?>"
+                    style="background: linear-gradient(45deg, #cba075, #cba075); color: #fff; padding: 10px 20px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); transition: background 0.3s ease, transform 0.2s ease;">
+                    <i class="typcn typcn-arrow-back mr-1"></i> Retour à l'accueil
+                </a>
+            </div>
+        </div>
+        <!-- End of Client Consultations Section -->
+    <?php endif; ?>
+
+    <?php if(auth()->user()->role === 'user' || auth()->user()->role === 'coach'): ?>
+        <!-- User Information Section -->
+        <div class="row">
             <!-- Back to Home Button -->
             <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
                 <div class="card shadow-sm border-0 w-100">
@@ -202,10 +215,20 @@
                                     <td>
                                         <?php if(auth()->user()->profit_user && auth()->user()->profit_user > 0): ?>
                                             <span class="badge bg-success">
-                                                <?php echo e(number_format(auth()->user()->profit_user, 2)); ?> MAD
+                                                <?php echo e(number_format(auth()->user()->profit_user, 2)); ?> $
                                             </span>
                                         <?php else: ?>
                                             <span class="badge bg-secondary">Aucun profit</span>
+                                        <?php endif; ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Rank</strong></td>
+                                    <td>
+                                        <?php if(auth()->user()->rank): ?>
+                                            <span class="badge bg-success"><?php echo e(auth()->user()->rank); ?></span>
+                                        <?php else: ?>
+                                            <span class="badge bg-secondary">Aucun rank</span>
                                         <?php endif; ?>
                                     </td>
                                 </tr>
@@ -216,12 +239,6 @@
             </div>
 
 
-            <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
-                <a class="btn btn-sm d-flex align-items-center" href="<?php echo e(route('home')); ?>"
-                    style="background: linear-gradient(45deg, #cba075, #cba075); color: #fff; padding: 10px 20px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); transition: background 0.3s ease, transform 0.2s ease;">
-                    <i class="typcn typcn-arrow-back mr-1"></i> Retour à l'accueil
-                </a>
-            </div>
 
             <!-- Optional hover effect -->
             <style>
@@ -230,9 +247,9 @@
                     transform: scale(1.05);
                 }
             </style>
-        </div> <!-- End of Client Consultations Section -->
+        </div>
+        <!-- End of User Information Section -->
     <?php endif; ?>
-
 <?php $__env->stopSection(); ?>
 <style>
     .aaa {

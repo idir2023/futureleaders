@@ -97,7 +97,7 @@
         </div> <!-- End of Recent Consultations Section -->
     @elseif(auth()->user()->role === 'user')
         <!-- Client Consultations Section -->
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header bg-light">
@@ -129,16 +129,7 @@
                                         <td>{{ optional($consultation->coach)->numero ?? 'N/A' }}
 
                                         </td>
-                                        {{-- <td>
-                                            @if ($consultation->drive_link)
-                                                <a href="{{ $consultation->drive_link }}" target="_blank"
-                                                    class="btn btn-info btn-sm mt-1" title="Voir le lien Google Drive">
-                                                    <i class="typcn typcn-document-text"></i> Voir Drive
-                                                </a>
-                                            @else
-                                                <span class="text-muted">Aucun lien</span>
-                                            @endif
-                                        </td> --}}
+
                                         <td>
                                             @if ($consultation->drive_link && now()->lessThan($consultation->drive_link_expire_at))
                                                 <a href="{{ $consultation->drive_link }}" target="_blank"
@@ -167,6 +158,19 @@
                     </div>
                 </div>
             </div>
+            <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
+                <a class="btn btn-sm d-flex align-items-center" href="{{ route('home') }}"
+                    style="background: linear-gradient(45deg, #cba075, #cba075); color: #fff; padding: 10px 20px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); transition: background 0.3s ease, transform 0.2s ease;">
+                    <i class="typcn typcn-arrow-back mr-1"></i> Retour à l'accueil
+                </a>
+            </div>
+        </div>
+        <!-- End of Client Consultations Section -->
+    @endif
+
+    @if (auth()->user()->role === 'user' || auth()->user()->role === 'coach')
+        <!-- User Information Section -->
+        <div class="row">
             <!-- Back to Home Button -->
             <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
                 <div class="card shadow-sm border-0 w-100">
@@ -208,10 +212,20 @@
                                     <td>
                                         @if (auth()->user()->profit_user && auth()->user()->profit_user > 0)
                                             <span class="badge bg-success">
-                                                {{ number_format(auth()->user()->profit_user, 2) }} MAD
+                                                {{ number_format(auth()->user()->profit_user, 2) }} $
                                             </span>
                                         @else
                                             <span class="badge bg-secondary">Aucun profit</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Rank</strong></td>
+                                    <td>
+                                        @if (auth()->user()->rank)
+                                            <span class="badge bg-success">{{ auth()->user()->rank }}</span>
+                                        @else
+                                            <span class="badge bg-secondary">Aucun rank</span>
                                         @endif
                                     </td>
                                 </tr>
@@ -222,12 +236,6 @@
             </div>
 
 
-            <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
-                <a class="btn btn-sm d-flex align-items-center" href="{{ route('home') }}"
-                    style="background: linear-gradient(45deg, #cba075, #cba075); color: #fff; padding: 10px 20px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); transition: background 0.3s ease, transform 0.2s ease;">
-                    <i class="typcn typcn-arrow-back mr-1"></i> Retour à l'accueil
-                </a>
-            </div>
 
             <!-- Optional hover effect -->
             <style>
@@ -236,9 +244,9 @@
                     transform: scale(1.05);
                 }
             </style>
-        </div> <!-- End of Client Consultations Section -->
+        </div>
+        <!-- End of User Information Section -->
     @endif
-
 @endsection
 <style>
     .aaa {
