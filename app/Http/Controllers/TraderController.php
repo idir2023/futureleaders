@@ -50,32 +50,22 @@ class TraderController extends Controller
             return redirect()->back()->with('error', 'Erreur lors de l\'importation : ' . $e->getMessage());
         }
     }
-    public function export()
+
+
+    public function destroy($id)
     {
-        return Excel::download(new TradersExport, 'traders.xlsx');
+        $trader = Trader::findOrFail($id);
+
+        // Delete the related user if exists
+        if ($trader->user) {
+            $trader->user->delete();
+        }
+
+        // Delete the trader
+        if ($trader->delete()) {
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false], 500);
     }
-
-
-    public function exportTemplate()
-    {
-        return response()->download(public_path('templates/traders_template.xlsx'));
-    }
-
-public function destroy($id)
-{
-    $trader = Trader::findOrFail($id);
-
-    // Delete the related user if exists
-    if ($trader->user) {
-        $trader->user->delete();
-    }
-
-    // Delete the trader
-    if ($trader->delete()) {
-        return response()->json(['success' => true]);
-    }
-
-    return response()->json(['success' => false], 500);
-}
-
 }

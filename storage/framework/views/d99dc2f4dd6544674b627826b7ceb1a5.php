@@ -234,13 +234,30 @@
                                 <tr>
                                     <td><strong>Rank</strong></td>
                                     <td>
-                                        <?php if(auth()->user()->rank): ?>
-                                            <span class="badge bg-success"><?php echo e(auth()->user()->rank); ?></span>
+                                        <?php
+                                            $rank = auth()->user()->rank;
+                                        ?>
+
+                                        <?php if($rank): ?>
+                                            <?php if($rank == 'Silver'): ?>
+                                                
+                                                <img src="<?php echo e(asset('assets/silver.png')); ?>" alt="">
+                                            <?php elseif($rank == 'Gold'): ?>
+                                                
+                                                <img src="<?php echo e(asset('assets/gold.png')); ?>" alt="">
+                                            <?php elseif($rank == 'Diamond'): ?>
+                                                
+                                                <img src="<?php echo e(asset('assets/diamond.png')); ?>" alt="">
+                                            <?php elseif($rank == 'Master'): ?>
+                                                
+                                                <img src="<?php echo e(asset('assets/master.png')); ?>" alt="">
+                                            <?php endif; ?>
                                         <?php else: ?>
-                                            <span class="badge bg-secondary">Aucun rank</span>
+                                            <span class="badge bg-secondary">Unranked</span>
                                         <?php endif; ?>
                                     </td>
                                 </tr>
+
                             </tbody>
                         </table>
                     </div>

@@ -36,11 +36,6 @@
                                 <i class="typcn typcn-download-outline"></i> Importer
                             </button>
 
-                            <a href="<?php echo e(route('traders.export')); ?>" class="btn btn-outline-light">
-                                <i class="typcn typcn-upload-outline"></i> Exporter
-                            </a>
-
-
                         </div>
                     </div>
                 </div>
@@ -159,10 +154,7 @@
                             <input type="file" class="form-control" id="file" name="file"
                                 accept=".xlsx,.xls,.csv" required>
                         </div>
-                        <div class="alert alert-info">
-                            <i class="fas fa-info-circle"></i> Assurez-vous que votre fichier respecte le format requis.
-                            <a href="<?php echo e(route('traders.export-template')); ?>">Télécharger le template</a>
-                        </div>
+                        
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>

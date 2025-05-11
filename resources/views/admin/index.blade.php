@@ -231,13 +231,30 @@
                                 <tr>
                                     <td><strong>Rank</strong></td>
                                     <td>
-                                        @if (auth()->user()->rank)
-                                            <span class="badge bg-success">{{ auth()->user()->rank }}</span>
+                                        @php
+                                            $rank = auth()->user()->rank;
+                                        @endphp
+
+                                        @if ($rank)
+                                            @if ($rank == 'Silver')
+                                                {{-- <span class="badge bg-secondary">{{ $rank }}</span> --}}
+                                                <img src="{{ asset('assets/silver.png') }}" alt="">
+                                            @elseif ($rank == 'Gold')
+                                                {{-- <span class="badge bg-warning">{{ $rank }}</span> --}}
+                                                <img src="{{ asset('assets/gold.png') }}" alt="">
+                                            @elseif ($rank == 'Diamond')
+                                                {{-- <span class="badge bg-primary">{{ $rank }}</span> --}}
+                                                <img src="{{ asset('assets/diamond.png') }}" alt="">
+                                            @elseif ($rank == 'Master')
+                                                {{-- <span class="badge bg-info">{{ $rank }}</span> --}}
+                                                <img src="{{ asset('assets/master.png') }}" alt="">
+                                            @endif
                                         @else
-                                            <span class="badge bg-secondary">Aucun rank</span>
+                                            <span class="badge bg-secondary">Unranked</span>
                                         @endif
                                     </td>
                                 </tr>
+
                             </tbody>
                         </table>
                     </div>
