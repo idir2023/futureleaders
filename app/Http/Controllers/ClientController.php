@@ -113,7 +113,7 @@ class ClientController extends Controller
                     // Appliquer le profit au coach
                     $userCoach = User::find($coach->user_id);
                     $userCoach->update([
-                        'profit_user' => $coach->profit_user + $request->prix * 0.30,
+                        'profit_user' => $userCoach->profit_user + $request->prix * 0.30,
                         'rank' => 'Master',
                     ]);
                 } else {
