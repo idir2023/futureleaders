@@ -7952,7 +7952,11 @@ Did you mean one of these?
 #54 C:\\Users\\lahce\\Downloads\\futureleaders\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\Users\\\\lahce\\\\...')
 #55 {main}
 "} 
+<<<<<<< HEAD
 [2025-05-12 17:45:03] local.ERROR: Uncaught ReflectionException: Class "App\Http\Middleware\IsCoach" does not exist in Command line code:1
+=======
+[2025-05-12 11:49:46] local.ERROR: Uncaught ReflectionException: Class "App\Http\Middleware\IsCoach" does not exist in Command line code:1
+>>>>>>> 007a2fc52a0c0047fa4866e3a4728646114129bc
 Stack trace:
 #0 Command line code(1): ReflectionMethod->__construct('App\\Http\\Middle...', 'handle')
 #1 {main}
@@ -7964,6 +7968,7 @@ Stack trace:
 [stacktrace]
 #0 {main}
 "} 
+<<<<<<< HEAD
 [2025-05-12 17:45:28] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at C:\\Users\\Aicha njimate\\OneDrive\\Bureau\\futureleaders\\vendor\\symfony\\console\\Input\\ArgvInput.php:223)
 [stacktrace]
 #0 C:\\Users\\Aicha njimate\\OneDrive\\Bureau\\futureleaders\\vendor\\symfony\\console\\Input\\ArgvInput.php(150): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption('columns', 'uri,name,action...')
@@ -8009,3 +8014,5 @@ Stack trace:
 #10 C:\\Users\\Aicha njimate\\OneDrive\\Bureau\\futureleaders\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #11 {main}
 "} 
+=======
+>>>>>>> 007a2fc52a0c0047fa4866e3a4728646114129bc

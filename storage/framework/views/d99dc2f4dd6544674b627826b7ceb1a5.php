@@ -73,7 +73,7 @@
                                             <?php echo e(optional($consultation->coach)->prenom ?? ''); ?></td>
                                         </td>
                                         <td><?php echo e($consultation->probleme ?: 'Aucun problème'); ?></td>
-                                        <td><?php echo e($consultation->prix); ?> MAD</td>
+                                        <td><?php echo e($consultation->prix); ?> $</td>
                                         <td>
                                             <?php if($consultation->paiement_status == 'payé'): ?>
                                                 <span class="badge bg-success">Payé</span>
@@ -124,7 +124,7 @@
                                         <td><?php echo e($consultation->created_at ? $consultation->created_at->format('d/m/Y') : '-'); ?>
 
                                         </td>
-                                        <td><?php echo e(number_format($consultation->prix, 2)); ?> MAD</td>
+                                        <td><?php echo e(number_format($consultation->prix, 2)); ?> $</td>
                                         <td><?php echo e(optional($consultation->coach)->nom ?? 'N/A'); ?>
 
                                             <?php echo e(optional($consultation->coach)->prenom ?? ''); ?>
@@ -251,6 +251,8 @@
                                             <?php elseif($rank == 'Master'): ?>
                                                 
                                                 <img src="<?php echo e(asset('assets/master.png')); ?>" alt="">
+                                            <?php else: ?>
+                                                <span class="badge bg-secondary">Unranked</span>
                                             <?php endif; ?>
                                         <?php else: ?>
                                             <span class="badge bg-secondary">Unranked</span>

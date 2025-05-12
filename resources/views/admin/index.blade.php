@@ -73,7 +73,7 @@
                                             {{ optional($consultation->coach)->prenom ?? '' }}</td>
                                         </td>
                                         <td>{{ $consultation->probleme ?: 'Aucun problème' }}</td>
-                                        <td>{{ $consultation->prix }} MAD</td>
+                                        <td>{{ $consultation->prix }} $</td>
                                         <td>
                                             @if ($consultation->paiement_status == 'payé')
                                                 <span class="badge bg-success">Payé</span>
@@ -122,7 +122,7 @@
                                         </td>
                                         <td>{{ $consultation->created_at ? $consultation->created_at->format('d/m/Y') : '-' }}
                                         </td>
-                                        <td>{{ number_format($consultation->prix, 2) }} MAD</td>
+                                        <td>{{ number_format($consultation->prix, 2) }} $</td>
                                         <td>{{ optional($consultation->coach)->nom ?? 'N/A' }}
                                             {{ optional($consultation->coach)->prenom ?? '' }}
                                         </td>
@@ -248,6 +248,8 @@
                                             @elseif ($rank == 'Master')
                                                 {{-- <span class="badge bg-info">{{ $rank }}</span> --}}
                                                 <img src="{{ asset('assets/master.png') }}" alt="">
+                                            @else
+                                                <span class="badge bg-secondary">Unranked</span>
                                             @endif
                                         @else
                                             <span class="badge bg-secondary">Unranked</span>
