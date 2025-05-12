@@ -6,29 +6,47 @@
 
             <?php
                 $count = count($descendants);
+                $rank = auth()->user()->rank;
             ?>
 
-            <?php if($count < 5): ?>
-                <div class="alert alert-info">
-                    Vous avez le niveau <strong>Unranked</strong>. Continuez pour débloquer plus et d’avantages votre profit est <strong>20%</strong>!
+            <?php if($rank == 'Silver'): ?>
+                <div class="alert alert-success d-flex align-items-center gap-2">
+                    <img src="<?php echo e(asset('assets/silver.png')); ?>" alt="Silver" width="40">
+                    <div>
+                        Vous avez le niveau <strong>Silver</strong> et votre profit est <strong>25%</strong>.
+                    </div>
                 </div>
-            <?php elseif($count >= 5 && $count < 10): ?>
-                <div class="alert alert-success">
-                    Vous avez le niveau <strong>Silver</strong> et votre profit est <strong>25%</strong>.
+            <?php elseif($rank == 'Gold'): ?>
+                <div class="alert alert-warning d-flex align-items-center gap-2">
+                    <img src="<?php echo e(asset('assets/gold.png')); ?>" alt="Gold" width="40">
+                    <div>
+                        Vous avez le niveau <strong>Gold</strong> et votre profit est <strong>30%</strong>.
+                    </div>
                 </div>
-            <?php elseif($count >= 10 && $count < 25): ?>
-                <div class="alert alert-warning">
-                    Vous avez le niveau <strong>Gold</strong> et votre profit est <strong>30%</strong>.
+            <?php elseif($rank == 'Diamond'): ?>
+                <div class="alert alert-primary d-flex align-items-center gap-2">
+                    <img src="<?php echo e(asset('assets/diamond.png')); ?>" alt="Diamond" width="40">
+                    <div>
+                        Vous avez le niveau <strong>Diamond</strong> et votre profit est <strong>35%</strong>.
+                    </div>
                 </div>
-            <?php elseif($count >= 25 && $count < 50): ?>
-                <div class="alert alert-primary">
-                    Vous avez le niveau <strong>Diamond</strong> et votre profit est <strong>35%</strong>.
+            <?php elseif($rank == 'Master'): ?>
+                <div class="alert alert-danger d-flex align-items-center gap-2">
+                    <img src="<?php echo e(asset('assets/master.png')); ?>" alt="Master" width="40">
+                    <div>
+                        Vous avez le niveau <strong>Master</strong> avec un profit de <strong>30% avant</strong> et
+                        <strong>30% après</strong>.
+                    </div>
                 </div>
-            <?php elseif($count >= 50): ?>
-                <div class="alert alert-danger">
-                    Vous avez le niveau <strong>Master</strong> avec un profit de <strong>30% avant</strong> et <strong>30% après</strong>.
+            <?php else: ?>
+                <div class="alert alert-info d-flex align-items-center gap-2">
+                    <div>
+                        Vous avez le niveau <strong>Unranked</strong>. Continuez pour débloquer plus d’avantages. Votre
+                        profit est <strong>20%</strong> !
+                    </div>
                 </div>
             <?php endif; ?>
+
 
             <div class="card shadow-sm border-0">
                 <div class="card-body">

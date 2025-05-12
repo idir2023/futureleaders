@@ -73,7 +73,7 @@
                                             <?php echo e(optional($consultation->coach)->prenom ?? ''); ?></td>
                                         </td>
                                         <td><?php echo e($consultation->probleme ?: 'Aucun problème'); ?></td>
-                                        <td><?php echo e($consultation->prix); ?> MAD</td>
+                                        <td><?php echo e($consultation->prix); ?> $</td>
                                         <td>
                                             <?php if($consultation->paiement_status == 'payé'): ?>
                                                 <span class="badge bg-success">Payé</span>
@@ -97,7 +97,7 @@
         </div> <!-- End of Recent Consultations Section -->
     <?php elseif(auth()->user()->role === 'user'): ?>
         <!-- Client Consultations Section -->
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header bg-light">
@@ -124,7 +124,7 @@
                                         <td><?php echo e($consultation->created_at ? $consultation->created_at->format('d/m/Y') : '-'); ?>
 
                                         </td>
-                                        <td><?php echo e(number_format($consultation->prix, 2)); ?> MAD</td>
+                                        <td><?php echo e(number_format($consultation->prix, 2)); ?> $</td>
                                         <td><?php echo e(optional($consultation->coach)->nom ?? 'N/A'); ?>
 
                                             <?php echo e(optional($consultation->coach)->prenom ?? ''); ?>
@@ -134,7 +134,7 @@
 
 
                                         </td>
-                                        
+
                                         <td>
                                             <?php if($consultation->drive_link && now()->lessThan($consultation->drive_link_expire_at)): ?>
                                                 <a href="<?php echo e($consultation->drive_link); ?>" target="_blank"
@@ -161,6 +161,19 @@
                     </div>
                 </div>
             </div>
+            <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
+                <a class="btn btn-sm d-flex align-items-center" href="<?php echo e(route('home')); ?>"
+                    style="background: linear-gradient(45deg, #cba075, #cba075); color: #fff; padding: 10px 20px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); transition: background 0.3s ease, transform 0.2s ease;">
+                    <i class="typcn typcn-arrow-back mr-1"></i> Retour à l'accueil
+                </a>
+            </div>
+        </div>
+        <!-- End of Client Consultations Section -->
+    <?php endif; ?>
+
+    <?php if(auth()->user()->role === 'user' || auth()->user()->role === 'coach'): ?>
+        <!-- User Information Section -->
+        <div class="row">
             <!-- Back to Home Button -->
             <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
                 <div class="card shadow-sm border-0 w-100">
@@ -190,25 +203,63 @@
                                 <tr>
                                     <td><strong>Code promo</strong></td>
                                     <td>
-                                        <?php if(auth()->user()->code_promo): ?>
-                                            <span class="badge bg-success"><?php echo e(auth()->user()->code_promo); ?></span>
+                                        <?php
+                                            $coach = \App\Models\Coach::where('user_id', auth()->id())->first();
+                                            $userCode = auth()->user()->code_promo ?? null;
+                                            $coachCode = $coach?->code_promo ?? null;
+                                        ?>
+
+                                        <?php if($coachCode): ?>
+                                            <span class="badge bg-success"><?php echo e($coachCode); ?></span>
+                                        <?php elseif($userCode): ?>
+                                            <span class="badge bg-success"><?php echo e($userCode); ?></span>
                                         <?php else: ?>
                                             <span class="badge bg-secondary">Aucun code promo</span>
                                         <?php endif; ?>
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <td><strong>Mon profit</strong></td>
                                     <td>
                                         <?php if(auth()->user()->profit_user && auth()->user()->profit_user > 0): ?>
                                             <span class="badge bg-success">
-                                                <?php echo e(number_format(auth()->user()->profit_user, 2)); ?> MAD
+                                                <?php echo e(number_format(auth()->user()->profit_user, 2)); ?> $
                                             </span>
                                         <?php else: ?>
                                             <span class="badge bg-secondary">Aucun profit</span>
                                         <?php endif; ?>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td><strong>Rank</strong></td>
+                                    <td>
+                                        <?php
+                                            $rank = auth()->user()->rank;
+                                        ?>
+
+                                        <?php if($rank): ?>
+                                            <?php if($rank == 'Silver'): ?>
+                                                
+                                                <img src="<?php echo e(asset('assets/silver.png')); ?>" alt="">
+                                            <?php elseif($rank == 'Gold'): ?>
+                                                
+                                                <img src="<?php echo e(asset('assets/gold.png')); ?>" alt="">
+                                            <?php elseif($rank == 'Diamond'): ?>
+                                                
+                                                <img src="<?php echo e(asset('assets/diamond.png')); ?>" alt="">
+                                            <?php elseif($rank == 'Master'): ?>
+                                                
+                                                <img src="<?php echo e(asset('assets/master.png')); ?>" alt="">
+                                            <?php else: ?>
+                                                <span class="badge bg-secondary">Unranked</span>
+                                            <?php endif; ?>
+                                        <?php else: ?>
+                                            <span class="badge bg-secondary">Unranked</span>
+                                        <?php endif; ?>
+                                    </td>
+                                </tr>
+
                             </tbody>
                         </table>
                     </div>
@@ -216,12 +267,6 @@
             </div>
 
 
-            <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
-                <a class="btn btn-sm d-flex align-items-center" href="<?php echo e(route('home')); ?>"
-                    style="background: linear-gradient(45deg, #cba075, #cba075); color: #fff; padding: 10px 20px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); transition: background 0.3s ease, transform 0.2s ease;">
-                    <i class="typcn typcn-arrow-back mr-1"></i> Retour à l'accueil
-                </a>
-            </div>
 
             <!-- Optional hover effect -->
             <style>
@@ -230,9 +275,9 @@
                     transform: scale(1.05);
                 }
             </style>
-        </div> <!-- End of Client Consultations Section -->
+        </div>
+        <!-- End of User Information Section -->
     <?php endif; ?>
-
 <?php $__env->stopSection(); ?>
 <style>
     .aaa {

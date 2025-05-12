@@ -25,7 +25,7 @@ class PackSeeder extends Seeder
             'image' => 'gold-rank.png', // Ensure the path is correct
             'duration_months' => 3,
             'price' => 240,
-            'old_price' => 300,
+            'old_price' => 0,
             'has_inscription_fees' => false,
         ]);
     }

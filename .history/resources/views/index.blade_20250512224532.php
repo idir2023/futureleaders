@@ -1130,9 +1130,8 @@
             <div class="footer--powered">
                 <a href="https://instagram.com/falcondeev" target="_blank" rel="noopener noreferrer">
                     <p lang="en">Developed By</p>
-                    <br>
                      <span>
-                 
+                    Developed by
                     <a href="https://instagram.com/falcondeev" class="text-white fw-bold" target="_blank"
                         rel="noopener noreferrer">FalconDev</a>
                     <i class="typcn typcn-heart-full-outline text-danger"></i>
@@ -1143,7 +1142,20 @@
         </div>
 
 
-      
+        <div class="footer--copyright">
+            <div
+                class="container d-flex flex-column flex-sm-row justify-content-between align-items-center text-muted text-center text-sm-start py-2">
+                <span>
+                    © 2025, Tous les droits sont réservés
+                </span>
+                <span>
+                    Developed by
+                    <a href="https://instagram.com/falcondeev" class="text-white fw-bold" target="_blank"
+                        rel="noopener noreferrer">FalconDev</a>
+                    <i class="typcn typcn-heart-full-outline text-danger"></i>
+                </span>
+            </div>
+        </div>
 
         </div>
     </footer>

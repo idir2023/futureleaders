@@ -1130,9 +1130,8 @@
             <div class="footer--powered">
                 <a href="https://instagram.com/falcondeev" target="_blank" rel="noopener noreferrer">
                     <p lang="en">Developed By</p>
-                    <br>
                      <span>
-                 
+                    Developed by
                     <a href="https://instagram.com/falcondeev" class="text-white fw-bold" target="_blank"
                         rel="noopener noreferrer">FalconDev</a>
                     <i class="typcn typcn-heart-full-outline text-danger"></i>

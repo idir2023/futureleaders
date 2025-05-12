@@ -1130,7 +1130,7 @@
             <div class="footer--powered">
                 <a href="https://instagram.com/falcondeev" target="_blank" rel="noopener noreferrer">
                     <p lang="en">Developed By</p>
-                    <br>
+                    br
                      <span>
                  
                     <a href="https://instagram.com/falcondeev" class="text-white fw-bold" target="_blank"
