@@ -81,11 +81,14 @@ class ClientController extends Controller
                         $rank = 'Master';
                     }
 
-                    $current->update([
-                        'profit_user' => $current->profit_user + $profit,
-                        'rank' => $rank,
-                    ]);
-
+                    // Vérifier si le parrain est un coach
+                    $coachUser = Coach::where('user_id', $current->id)->first();
+                    if (!$coachUser) {
+                        $current->update([
+                            'profit_user' => $current->profit_user +  $profit,
+                            'rank' => $rank,
+                        ]);
+                    }
                     $current = $current->parrain;
                 }
 
@@ -96,24 +99,16 @@ class ClientController extends Controller
                     ->first();
             }
 
+
             // Si aucun utilisateur trouvé avec ce code, chercher un coach directement
             if (!$parrain) {
                 $coach = Coach::where('code_promo', $codePromo)->first();
                 if ($coach) {
                     $user->update(['parrain_id' => $coach->user_id]);
                     // Appliquer le profit au coach
-                    // $userCoach = User::find($coach->user_id);
-                    // $userCoach->update([
-                    //     'profit_user' => $userCoach->profit_user + $request->prix * 0.30,
-                    //     'rank' => 'Master',
-                    // ]);
                     $userCoach = User::find($coach->user_id);
-
-                    $ancienProfit = (float) $userCoach->profit_user; // Assure que c'est un float
-                    $montantProfit = (float) $request->prix * 0.30;
-
                     $userCoach->update([
-                        'profit_user' => $ancienProfit + $montantProfit,
+                        'profit_user' => $userCoach->profit_user + $request->prix * 0.30,
                         'rank' => 'Master',
                     ]);
                 } else {

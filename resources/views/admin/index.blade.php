@@ -278,10 +278,12 @@
                                     <td>
                                         @if (auth()->user()->profit_user && auth()->user()->profit_user > 0)
                                             <span class="badge bg-success">
-                                                {{ number_format(auth()->user()->profit_user, 2) }} $
+                                                {{ number_format(auth()->user()->profit_user) }} $
                                             </span>
                                         @else
-                                            <span class="badge bg-secondary">Aucun profit</span>
+                                            <span class="badge bg-secondary">
+                                                {{ number_format(auth()->user()->profit_user) }} $
+                                            </span>
                                         @endif
                                     </td>
                                 </tr>
@@ -295,16 +297,16 @@
                                         @if ($rank)
                                             @if ($rank == 'Silver')
                                                 {{-- <span class="badge bg-secondary">{{ $rank }}</span> --}}
-                                                <img src="{{ asset('assets/silver.png') }}" alt="">
+                                                <img src="{{ asset('assets/silver.jpg') }}" alt="">
                                             @elseif ($rank == 'Gold')
                                                 {{-- <span class="badge bg-warning">{{ $rank }}</span> --}}
-                                                <img src="{{ asset('assets/gold.png') }}" alt="">
+                                                <img src="{{ asset('assets/gold.jpg') }}" alt="">
                                             @elseif ($rank == 'Diamond')
                                                 {{-- <span class="badge bg-primary">{{ $rank }}</span> --}}
-                                                <img src="{{ asset('assets/diamond.png') }}" alt="">
+                                                <img src="{{ asset('assets/diamond.jpg') }}" alt="">
                                             @elseif ($rank == 'Master')
                                                 {{-- <span class="badge bg-info">{{ $rank }}</span> --}}
-                                                <img src="{{ asset('assets/master.png') }}" alt="">
+                                                <img src="{{ asset('assets/master.jpg') }}" alt="">
                                             @else
                                                 <span class="badge bg-secondary">Unranked</span>
                                             @endif

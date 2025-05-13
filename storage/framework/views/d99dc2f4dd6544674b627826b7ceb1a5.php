@@ -282,10 +282,12 @@
                                     <td>
                                         <?php if(auth()->user()->profit_user && auth()->user()->profit_user > 0): ?>
                                             <span class="badge bg-success">
-                                                <?php echo e(number_format(auth()->user()->profit_user, 2)); ?> $
+                                                <?php echo e(number_format(auth()->user()->profit_user)); ?> $
                                             </span>
                                         <?php else: ?>
-                                            <span class="badge bg-secondary">Aucun profit</span>
+                                            <span class="badge bg-secondary">
+                                                <?php echo e(number_format(auth()->user()->profit_user)); ?> $
+                                            </span>
                                         <?php endif; ?>
                                     </td>
                                 </tr>
@@ -299,16 +301,16 @@
                                         <?php if($rank): ?>
                                             <?php if($rank == 'Silver'): ?>
                                                 
-                                                <img src="<?php echo e(asset('assets/silver.png')); ?>" alt="">
+                                                <img src="<?php echo e(asset('assets/silver.jpg')); ?>" alt="">
                                             <?php elseif($rank == 'Gold'): ?>
                                                 
-                                                <img src="<?php echo e(asset('assets/gold.png')); ?>" alt="">
+                                                <img src="<?php echo e(asset('assets/gold.jpg')); ?>" alt="">
                                             <?php elseif($rank == 'Diamond'): ?>
                                                 
-                                                <img src="<?php echo e(asset('assets/diamond.png')); ?>" alt="">
+                                                <img src="<?php echo e(asset('assets/diamond.jpg')); ?>" alt="">
                                             <?php elseif($rank == 'Master'): ?>
                                                 
-                                                <img src="<?php echo e(asset('assets/master.png')); ?>" alt="">
+                                                <img src="<?php echo e(asset('assets/master.jpg')); ?>" alt="">
                                             <?php else: ?>
                                                 <span class="badge bg-secondary">Unranked</span>
                                             <?php endif; ?>

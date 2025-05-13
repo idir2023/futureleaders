@@ -12,29 +12,33 @@
             ?>
 
             <?php if($rank == 'Silver'): ?>
-                <div class="alert alert-success d-flex align-items-center gap-2">
-                    <img src="<?php echo e(asset('assets/silver.png')); ?>" alt="Silver" width="40">
+                <div class="alert"
+                    style="background-color: #C0C0C0; color: #000; display: flex; align-items: center; gap: 10px;">
+                    <img src="<?php echo e(asset('assets/silver.jpg')); ?>" alt="Silver" width="60">
                     <div>
                         Vous avez le niveau <strong>Silver</strong> et votre profit est <strong>25%</strong>.
                     </div>
                 </div>
             <?php elseif($rank == 'Gold'): ?>
-                <div class="alert alert-warning d-flex align-items-center gap-2">
-                    <img src="<?php echo e(asset('assets/gold.png')); ?>" alt="Gold" width="40">
+                <div class="alert"
+                    style="background-color: #FFD700; color: #000; display: flex; align-items: center; gap: 10px;">
+                    <img src="<?php echo e(asset('assets/gold.jpg')); ?>" alt="Gold" width="60">
                     <div>
                         Vous avez le niveau <strong>Gold</strong> et votre profit est <strong>30%</strong>.
                     </div>
                 </div>
             <?php elseif($rank == 'Diamond'): ?>
-                <div class="alert alert-primary d-flex align-items-center gap-2">
-                    <img src="<?php echo e(asset('assets/diamond.png')); ?>" alt="Diamond" width="40">
+                <div class="alert"
+                    style="background-color: #b9f2ff; color: #000; display: flex; align-items: center; gap: 10px;">
+                    <img src="<?php echo e(asset('assets/diamond.jpg')); ?>" alt="Diamond" width="60">
                     <div>
                         Vous avez le niveau <strong>Diamond</strong> et votre profit est <strong>35%</strong>.
                     </div>
                 </div>
             <?php elseif($rank == 'Master'): ?>
-                <div class="alert alert-danger d-flex align-items-center gap-2">
-                    <img src="<?php echo e(asset('assets/master.png')); ?>" alt="Master" width="40">
+                <div class="alert"
+                    style="background-color: #8B0000; color: #fff; display: flex; align-items: center; gap: 10px;">
+                    <img src="<?php echo e(asset('assets/master.jpg')); ?>" alt="Master" width="60">
                     <div>
                         Vous avez le niveau <strong>Master</strong> avec un profit de <strong>30% avant</strong> et
                         <strong>30% après</strong>.
@@ -48,6 +52,7 @@
                     </div>
                 </div>
             <?php endif; ?>
+
 
 
             <div class="card shadow-sm border-0">

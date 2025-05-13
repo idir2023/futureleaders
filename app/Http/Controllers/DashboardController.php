@@ -70,8 +70,19 @@ class DashboardController extends Controller
 
     public function getMoney($id)
     {
+        // Récupérer le client en fonction de l'id
+        $client = User::find($id);
 
-        return redirect()->back()->with('success', 'Mois acheté avec succès.');
+        // Vérifier si le client existe
+        if ($client) {
+            // Vous pouvez ajouter des logiques ici, par exemple, vérifier si le client est éligible pour recevoir de l'argent.
+
+            // Redirection avec message de succès
+            return redirect()->back()->with('success', 'Tu vas recevoir ton argent bientôt.');
+        }
+
+        // Si le client n'est pas trouvé
+        return redirect()->back()->with('error', 'Client introuvable.');
     }
 
     public function BuyMonth($id)
@@ -83,6 +94,8 @@ class DashboardController extends Controller
         // Réinitialiser le profit de l'utilisateur
         $user->update([
             'profit_user' => 0,
+            'buy_month' => true
+
         ]);
 
         // Récupérer le coach (parrain) associé
