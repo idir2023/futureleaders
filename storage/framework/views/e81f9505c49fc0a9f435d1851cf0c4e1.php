@@ -34,11 +34,11 @@
                                          <td>
                                              <?php if($client->profit_user && $client->profit_user > 0): ?>
                                                  <span class="badge bg-success">
-                                                     <?php echo e(number_format($client->profit_user)); ?> $
+                                                     <?php echo e(number_format($client->profit_user ,2)); ?> $
                                                  </span>
                                              <?php else: ?>
                                                  <span class="badge bg-secondary">
-                                                     <?php echo e(number_format($client->profit_user)); ?> $
+                                                     <?php echo e(number_format($client->profit_user ,2)); ?> $
                                                  </span>
                                              <?php endif; ?>
                                          </td>

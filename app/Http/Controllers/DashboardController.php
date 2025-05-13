@@ -125,7 +125,7 @@ class DashboardController extends Controller
 
         if ($coach) {
             $coach->update([
-                'profit_user' => $coach->profit_user + $totalProfit
+                'profit_user' => $totalProfit
             ]);
         }
 

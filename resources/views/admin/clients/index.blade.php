@@ -34,11 +34,11 @@
                                          <td>
                                              @if ($client->profit_user && $client->profit_user > 0)
                                                  <span class="badge bg-success">
-                                                     {{ number_format($client->profit_user) }} $
+                                                     {{ number_format($client->profit_user ,2) }} $
                                                  </span>
                                              @else
                                                  <span class="badge bg-secondary">
-                                                     {{ number_format($client->profit_user) }} $
+                                                     {{ number_format($client->profit_user ,2) }} $
                                                  </span>
                                              @endif
                                          </td>

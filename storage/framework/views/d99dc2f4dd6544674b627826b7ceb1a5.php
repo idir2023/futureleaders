@@ -229,8 +229,7 @@
         <!-- End of Client Consultations Section -->
     <?php endif; ?>
 
-    <?php if(auth()->user()->role === 'user' || auth()->user()->role === 'coach'): ?>
-        <!-- User Information Section -->
+    <?php if(auth()->user()->role === 'coach'): ?>
         <div class="row">
             <!-- Button -->
             <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
@@ -280,6 +279,11 @@
                 </div>
             </div>
 
+        </div>
+    <?php endif; ?>
+    <?php if(auth()->user()->role === 'user' || auth()->user()->role === 'coach'): ?>
+        <!-- User Information Section -->
+        <div class="row">
 
             <!-- Back to Home Button -->
             <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
@@ -331,11 +335,11 @@
                                     <td>
                                         <?php if(auth()->user()->profit_user && auth()->user()->profit_user > 0): ?>
                                             <span class="badge bg-success">
-                                                <?php echo e(number_format(auth()->user()->profit_user)); ?> $
+                                                <?php echo e(number_format(auth()->user()->profit_user, 2)); ?> $
                                             </span>
                                         <?php else: ?>
                                             <span class="badge bg-secondary">
-                                                <?php echo e(number_format(auth()->user()->profit_user)); ?> $
+                                                <?php echo e(number_format(auth()->user()->profit_user, 2)); ?> $
                                             </span>
                                         <?php endif; ?>
                                     </td>
@@ -374,7 +378,6 @@
                     </div>
                 </div>
             </div>
-
 
             <!-- Optional hover effect -->
             <style>

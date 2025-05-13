@@ -225,8 +225,7 @@
         <!-- End of Client Consultations Section -->
     @endif
 
-    @if (auth()->user()->role === 'user' || auth()->user()->role === 'coach')
-        <!-- User Information Section -->
+    @if (auth()->user()->role === 'coach')
         <div class="row">
             <!-- Button -->
             <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
@@ -276,6 +275,11 @@
                 </div>
             </div>
 
+        </div>
+    @endif
+    @if (auth()->user()->role === 'user' || auth()->user()->role === 'coach')
+        <!-- User Information Section -->
+        <div class="row">
 
             <!-- Back to Home Button -->
             <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
@@ -327,11 +331,11 @@
                                     <td>
                                         @if (auth()->user()->profit_user && auth()->user()->profit_user > 0)
                                             <span class="badge bg-success">
-                                                {{ number_format(auth()->user()->profit_user) }} $
+                                                {{ number_format(auth()->user()->profit_user, 2) }} $
                                             </span>
                                         @else
                                             <span class="badge bg-secondary">
-                                                {{ number_format(auth()->user()->profit_user) }} $
+                                                {{ number_format(auth()->user()->profit_user, 2) }} $
                                             </span>
                                         @endif
                                     </td>
@@ -370,7 +374,6 @@
                     </div>
                 </div>
             </div>
-
 
             <!-- Optional hover effect -->
             <style>
