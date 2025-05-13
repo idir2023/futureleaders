@@ -70,7 +70,9 @@
                                     <th>Email</th>
                                     <th>Téléphone</th>
                                     <th>Code promo</th>
-                                    <th>Statut</th> <!-- Nouvelle colonne -->
+                                    <th>Commission</th>
+                                    <th>Achat du Mois</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -88,8 +90,25 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <span class="badge bg-warning text-dark">Child</span>
+                                            @if ($client->profit_user && $client->profit_user > 0)
+                                                <span class="badge bg-success">
+                                                    {{ number_format($client->profit_user) }} $
+                                                </span>
+                                            @else
+                                                <span class="badge bg-secondary">
+                                                    {{ number_format($client->profit_user) }} $
+                                                </span>
+                                            @endif
                                         </td>
+
+                                        <td>
+                                            @if ($client->buy_month)
+                                                <span class="badge bg-success">Ce client a acheté un mois</span>
+                                            @else
+                                                <span class="badge bg-warning">Il souhaite obtenir de l'argent.</span>
+                                            @endif
+                                        </td>
+
                                     </tr>
                                 @empty
                                     <tr>

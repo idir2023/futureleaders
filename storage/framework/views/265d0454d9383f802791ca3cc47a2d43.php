@@ -70,7 +70,9 @@
                                     <th>Email</th>
                                     <th>Téléphone</th>
                                     <th>Code promo</th>
-                                    <th>Statut</th> <!-- Nouvelle colonne -->
+                                    <th>Commission</th>
+                                    <th>Achat du Mois</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -88,8 +90,25 @@
                                             <?php endif; ?>
                                         </td>
                                         <td>
-                                            <span class="badge bg-warning text-dark">Child</span>
+                                            <?php if($client->profit_user && $client->profit_user > 0): ?>
+                                                <span class="badge bg-success">
+                                                    <?php echo e(number_format($client->profit_user)); ?> $
+                                                </span>
+                                            <?php else: ?>
+                                                <span class="badge bg-secondary">
+                                                    <?php echo e(number_format($client->profit_user)); ?> $
+                                                </span>
+                                            <?php endif; ?>
                                         </td>
+
+                                        <td>
+                                            <?php if($client->buy_month): ?>
+                                                <span class="badge bg-success">Ce client a acheté un mois</span>
+                                            <?php else: ?>
+                                                <span class="badge bg-warning">Il souhaite obtenir de l'argent.</span>
+                                            <?php endif; ?>
+                                        </td>
+
                                     </tr>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                     <tr>
