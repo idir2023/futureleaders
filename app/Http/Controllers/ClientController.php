@@ -81,12 +81,9 @@ class ClientController extends Controller
                         $rank = 'Master';
                     }
 
-                    // Vérifier si le parrain est un coach
-                    $coachUser = Coach::where('user_id', $current->id)->first();
-
                     $current->update([
-                        'profit_user' => $current->profit_user + ($coachUser ? $coachUser->profit_user * 0.30 : $profit),
-                        'rank' => $coachUser ? 'Master' : $rank,
+                        'profit_user' => $current->profit_user + $profit,
+                        'rank' => $rank,
                     ]);
 
                     $current = $current->parrain;

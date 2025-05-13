@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('adresse')->nullable();
             $table->text('probleme')->nullable();
             $table->string('recu')->nullable();
-            $table->string('prix');
+            $table->float('prix');
             $table->enum('paiement_status', ['en attente', 'payé'])->default('en attente');
             $table->string('drive_link')->nullable();
             $table->date('drive_link_expire_at')->nullable();

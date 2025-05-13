@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->unsignedBigInteger('parrain_id')->nullable();
             $table->foreign('parrain_id')->references('id')->on('users')->onDelete('set null');
-            $table->string('profit_user')->nullable(); // commission
+            $table->float('profit_user')->nullable(); // commission
             $table->string('rank')->nullable(); // commission
             $table->boolean('buy_month')->nullable();
             $table->rememberToken();
