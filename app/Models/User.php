@@ -27,7 +27,8 @@ class User extends Authenticatable
         'code_promo',
         'parrain_id',
         'profit_user',
-        'rank'
+        'rank',
+        'buy_month'
     ];
 
     /**

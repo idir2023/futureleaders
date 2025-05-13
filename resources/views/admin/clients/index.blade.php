@@ -18,6 +18,7 @@
                                     <th>Email</th>
                                     <th>Téléphone</th>
                                     <th>Code Promo</th>
+                                    <th>Commission</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -29,18 +30,24 @@
                                         <td>{{ $client->email }}</td>
                                         <td>{{ $client->telephone }}</td>
                                         <td>{{ $client->code_promo ? $client->code_promo : 'Aucun code promo' }}</td>
+                                        <td
+                                            class="{{ $client->profit_user >= 100 ? 'bg-success text-white' : 'bg-warning text-dark' }}">
+                                            {{ intval($client->profit_user) }}
+                                        </td>
                                         <td>
                                             @if ($client->code_promo)
                                                 <span class="badge bg-success">Code déjà ajouté</span>
                                             @else
                                                 <!-- Open the modal if no code_promo -->
-                                                <a href="javascript:void(0);" class="btn btn-info btn-sm" data-bs-toggle="modal"
+                                                <a href="javascript:void(0);" class="btn btn-info btn-sm"
+                                                    data-bs-toggle="modal"
                                                     data-bs-target="#promoCodeModal{{ $client->id }}">
                                                     Ajouter un code promo
                                                 </a>
                                             @endif
                                         </td>
-                                        
+
+
                                         {{-- <td>
                                             <!-- Open the modal for the client -->
                                             <a href="javascript:void(0);" class="btn btn-info btn-sm" data-bs-toggle="modal"
@@ -56,20 +63,24 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="promoCodeModalLabel{{ $client->id }}">Ajouter un Code Promo</h5>
+                                                    <h5 class="modal-title" id="promoCodeModalLabel{{ $client->id }}">
+                                                        Ajouter un Code Promo</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
-                                                <form action="{{ route('clients.add-code_promo', $client->id) }}" method="POST">
+                                                <form action="{{ route('clients.add-code_promo', $client->id) }}"
+                                                    method="POST">
                                                     @csrf
                                                     @method('put')
                                                     <div class="modal-body">
                                                         <div class="mb-3">
-                                                            <label for="promo_code" class="form-label">Entrez le code promo</label>
-                                                            <input type="text" class="form-control" id="promo_code" name="promo_code"
-                                                                placeholder="Code promo" required>
+                                                            <label for="promo_code" class="form-label">Entrez le code
+                                                                promo</label>
+                                                            <input type="text" class="form-control" id="promo_code"
+                                                                name="promo_code" placeholder="Code promo" required>
                                                         </div>
-                                                        <p>Êtes-vous sûr de vouloir ajouter ce code promo pour ce client ?</p>
+                                                        <p>Êtes-vous sûr de vouloir ajouter ce code promo pour ce client ?
+                                                        </p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"

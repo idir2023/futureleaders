@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreign('parrain_id')->references('id')->on('users')->onDelete('set null');
             $table->string('profit_user')->nullable(); // commission
             $table->string('rank')->nullable(); // commission
+            $table->boolean('buy_month')->nullable();
             $table->rememberToken();
             $table->enum('role', ['admin', 'user', 'coach'])->default('user'); // Nouveau champ role
             $table->timestamps();

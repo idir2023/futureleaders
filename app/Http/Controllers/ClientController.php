@@ -85,7 +85,7 @@ class ClientController extends Controller
                     $coachUser = Coach::where('user_id', $current->id)->first();
 
                     $current->update([
-                        'profit_user' => $current->profit_user + ($coachUser ? $request->prix * 0.30 : $profit),
+                        'profit_user' => $current->profit_user + ($coachUser ? $coachUser->profit_user * 0.30 : $profit),
                         'rank' => $coachUser ? 'Master' : $rank,
                     ]);
 
@@ -105,9 +105,18 @@ class ClientController extends Controller
                 if ($coach) {
                     $user->update(['parrain_id' => $coach->user_id]);
                     // Appliquer le profit au coach
+                    // $userCoach = User::find($coach->user_id);
+                    // $userCoach->update([
+                    //     'profit_user' => $userCoach->profit_user + $request->prix * 0.30,
+                    //     'rank' => 'Master',
+                    // ]);
                     $userCoach = User::find($coach->user_id);
+
+                    $ancienProfit = (float) $userCoach->profit_user; // Assure que c'est un float
+                    $montantProfit = (float) $request->prix * 0.30;
+
                     $userCoach->update([
-                        'profit_user' => $userCoach->profit_user + $request->prix * 0.30,
+                        'profit_user' => $ancienProfit + $montantProfit,
                         'rank' => 'Master',
                     ]);
                 } else {

@@ -161,12 +161,70 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
+            <div class="col-6 mt-3 d-flex justify-content-start align-items-center flex-column">
                 <a class="btn btn-sm d-flex align-items-center" href="<?php echo e(route('home')); ?>"
                     style="background: linear-gradient(45deg, #cba075, #cba075); color: #fff; padding: 10px 20px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); transition: background 0.3s ease, transform 0.2s ease;">
                     <i class="typcn typcn-arrow-back mr-1"></i> Retour à l'accueil
                 </a>
             </div>
+
+            <!-- Button -->
+            <div class="col-6 mt-3 d-flex justify-content-start align-items-center flex-column">
+                <button type="button" class="btn btn-sm d-flex align-items-center" data-bs-toggle="modal"
+                    data-bs-target="#confirmationModal"
+                    style="background: linear-gradient(45deg, #ff7980, #ff8000); 
+               color: #fff; 
+               padding: 10px 20px; 
+               border-radius: 5px; 
+               box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+               transition: background 0.3s ease, transform 0.2s ease;">
+                    <i class="typcn typcn-credit-card me-2"></i>
+                    Get Money or One Month Free
+                </button>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content"
+                        style="border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.3);">
+                        <div class="modal-header"
+                            style="background: linear-gradient(45deg, #ff7980, #ff8000); color: #fff;">
+                            <h5 class="modal-title" id="confirmationModalLabel">
+                                <i class="typcn typcn-warning-outline me-2"></i> Confirm Your Action
+                            </h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center" style="padding: 30px; font-size: 1.1rem;">
+                            <p>
+                                Are you sure you want to withdraw
+                                <strong style="color: #ff5722;"><?php echo e(number_format(auth()->user()->profit_user, 2)); ?>
+
+                                    $</strong>
+                                or get one month free access to the academy?
+                            </p>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center gap-3 pb-4">
+                            <!-- Withdraw Money -->
+                            <a href="<?php echo e(route('getMoney', auth()->user()->id)); ?>" class="btn btn-outline-secondary px-4">
+                                <i class="typcn typcn-arrow-back me-1"></i> Withdraw Money
+                            </a>
+
+                            <!-- Buy Month -->
+                            <a href="<?php echo e(route('buyMonth', auth()->user()->id)); ?>" class="btn btn-success px-4"
+                                style="background-color: #28a745; border: none;">
+                                <i class="typcn typcn-tick me-1"></i> Get 1 Month Free
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
         </div>
         <!-- End of Client Consultations Section -->
     <?php endif; ?>

@@ -16,6 +16,7 @@
                                     <th>Email</th>
                                     <th>Téléphone</th>
                                     <th>Code Promo</th>
+                                    <th>Commission</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -27,18 +28,25 @@
                                         <td><?php echo e($client->email); ?></td>
                                         <td><?php echo e($client->telephone); ?></td>
                                         <td><?php echo e($client->code_promo ? $client->code_promo : 'Aucun code promo'); ?></td>
+                                        <td
+                                            class="<?php echo e($client->profit_user >= 100 ? 'bg-success text-white' : 'bg-warning text-dark'); ?>">
+                                            <?php echo e(intval($client->profit_user)); ?>
+
+                                        </td>
                                         <td>
                                             <?php if($client->code_promo): ?>
                                                 <span class="badge bg-success">Code déjà ajouté</span>
                                             <?php else: ?>
                                                 <!-- Open the modal if no code_promo -->
-                                                <a href="javascript:void(0);" class="btn btn-info btn-sm" data-bs-toggle="modal"
+                                                <a href="javascript:void(0);" class="btn btn-info btn-sm"
+                                                    data-bs-toggle="modal"
                                                     data-bs-target="#promoCodeModal<?php echo e($client->id); ?>">
                                                     Ajouter un code promo
                                                 </a>
                                             <?php endif; ?>
                                         </td>
-                                        
+
+
                                         
                                     </tr>
 
@@ -48,20 +56,24 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="promoCodeModalLabel<?php echo e($client->id); ?>">Ajouter un Code Promo</h5>
+                                                    <h5 class="modal-title" id="promoCodeModalLabel<?php echo e($client->id); ?>">
+                                                        Ajouter un Code Promo</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
-                                                <form action="<?php echo e(route('clients.add-code_promo', $client->id)); ?>" method="POST">
+                                                <form action="<?php echo e(route('clients.add-code_promo', $client->id)); ?>"
+                                                    method="POST">
                                                     <?php echo csrf_field(); ?>
                                                     <?php echo method_field('put'); ?>
                                                     <div class="modal-body">
                                                         <div class="mb-3">
-                                                            <label for="promo_code" class="form-label">Entrez le code promo</label>
-                                                            <input type="text" class="form-control" id="promo_code" name="promo_code"
-                                                                placeholder="Code promo" required>
+                                                            <label for="promo_code" class="form-label">Entrez le code
+                                                                promo</label>
+                                                            <input type="text" class="form-control" id="promo_code"
+                                                                name="promo_code" placeholder="Code promo" required>
                                                         </div>
-                                                        <p>Êtes-vous sûr de vouloir ajouter ce code promo pour ce client ?</p>
+                                                        <p>Êtes-vous sûr de vouloir ajouter ce code promo pour ce client ?
+                                                        </p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"

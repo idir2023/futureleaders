@@ -9,33 +9,7 @@ use App\Models\Consultation;
 
 class DashboardController extends Controller
 {
-    // public function index()
-    // {
-    //     if (auth()->user()->role == 'admin') {
-    //         $Coaches = Coach::all();
-    //         $Consultations = Consultation::latest()->get();
-    //         $Users = User::all();
 
-    //         $CoachesCount = $Coaches->count();
-    //         $ConsultationsCount = $Consultations->count();
-    //         $UsersCount = User::where('role', 'user')->count();
-    //         $consultationsClient = Consultation::where('user_id', auth()->user()->id)->get();
-    //     } elseif (auth()->user()->role == 'coach') {
-    //         $Coaches = Coach::where('user_id', auth()->user()->id)->get();
-
-    //         $Consultations = Consultation::join('coaches', 'consultations.coach_id', '=', 'coaches.id')
-    //             ->where('coaches.user_id', auth()->user()->id)->get();
-    //         $Users = User::where('id', auth()->user()->id)->get();
-
-    //         $CoachesCount = $Coaches->count();
-    //         $ConsultationsCount = $Consultations->count();
-    //         $UsersCount = User::where('role', 'user')->count();
-    //         $consultationsClient = Consultation::where('user_id', auth()->user()->id)->get();
-    //     }
-
-    //     // return view('admin.consultationClient', compact('consultations'));
-    //     return view('admin.index', compact('Coaches', 'Consultations', 'consultationsClient', 'Users', 'CoachesCount', 'ConsultationsCount', 'UsersCount'));
-    // }
     public function index()
     {
         // Définir des variables par défaut
@@ -52,7 +26,6 @@ class DashboardController extends Controller
             $CoachesCount = $Coaches->count();
             $ConsultationsCount = $Consultations->count();
             $UsersCount = User::where('role', 'user')->count();
-
         } elseif (auth()->user()->role == 'coach') {
             // Récupérer les données spécifiques à un coach
             $Coaches = Coach::where('user_id', auth()->user()->id)->get();
@@ -94,5 +67,35 @@ class DashboardController extends Controller
 
         return $descendants;
     }
-    
+
+    public function getMoney($id)
+    {
+
+        return redirect()->back()->with('success', 'Mois acheté avec succès.');
+    }
+
+    public function BuyMonth($id)
+    {
+        $user = User::findOrFail($id);
+
+        $userProfit = (float) $user->profit_user;
+
+        // Réinitialiser le profit de l'utilisateur
+        $user->update([
+            'profit_user' => 0,
+        ]);
+
+        // Récupérer le coach (parrain) associé
+        $coach = User::find($user->parrain_id);
+
+        if ($coach) {
+            $coachProfit = (float) $coach->profit_user;
+            $coach->update([
+                'profit_user' => $coachProfit + $userProfit,
+            ]);
+        }
+
+        // Rediriger vers une page avec message de succès
+        return redirect()->back()->with('success', 'Mois acheté avec succès.');
+    }
 }
