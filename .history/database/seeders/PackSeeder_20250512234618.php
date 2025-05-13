@@ -14,8 +14,8 @@ class PackSeeder extends Seeder
             'name' => 'Silver',
             'image' => 'silver-rank.png', // Ensure the path is correct
             'duration_months' => 1,
-            'price' => 89,
-            'old_price' => 150,
+            'price' => 98,
+            'old_price' => 120,
             'has_inscription_fees' => false,
         ]);
 
@@ -25,7 +25,7 @@ class PackSeeder extends Seeder
             'image' => 'gold-rank.png', // Ensure the path is correct
             'duration_months' => 3,
             'price' => 240,
-            'old_price' => 300,
+            'old_price' => 270,
             'has_inscription_fees' => false,
         ]);
     }

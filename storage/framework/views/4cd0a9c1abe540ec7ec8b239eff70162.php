@@ -66,15 +66,11 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo e(route('traders.index')); ?>">
-                    <i class="typcn typcn-chart-bar menu-icon"></i>
-                    <span class="menu-title">traders</span>
+                    <i class="typcn typcn-chart-line menu-icon"></i>
+                    <span class="menu-title">Traders</span>
                 </a>
             </li>
-
-            
         <?php endif; ?>
-
-
 
 
     </ul>
