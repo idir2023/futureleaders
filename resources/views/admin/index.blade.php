@@ -228,6 +228,55 @@
     @if (auth()->user()->role === 'user' || auth()->user()->role === 'coach')
         <!-- User Information Section -->
         <div class="row">
+            <!-- Button -->
+            <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
+                <button type="button" class="btn btn-sm d-flex align-items-center" data-bs-toggle="modal"
+                    data-bs-target="#confirmationModal"
+                    style="background: linear-gradient(45deg, #ff7980, #ff8000); 
+               color: #fff; 
+               padding: 10px 20px; 
+               border-radius: 5px; 
+               box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+               transition: background 0.3s ease, transform 0.2s ease;">
+                    <i class="typcn typcn-credit-card me-2"></i>
+                    Récupérer ma commission
+                </button>
+            </div>
+
+
+            <!-- Modal de Confirmation - Get My Profit -->
+            <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmationModalLabel">Confirmation de Retrait</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Fermer"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <p>Êtes-vous sûr de vouloir récupérer votre commission ? Cette action déclenchera une demande de
+                                retrait auprès de l'administrateur.</p>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+
+                            <!-- Modifier l'action du formulaire selon votre route -->
+                            <form action="{{ route('get-profit', auth()->user()->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-success">Oui, je confirme</button>
+                            </form>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
             <!-- Back to Home Button -->
             <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
                 <div class="card shadow-sm border-0 w-100">
@@ -321,7 +370,6 @@
                     </div>
                 </div>
             </div>
-
 
 
             <!-- Optional hover effect -->

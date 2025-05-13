@@ -107,10 +107,6 @@ class ClientController extends Controller
                     $user->update(['parrain_id' => $coach->user_id]);
                     // Appliquer le profit au coach
                     $userCoach = User::find($coach->user_id);
-                    $userCoach->update([
-                        'profit_user' => $userCoach->profit_user + $request->prix * 0.30,
-                        'rank' => 'Master',
-                    ]);
                 } else {
                     return back()->with('error', 'Le code promo fourni est invalide.');
                 }

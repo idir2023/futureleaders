@@ -111,4 +111,24 @@ class DashboardController extends Controller
         // Rediriger vers une page avec message de succès
         return redirect()->back()->with('success', 'Mois acheté avec succès.');
     }
+
+    public function getProfit($id)
+    {
+        $users = User::where('parrain_id', $id)->get();
+        $coach = User::find($id);
+
+        $totalProfit = 0;
+
+        foreach ($users as $user) {
+            $totalProfit += $user->profit_user * 0.3;
+        }
+
+        if ($coach) {
+            $coach->update([
+                'profit_user' => $coach->profit_user + $totalProfit
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Votre profit a été mis à jour avec succès.');
+    }
 }

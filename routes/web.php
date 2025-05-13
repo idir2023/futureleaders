@@ -21,8 +21,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::get('/registered-by-me', [DashboardController::class, 'getUserRegisteredByMe'])->name('registered_by_me');
 Route::get('/get-money/{id}', [DashboardController::class, 'getMoney'])->name('getMoney');
 Route::get('/buy-month/{id}', [DashboardController::class, 'buyMonth'])->name('buyMonth');
-
-
+Route::post('/get-profit/{id}', [DashboardController::class, 'getProfit'])->name('get-profit');
 
 
 // Route::get('/consultation', [DashboardController::class, 'getConsultationClient'])->name('consultation.client');
