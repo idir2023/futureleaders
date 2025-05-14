@@ -333,15 +333,16 @@
                                 <tr>
                                     <td><strong>Mon profit</strong></td>
                                     <td>
-                                        <?php if(auth()->user()->profit_user && auth()->user()->profit_user > 0): ?>
-                                            <span class="badge bg-success">
-                                                <?php echo e(number_format(auth()->user()->profit_user, 2)); ?> $
-                                            </span>
-                                        <?php else: ?>
-                                            <span class="badge bg-secondary">
-                                                <?php echo e(number_format(auth()->user()->profit_user, 2)); ?> $
-                                            </span>
-                                        <?php endif; ?>
+                                        <?php
+                                            $totalProfit =
+                                                (float) auth()->user()->profit_user +
+                                                (float) auth()->user()->profit_user_transfer;
+                                        ?>
+
+                                        <span class="badge <?php echo e($totalProfit > 0 ? 'bg-success' : 'bg-secondary'); ?>">
+                                            <?php echo e(number_format($totalProfit, 2)); ?> $
+                                        </span>
+
                                     </td>
                                 </tr>
                                 <tr>

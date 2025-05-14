@@ -87,30 +87,40 @@ class DashboardController extends Controller
 
     public function BuyMonth($id)
     {
+        // Trouver l'utilisateur concerné
         $user = User::findOrFail($id);
 
+        // Récupérer et convertir son profit en float
         $userProfit = (float) $user->profit_user;
 
-        // Réinitialiser le profit de l'utilisateur
+        // Réinitialiser le profit de l'utilisateur et activer l'achat du mois
         $user->update([
             'profit_user' => 0,
             'buy_month' => true
-
         ]);
 
-        // Récupérer le coach (parrain) associé
-        $coach = User::find($user->parrain_id);
+        // Récupérer le coach via la table des consultations
+        $coach = Consultation::join('coaches', 'consultations.coach_id', '=', 'coaches.id')
+            ->where('consultations.user_id', $user->parrain_id)
+            ->select('coaches.user_id') // on ne récupère que l'user_id du coach
+            ->first();
 
-        if ($coach) {
-            $coachProfit = (float) $coach->profit_user;
-            $coach->update([
-                'profit_user' => $coachProfit + $userProfit,
-            ]);
+        if ($coach && $coach->user_id) {
+            // Trouver le coach dans la table users
+            $userCoach = User::find($coach->user_id);
+
+            if ($userCoach) {
+                // Ajouter le profit de l'utilisateur au coach
+                $userCoach->update([
+                    'profit_user_transfer' => $userProfit,
+                ]);
+            }
         }
 
-        // Rediriger vers une page avec message de succès
+        // Rediriger avec un message de succès
         return redirect()->back()->with('success', 'Mois acheté avec succès.');
     }
+
 
     public function getProfit($id)
     {

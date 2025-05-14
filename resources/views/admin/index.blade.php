@@ -329,15 +329,16 @@
                                 <tr>
                                     <td><strong>Mon profit</strong></td>
                                     <td>
-                                        @if (auth()->user()->profit_user && auth()->user()->profit_user > 0)
-                                            <span class="badge bg-success">
-                                                {{ number_format(auth()->user()->profit_user, 2) }} $
-                                            </span>
-                                        @else
-                                            <span class="badge bg-secondary">
-                                                {{ number_format(auth()->user()->profit_user, 2) }} $
-                                            </span>
-                                        @endif
+                                        @php
+                                            $totalProfit =
+                                                (float) auth()->user()->profit_user +
+                                                (float) auth()->user()->profit_user_transfer;
+                                        @endphp
+
+                                        <span class="badge {{ $totalProfit > 0 ? 'bg-success' : 'bg-secondary' }}">
+                                            {{ number_format($totalProfit, 2) }} $
+                                        </span>
+
                                     </td>
                                 </tr>
                                 <tr>
