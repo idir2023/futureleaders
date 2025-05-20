@@ -280,71 +280,159 @@
             </div>
 
         </div>
-    <?php endif; ?>
-    <?php if(auth()->user()->role === 'user' || auth()->user()->role === 'coach'): ?>
-        <!-- User Information Section -->
+    <?php elseif(auth()->user()->role === 'admin'): ?>
         <div class="row">
+            <!-- Button -->
+            <div class="col-6 mt-3 d-flex justify-content-start align-items-center flex-column">
+                <button type="button" class="btn btn-sm d-flex align-items-center" data-bs-toggle="modal"
+                    data-bs-target="#confirmationModal"
+                    style="background: linear-gradient(45deg, #ff7980, #ff8000); 
+               color: #fff; 
+               padding: 10px 20px; 
+               border-radius: 5px; 
+               box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+               transition: background 0.3s ease, transform 0.2s ease;">
+                    <i class="typcn typcn-credit-card me-2"></i>
+                    Récupérer commission Admin
+                </button>
+            </div>
 
-            <!-- Back to Home Button -->
-            <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
-                <div class="card shadow-sm border-0 w-100">
-                    <div class="card-body">
-                        <h4 class="card-title mb-4 fw-bold text-dark">Mes informations</h4>
+            <div class="col-6 mt-3 d-flex justify-content-start align-items-center flex-column">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#promoCodeModal">
+                    <i class="typcn typcn-credit-card me-2"></i>
+                    <?php echo e(auth()->user()->code_promo ? 'Modifier code promo' : 'Ajouter code promo'); ?>
 
-                        <table class="table table-bordered table-striped">
-                            <thead class="table-dark text-center">
-                                <tr>
-                                    <th scope="col">Détail</th>
-                                    <th scope="col">Information</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-center text-dark">
-                                <tr>
-                                    <td><strong>Nom</strong></td>
-                                    <td><?php echo e(auth()->user()->name); ?></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Email</strong></td>
-                                    <td><?php echo e(auth()->user()->email); ?></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Téléphone</strong></td>
-                                    <td><?php echo e(auth()->user()->telephone ?? 'Non disponible'); ?></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Code promo</strong></td>
-                                    <td>
-                                        <?php
-                                            $coach = \App\Models\Coach::where('user_id', auth()->id())->first();
-                                            $userCode = auth()->user()->code_promo ?? null;
-                                            $coachCode = $coach?->code_promo ?? null;
-                                        ?>
+                </button>
+            </div>
 
-                                        <?php if($coachCode): ?>
-                                            <span class="badge bg-success"><?php echo e($coachCode); ?></span>
-                                        <?php elseif($userCode): ?>
-                                            <span class="badge bg-success"><?php echo e($userCode); ?></span>
-                                        <?php else: ?>
-                                            <span class="badge bg-secondary">Aucun code promo</span>
-                                        <?php endif; ?>
-                                    </td>
-                                </tr>
+            <!-- Modal -->
+            <div class="modal fade" id="promoCodeModal" tabindex="-1" aria-labelledby="promoCodeModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <form id="promoCodeForm" method="POST" action="/user/update-promo-code/<?php echo e(auth()->user()->id); ?>">
+                        <?php echo csrf_field(); ?>
+                        <input type="hidden" name="_method" value="PUT">
 
-                                <tr>
-                                    <td><strong>Mon profit</strong></td>
-                                    <td>
-                                        <?php
-                                            $totalProfit =
-                                                (float) auth()->user()->profit_user +
-                                                (float) auth()->user()->profit_user_transfer;
-                                        ?>
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="promoCodeModalLabel">Ajouter / Mettre à jour le code promo
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Fermer"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="promo_code" class="form-label">Code Promo</label>
+                                    <input type="text" class="form-control" id="promo_code" name="promo_code"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">Enregistrer</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
-                                        <span class="badge <?php echo e($totalProfit > 0 ? 'bg-success' : 'bg-secondary'); ?>">
-                                            <?php echo e(number_format($totalProfit, 2)); ?> $
-                                        </span>
+            <!-- Modal de Confirmation - Get My Profit -->
+            <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
 
-                                    </td>
-                                </tr>
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmationModalLabel">Confirmation de Retrait</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Fermer"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <p>Êtes-vous sûr de vouloir récupérer votre commission ? Cette action déclenchera une demande de
+                                retrait auprès de l'administrateur.</p>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+
+                            <!-- Modifier l'action du formulaire selon votre route -->
+                            <form action="<?php echo e(route('get-profit-admin', auth()->user()->id)); ?>" method="POST">
+                                <?php echo csrf_field(); ?>
+                                <button type="submit" class="btn btn-success">Oui, je confirme</button>
+                            </form>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    <?php endif; ?>
+    <!-- User Information Section -->
+    <div class="row">
+
+        <!-- Back to Home Button -->
+        <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
+            <div class="card shadow-sm border-0 w-100">
+                <div class="card-body">
+                    <h4 class="card-title mb-4 fw-bold text-dark">Mes informations</h4>
+
+                    <table class="table table-bordered table-striped">
+                        <thead class="table-dark text-center">
+                            <tr>
+                                <th scope="col">Détail</th>
+                                <th scope="col">Information</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center text-dark">
+                            <tr>
+                                <td><strong>Nom</strong></td>
+                                <td><?php echo e(auth()->user()->name); ?></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Email</strong></td>
+                                <td><?php echo e(auth()->user()->email); ?></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Téléphone</strong></td>
+                                <td><?php echo e(auth()->user()->telephone ?? 'Non disponible'); ?></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Code promo</strong></td>
+                                <td>
+                                    <?php
+                                        $coach = \App\Models\Coach::where('user_id', auth()->id())->first();
+                                        $userCode = auth()->user()->code_promo ?? null;
+                                        $coachCode = $coach?->code_promo ?? null;
+                                    ?>
+
+                                    <?php if($coachCode): ?>
+                                        <span class="badge bg-success"><?php echo e($coachCode); ?></span>
+                                    <?php elseif($userCode): ?>
+                                        <span class="badge bg-success"><?php echo e($userCode); ?></span>
+                                    <?php else: ?>
+                                        <span class="badge bg-secondary">Aucun code promo</span>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>Mon profit</strong></td>
+                                <td>
+                                    <?php
+                                        $totalProfit =
+                                            (float) auth()->user()->profit_user +
+                                            (float) auth()->user()->profit_user_transfer;
+                                    ?>
+
+                                    <span class="badge <?php echo e($totalProfit > 0 ? 'bg-success' : 'bg-secondary'); ?>">
+                                        <?php echo e(number_format($totalProfit, 2)); ?> $
+                                    </span>
+
+                                </td>
+                            </tr>
+                            <?php if(auth()->user()->role !== 'admin'): ?>
                                 <tr>
                                     <td><strong>Rank</strong></td>
                                     <td>
@@ -373,23 +461,24 @@
                                         <?php endif; ?>
                                     </td>
                                 </tr>
+                            <?php endif; ?>
 
-                            </tbody>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
-            <!-- Optional hover effect -->
-            <style>
-                .btn:hover {
-                    background: linear-gradient(45deg, #cba075, #cba075);
-                    transform: scale(1.05);
-                }
-            </style>
         </div>
-        <!-- End of User Information Section -->
-    <?php endif; ?>
+
+        <!-- Optional hover effect -->
+        <style>
+            .btn:hover {
+                background: linear-gradient(45deg, #cba075, #cba075);
+                transform: scale(1.05);
+            }
+        </style>
+    </div>
+    <!-- End of User Information Section -->
+
 <?php $__env->stopSection(); ?>
 <style>
     .aaa {

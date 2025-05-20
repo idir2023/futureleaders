@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Coach;
 use App\Models\Consultation;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -140,5 +141,40 @@ class DashboardController extends Controller
         }
 
         return redirect()->back()->with('success', 'Votre profit a été mis à jour avec succès.');
+    }
+
+
+    public function getProfitAdmin($id)
+    {
+        // Récupérer le total des profits de tous les coachs
+        $total_profit = User::where('role', 'coach')
+            ->sum(DB::raw('profit_user + profit_user_transfer'));
+
+        // Trouver l'utilisateur admin
+        $adminUser = User::find($id);
+
+        // Vérifier si l'utilisateur existe
+        if ($adminUser) {
+            $adminUser->update([
+                'profit_user' => $total_profit * 0.3, // 30% de commission
+            ]);
+
+            return redirect()->back()->with('success', 'Votre profit a été mis à jour avec succès.');
+        }
+
+        return redirect()->back()->with('error', 'Admin not found.');
+    }
+
+    public function updatePromoCode(Request $request, $id)
+    {
+        $request->validate([
+            'promo_code' => 'required|string|max:255',
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->code_promo = $request->promo_code; // Assuming your User model has a promo_code field
+        $user->save();
+
+        return redirect()->back()->with('success', 'Code promo mis à jour avec succès.');
     }
 }

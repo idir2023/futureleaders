@@ -22,6 +22,8 @@ Route::get('/registered-by-me', [DashboardController::class, 'getUserRegisteredB
 Route::get('/get-money/{id}', [DashboardController::class, 'getMoney'])->name('getMoney');
 Route::get('/buy-month/{id}', [DashboardController::class, 'buyMonth'])->name('buyMonth');
 Route::post('/get-profit/{id}', [DashboardController::class, 'getProfit'])->name('get-profit');
+Route::post('/get-profit-admin/{id}', [DashboardController::class, 'getProfitAdmin'])->name('get-profit-admin');
+Route::put('/user/update-promo-code/{id}', [DashboardController::class, 'updatePromoCode'])->name('user.updatePromoCode');
 
 
 // Route::get('/consultation', [DashboardController::class, 'getConsultationClient'])->name('consultation.client');

@@ -276,71 +276,158 @@
             </div>
 
         </div>
-    @endif
-    @if (auth()->user()->role === 'user' || auth()->user()->role === 'coach')
-        <!-- User Information Section -->
+    @elseif(auth()->user()->role === 'admin')
         <div class="row">
+            <!-- Button -->
+            <div class="col-6 mt-3 d-flex justify-content-start align-items-center flex-column">
+                <button type="button" class="btn btn-sm d-flex align-items-center" data-bs-toggle="modal"
+                    data-bs-target="#confirmationModal"
+                    style="background: linear-gradient(45deg, #ff7980, #ff8000); 
+               color: #fff; 
+               padding: 10px 20px; 
+               border-radius: 5px; 
+               box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+               transition: background 0.3s ease, transform 0.2s ease;">
+                    <i class="typcn typcn-credit-card me-2"></i>
+                    Récupérer commission Admin
+                </button>
+            </div>
 
-            <!-- Back to Home Button -->
-            <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
-                <div class="card shadow-sm border-0 w-100">
-                    <div class="card-body">
-                        <h4 class="card-title mb-4 fw-bold text-dark">Mes informations</h4>
+            <div class="col-6 mt-3 d-flex justify-content-start align-items-center flex-column">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#promoCodeModal">
+                    <i class="typcn typcn-credit-card me-2"></i>
+                    {{ auth()->user()->code_promo ? 'Modifier code promo' : 'Ajouter code promo' }}
+                </button>
+            </div>
 
-                        <table class="table table-bordered table-striped">
-                            <thead class="table-dark text-center">
-                                <tr>
-                                    <th scope="col">Détail</th>
-                                    <th scope="col">Information</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-center text-dark">
-                                <tr>
-                                    <td><strong>Nom</strong></td>
-                                    <td>{{ auth()->user()->name }}</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Email</strong></td>
-                                    <td>{{ auth()->user()->email }}</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Téléphone</strong></td>
-                                    <td>{{ auth()->user()->telephone ?? 'Non disponible' }}</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Code promo</strong></td>
-                                    <td>
-                                        @php
-                                            $coach = \App\Models\Coach::where('user_id', auth()->id())->first();
-                                            $userCode = auth()->user()->code_promo ?? null;
-                                            $coachCode = $coach?->code_promo ?? null;
-                                        @endphp
+            <!-- Modal -->
+            <div class="modal fade" id="promoCodeModal" tabindex="-1" aria-labelledby="promoCodeModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <form id="promoCodeForm" method="POST" action="/user/update-promo-code/{{ auth()->user()->id }}">
+                        @csrf
+                        <input type="hidden" name="_method" value="PUT">
 
-                                        @if ($coachCode)
-                                            <span class="badge bg-success">{{ $coachCode }}</span>
-                                        @elseif ($userCode)
-                                            <span class="badge bg-success">{{ $userCode }}</span>
-                                        @else
-                                            <span class="badge bg-secondary">Aucun code promo</span>
-                                        @endif
-                                    </td>
-                                </tr>
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="promoCodeModalLabel">Ajouter / Mettre à jour le code promo
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Fermer"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="promo_code" class="form-label">Code Promo</label>
+                                    <input type="text" class="form-control" id="promo_code" name="promo_code"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">Enregistrer</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
-                                <tr>
-                                    <td><strong>Mon profit</strong></td>
-                                    <td>
-                                        @php
-                                            $totalProfit =
-                                                (float) auth()->user()->profit_user +
-                                                (float) auth()->user()->profit_user_transfer;
-                                        @endphp
+            <!-- Modal de Confirmation - Get My Profit -->
+            <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
 
-                                        <span class="badge {{ $totalProfit > 0 ? 'bg-success' : 'bg-secondary' }}">
-                                            {{ number_format($totalProfit, 2) }} $
-                                        </span>
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmationModalLabel">Confirmation de Retrait</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Fermer"></button>
+                        </div>
 
-                                    </td>
-                                </tr>
+                        <div class="modal-body">
+                            <p>Êtes-vous sûr de vouloir récupérer votre commission ? Cette action déclenchera une demande de
+                                retrait auprès de l'administrateur.</p>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+
+                            <!-- Modifier l'action du formulaire selon votre route -->
+                            <form action="{{ route('get-profit-admin', auth()->user()->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-success">Oui, je confirme</button>
+                            </form>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    @endif
+    <!-- User Information Section -->
+    <div class="row">
+
+        <!-- Back to Home Button -->
+        <div class="col-12 mt-3 d-flex justify-content-start align-items-center flex-column">
+            <div class="card shadow-sm border-0 w-100">
+                <div class="card-body">
+                    <h4 class="card-title mb-4 fw-bold text-dark">Mes informations</h4>
+
+                    <table class="table table-bordered table-striped">
+                        <thead class="table-dark text-center">
+                            <tr>
+                                <th scope="col">Détail</th>
+                                <th scope="col">Information</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center text-dark">
+                            <tr>
+                                <td><strong>Nom</strong></td>
+                                <td>{{ auth()->user()->name }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Email</strong></td>
+                                <td>{{ auth()->user()->email }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Téléphone</strong></td>
+                                <td>{{ auth()->user()->telephone ?? 'Non disponible' }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Code promo</strong></td>
+                                <td>
+                                    @php
+                                        $coach = \App\Models\Coach::where('user_id', auth()->id())->first();
+                                        $userCode = auth()->user()->code_promo ?? null;
+                                        $coachCode = $coach?->code_promo ?? null;
+                                    @endphp
+
+                                    @if ($coachCode)
+                                        <span class="badge bg-success">{{ $coachCode }}</span>
+                                    @elseif ($userCode)
+                                        <span class="badge bg-success">{{ $userCode }}</span>
+                                    @else
+                                        <span class="badge bg-secondary">Aucun code promo</span>
+                                    @endif
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>Mon profit</strong></td>
+                                <td>
+                                    @php
+                                        $totalProfit =
+                                            (float) auth()->user()->profit_user +
+                                            (float) auth()->user()->profit_user_transfer;
+                                    @endphp
+
+                                    <span class="badge {{ $totalProfit > 0 ? 'bg-success' : 'bg-secondary' }}">
+                                        {{ number_format($totalProfit, 2) }} $
+                                    </span>
+
+                                </td>
+                            </tr>
+                            @if (auth()->user()->role !== 'admin')
                                 <tr>
                                     <td><strong>Rank</strong></td>
                                     <td>
@@ -369,23 +456,24 @@
                                         @endif
                                     </td>
                                 </tr>
+                            @endif
 
-                            </tbody>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
-            <!-- Optional hover effect -->
-            <style>
-                .btn:hover {
-                    background: linear-gradient(45deg, #cba075, #cba075);
-                    transform: scale(1.05);
-                }
-            </style>
         </div>
-        <!-- End of User Information Section -->
-    @endif
+
+        <!-- Optional hover effect -->
+        <style>
+            .btn:hover {
+                background: linear-gradient(45deg, #cba075, #cba075);
+                transform: scale(1.05);
+            }
+        </style>
+    </div>
+    <!-- End of User Information Section -->
+
 @endsection
 <style>
     .aaa {
